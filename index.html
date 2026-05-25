@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Insulinización VR — Prototipo Educativo Inmersivo</title>
+  <meta name="description" content="Proyecto de investigación: prototipo inmersivo para enseñanza de técnicas de insulinización mediante Realidad Virtual. UNAB, Bucaramanga." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Insulinización VR — Prototipo Educativo Inmersivo" />
+  <meta property="og:description" content="Prototipo educativo inmersivo para el fortalecimiento de la técnica de aplicación de insulina mediante Realidad Virtual." />
+  <meta property="og:type" content="website" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💉</text></svg>" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- React 18 (production) -->
+  <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
+
+  <!-- Anime.js -->
+  <script src="https://unpkg.com/animejs@3.2.1/lib/anime.min.js"></script>
+
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- App scripts -->
+  <script type="text/babel" src="effects.jsx"></script>
+  <script type="text/babel" src="motion.jsx"></script>
+  <script type="text/babel" src="nav.jsx"></script>
+  <script type="text/babel" src="hero.jsx"></script>
+  <script type="text/babel" src="sections-a.jsx"></script>
+  <script type="text/babel" src="sections-b.jsx"></script>
+  <script type="text/babel" src="sections-c.jsx"></script>
+  <script type="text/babel" src="sections-d.jsx"></script>
+  <script type="text/babel" src="tweaks-panel.jsx"></script>
+  <script type="text/babel" src="app.jsx"></script>
+</body>
+</html>

@@ -125,7 +125,8 @@ vr-landing-page/
     ├── styles.css          # Tokens de diseño, componentes y responsive
     ├── assets/
     │   ├── problema/       # Fotos WebP de la sección «El problema» (Unsplash)
-    │   └── pregunta/       # Fondo WebP de la pregunta problema, escritorio y móvil (Unsplash)
+    │   ├── pregunta/       # Fondo WebP de la pregunta problema, escritorio y móvil (Unsplash)
+    │   └── objetivos/      # Fotos WebP de los objetivos específicos (Unsplash)
     ├── data/
     │   └── content.js      # Texto, cifras, fechas y enlaces de la página
     └── components/
@@ -215,7 +216,7 @@ Proyecto de grado · Ingeniería de Sistemas · Universidad Autónoma de Bucaram
 
 Referencia de diseño: «Healthcare Clinic Platform», de Shuvo, publicado en Dribbble.
 
-Fotografías de «El problema» (`src/assets/problema/`) y de la pregunta problema (`src/assets/pregunta/`), convertidas a WebP, tomadas de [Unsplash](https://unsplash.com/license) con licencia gratuita:
+Fotografías de «El problema» (`src/assets/problema/`), la pregunta problema (`src/assets/pregunta/`) y los objetivos (`src/assets/objetivos/`), convertidas a WebP, tomadas de [Unsplash](https://unsplash.com/license) con licencia gratuita:
 
 | Archivo | Foto | Autor |
 |---|---|---|
@@ -224,3 +225,6 @@ Fotografías de «El problema» (`src/assets/problema/`) y de la pregunta proble
 | `almacenamiento.webp` | [Frigorífico de puertas francesas](https://unsplash.com/photos/FDQFZHY9iG4) | nrd |
 | `ansiedad.webp` | [Mujer con la cabeza entre las manos](https://unsplash.com/photos/WI4k8Z15hbQ) | engin akyurt |
 | `pregunta/cardboard.webp` (y `cardboard-mobile.webp`) | [Lost In Reality, mujer con visor Google Cardboard](https://unsplash.com/photos/VZN-f2gsvb4) | Matthew Kwong |
+| `objetivos/requerimientos.webp` | [Médico consultando con un paciente en un consultorio](https://unsplash.com/photos/MJmsLpeHPfg) | Vitaly Gariev |
+| `objetivos/diseno.webp` | [Persona dibujando un wireframe en papel](https://unsplash.com/photos/v9FQR4tbIq8) | Kelly Sikkema |
+| `objetivos/validacion.webp` | [Profesionales de la salud revisando una tableta](https://unsplash.com/photos/DbCfSrTnflA) | Nappy |

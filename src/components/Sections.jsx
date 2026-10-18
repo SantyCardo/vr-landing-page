@@ -143,16 +143,24 @@ export function Question() {
 }
 
 export function Objectives() {
+  const o = C.objectives;
   return (
     <section id="objetivos" className="section">
       <div className="container">
-        <SectionHead title={['Objetivos', 'del proyecto.']} lead={C.objectives.general} />
-        <div className="grid-3">
-          {C.objectives.specific.map((o, i) => (
-            <article key={o.title} className="card numbered reveal">
-              <span className="num">0{i + 1}</span>
-              <h3>{o.title}</h3>
-              <p>{o.body}</p>
+        <div className="objectives-head reveal">
+          <h2 className="h2">Objetivos<br />del proyecto.</h2>
+          <div className="objective-general">
+            <span className="objective-label">Objetivo general</span>
+            <p>{o.general}</p>
+          </div>
+        </div>
+        <div className="objective-grid">
+          {o.specific.map((s, i) => (
+            <article key={s.title} className="objective-card reveal">
+              <div className="objective-photo"><img src={s.img} alt={s.alt} loading="lazy" /></div>
+              <span className="objective-num">0{i + 1} · Objetivo específico</span>
+              <h3>{s.title}</h3>
+              <p>{s.body}</p>
             </article>
           ))}
         </div>

@@ -8,6 +8,10 @@ import imgAnsiedad from '../assets/problema/ansiedad.webp';
 // Fondo de la pregunta: «Lost In Reality», Matthew Kwong (Unsplash, licencia gratuita).
 import imgPregunta from '../assets/pregunta/cardboard.webp';
 import imgPreguntaMovil from '../assets/pregunta/cardboard-mobile.webp';
+// Objetivos específicos: Vitaly Gariev, Kelly Sikkema y Nappy (Unsplash, licencia gratuita).
+import imgObjRequerimientos from '../assets/objetivos/requerimientos.webp';
+import imgObjDiseno from '../assets/objetivos/diseno.webp';
+import imgObjValidacion from '../assets/objetivos/validacion.webp';
 
 export const nav = [
   { href: '#problema', label: 'Problema' },
@@ -119,9 +123,9 @@ export const question = {
 export const objectives = {
   general: 'Desarrollar un prototipo de herramienta educativa inmersiva e interactiva, basada en requerimientos clínicos, procedimientos y almacenamiento de la insulinización, para el fortalecimiento de la técnica de aplicación en pacientes adultos con diabetes tipo II.',
   specific: [
-    { title: 'Identificar requerimientos', body: 'Identificar los requerimientos clínicos, educativos, funcionales y no funcionales del procedimiento de insulinización, mediante revisión documental y consulta a profesionales de salud.' },
-    { title: 'Diseñar el prototipo', body: 'Diseñar el prototipo educativo integrando componentes interactivos de las etapas del procedimiento, orientado al entrenamiento práctico y seguro del usuario.' },
-    { title: 'Validar con expertos', body: 'Validar el prototipo con expertos del área, como médicos de la fundación clínica, para verificar que el procedimiento esté correctamente explicado.' },
+    { title: 'Identificar requerimientos', img: imgObjRequerimientos, alt: 'Médica entrevistando a un paciente en el consultorio', body: 'Identificar los requerimientos clínicos, educativos, funcionales y no funcionales del procedimiento de insulinización, mediante revisión documental y consulta a profesionales de salud.' },
+    { title: 'Diseñar el prototipo', img: imgObjDiseno, alt: 'Mano dibujando el boceto de una interfaz', body: 'Diseñar el prototipo educativo integrando componentes interactivos de las etapas del procedimiento, orientado al entrenamiento práctico y seguro del usuario.' },
+    { title: 'Validar con expertos', img: imgObjValidacion, alt: 'Dos profesionales de la salud revisando una tableta', body: 'Validar el prototipo con expertos del área, como médicos de la fundación clínica, para verificar que el procedimiento esté correctamente explicado.' },
   ],
 };
 

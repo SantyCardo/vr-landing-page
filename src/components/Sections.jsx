@@ -137,11 +137,6 @@ export function Question() {
           <p className="eyebrow eyebrow-light">Pregunta problema</p>
           <p className="question">{q.text}</p>
         </div>
-        <ul className="question-points">
-          {q.highlights.map((h) => (
-            <li key={h.text}><Icon name={h.icon} size={18} />{h.text}</li>
-          ))}
-        </ul>
       </div>
     </section>
   );

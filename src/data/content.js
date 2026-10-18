@@ -112,11 +112,6 @@ export const justification = {
 
 export const question = {
   text: '¿Cómo se puede desarrollar una herramienta educativa inmersiva e interactiva que ayude a fortalecer la correcta técnica de insulinización y el adecuado almacenamiento de la insulina en pacientes con diabetes?',
-  highlights: [
-    { icon: 'eye', text: 'Herramienta inmersiva e interactiva' },
-    { icon: 'check', text: 'Técnica correcta de insulinización' },
-    { icon: 'shield', text: 'Almacenamiento adecuado de la insulina' },
-  ],
   img: imgPregunta,
   imgMobile: imgPreguntaMovil,
 };

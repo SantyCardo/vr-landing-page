@@ -18,7 +18,7 @@
   --r-lg: 20px;
   --pill: 999px;
   --gutter: clamp(16px, 4vw, 48px);
-  --frame: 12px; /* margen exterior de la portada y del cierre */
+  --frame: 12px; /* parte fija del margen lateral del contenido */
   --edge: calc(var(--frame) + var(--gutter)); /* borde del contenido en toda la página */
 }
 
@@ -39,7 +39,6 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
 .container { width: 100%; padding-inline: var(--edge); }
-.hero-inner.container, .closing-inner.container { padding-inline: var(--gutter); }
 .muted { color: var(--muted); font-style: normal; }
 .count-up { font-variant-numeric: tabular-nums; }
 
@@ -86,7 +85,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 /* ---------- Hero ---------- */
 .hero {
   position: relative; min-height: 100svh; color: #fff;
-  margin: var(--frame); border-radius: var(--r-lg); overflow: hidden;
+  overflow: hidden;
   display: flex; flex-direction: column;
 }
 .hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
@@ -362,7 +361,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .validation-value { font-size: 15px; font-weight: 500; }
 
 /* ---------- Cierre ---------- */
-.site-end { margin: var(--frame); border-radius: var(--r-lg); overflow: hidden; }
+.site-end { overflow: hidden; }
 .closing { position: relative; overflow: hidden; color: #fff; min-height: 88svh; display: flex; }
 .closing-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .closing-veil { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(15,20,25,0.62) 0%, rgba(15,20,25,0.18) 45%, transparent 70%); }
@@ -375,7 +374,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .closing-ctas { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; }
 
 /* ---------- Footer ---------- */
-.footer { background: #000; color: #fff; padding: clamp(48px, 7vw, 96px) var(--gutter) 40px; }
+.footer { background: #000; color: #fff; padding: clamp(48px, 7vw, 96px) var(--edge) 40px; }
 .wordmark { display: block; width: 100%; height: auto; }
 .wordmark text { fill: #fff; font-family: var(--font); font-size: 210px; font-weight: 500; letter-spacing: -0.01em; }
 .footer-cols {

@@ -169,7 +169,7 @@ Inspirado en la plantilla «Healthcare Clinic Platform»: estilo clínico claro,
 | `--bg`, `--surface` | Fondo blanco de la página y gris claro de las tarjetas |
 | `--ink`, `--ink-2`, `--muted`, `--line` | Texto principal, secundario, atenuado y líneas |
 | `--accent`, `--accent-soft` | Azul grisáceo de acentos y beige de etiquetas |
-| `--frame` | Margen exterior de la portada y del cierre (12 px; 6 px en móvil) |
+| `--frame` | Parte fija del margen lateral del contenido (12 px; 6 px en móvil). Portada, pregunta, cierre y footer van a todo el ancho, sin margen |
 | `--gutter` | Relleno interno adaptable (16 a 48 px) |
 | `--edge` | `--frame + --gutter`: borde del contenido en toda la página |
 | `--r-sm`, `--r`, `--r-lg`, `--pill` | Radios de esquinas y botones en píldora |

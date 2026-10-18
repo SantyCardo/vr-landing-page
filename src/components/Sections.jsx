@@ -206,12 +206,6 @@ export function Methodology() {
           ))}
         </ol>
         <p className="method-note reveal">Cada incremento fue una vuelta completa del ciclo PHVA.</p>
-
-        <dl className="method-facts reveal">
-          {m.facts.map((f) => (
-            <div key={f.value}><dt>{f.value}</dt><dd>{f.label}</dd></div>
-          ))}
-        </dl>
       </div>
     </section>
   );

@@ -136,7 +136,7 @@ export const objectives = {
 };
 
 export const methodology = {
-  lead: 'El proyecto se gestionó con las fases del PMBOK y el ciclo PHVA, y el prototipo se desarrolló por incrementos cortos con seguimiento en Kanban.',
+  lead: 'El proyecto se gestionó con las fases del PMBOK y el ciclo PHVA, y el prototipo se desarrolló por incrementos cortos y verificables.',
   phases: [
     { title: 'Inicio', img: imgFaseInicio, alt: 'Dos personas planeando un proyecto con notas adhesivas',
       body: 'Se definieron el problema, los objetivos, el alcance y los entregables.', deliverable: 'Anteproyecto aprobado' },
@@ -154,11 +154,6 @@ export const methodology = {
     { title: 'Hacer', body: 'Desarrollo del prototipo por incrementos e integración de los módulos.' },
     { title: 'Verificar', body: 'Pruebas técnicas en cada incremento y validación con expertos.' },
     { title: 'Actuar', body: 'Ajustes según la validación, documentación y cierre del proyecto.' },
-  ],
-  facts: [
-    { value: '9 incrementos', label: 'Desarrollo iterativo entre el 11 de septiembre y el 1 de octubre de 2026' },
-    { value: 'Kanban', label: 'Tablero en Trello: por hacer, en progreso y terminado' },
-    { value: 'Git y GitHub', label: 'Un commit por incremento' },
   ],
 };
 

@@ -315,12 +315,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
 .grid-5.hover-cards .photo-card { min-height: clamp(380px, 32vw, 520px); }
 .goals.goals-4 { grid-template-columns: repeat(4, 1fr); margin-bottom: 12px; }
-.method-note { color: var(--muted); font-size: 16px; margin-bottom: 40px; }
-.method-facts { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.method-facts > div { padding: 22px 24px; border-left: 1px solid var(--line); }
-.method-facts > div:first-child { padding-left: 0; border-left: 0; }
-.method-facts dt { font-size: 24px; font-weight: 500; letter-spacing: -0.02em; }
-.method-facts dd { font-size: 16px; color: var(--ink-2); margin-top: 4px; }
+.method-note { color: var(--muted); font-size: 16px; }
 
 /* ---------- Justificación ---------- */
 .transform { position: relative; display: grid; grid-template-columns: 1fr 0.8fr 1fr; gap: 12px; height: 280px; }
@@ -436,12 +431,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   #metodologia { min-height: 100svh; padding: 100px 0 24px; display: flex; align-items: center; }
   #metodologia > .container { width: 100%; }
   #metodologia .split-head { padding-bottom: 18px; margin-bottom: 18px; }
-  #metodologia .grid-5.hover-cards .photo-card { min-height: 0; height: clamp(200px, calc(100svh - 690px), 400px); }
+  #metodologia .grid-5.hover-cards .photo-card { min-height: 0; height: clamp(240px, calc(100svh - 560px), 480px); }
   #metodologia .goals { margin: 22px 0 6px; }
   #metodologia .goals li { padding-top: 12px; }
   #metodologia .goals h3 { margin: 4px 0 4px; }
-  #metodologia .method-note { margin-bottom: 14px; }
-  #metodologia .method-facts > div { padding-top: 12px; padding-bottom: 12px; }
 }
 
 /* ---------- Responsive ---------- */
@@ -475,9 +468,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .transform-pill { padding: 28px 24px; border-radius: var(--r); }
   .transform-arrow { display: none; }
   .split-head { grid-template-columns: 1fr; gap: 20px; }
-  .grid-5, .method-facts, .goals.goals-4 { grid-template-columns: 1fr; }
-  .method-facts > div { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
-  .method-facts > div:first-child { border-top: 0; }
+  .grid-5, .goals.goals-4 { grid-template-columns: 1fr; }
     .question-block { min-height: 0; }
   .question-bg { object-position: 40% 30%; }
   .question-veil { background: linear-gradient(180deg, rgba(15, 20, 25, 0.1) 0%, rgba(15, 20, 25, 0.55) 40%, rgba(15, 20, 25, 0.88) 100%); }

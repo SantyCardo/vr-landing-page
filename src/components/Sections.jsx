@@ -317,9 +317,9 @@ export function Team() {
   );
 }
 
-export function Closing() {
+function Closing() {
   return (
-    <footer className="closing">
+    <section className="closing">
       <img className="closing-bg" src="/img/teleport_cocina.jpg" alt="" loading="lazy" />
       <div className="closing-veil" />
       <div className="container closing-inner">
@@ -332,6 +332,41 @@ export function Closing() {
           <a href="#equipo" className="btn btn-ghost btn-sm"><Icon name="arrowUR" size={14} /> Conocer el equipo</a>
         </div>
       </div>
+    </section>
+  );
+}
+
+function Footer() {
+  const f = C.footer;
+  return (
+    <footer className="footer">
+      <svg className="wordmark" viewBox="0 0 1000 158" role="img" aria-label={f.wordmark}>
+        <text x="0" y="155" textLength="1000" lengthAdjust="spacing">{f.wordmark}</text>
+      </svg>
+      <div className="footer-cols">
+        <div className="footer-about">
+          <p>{f.tagline}</p>
+          <p className="footer-copy">{f.copyright[0]}<br />{f.copyright[1]}</p>
+        </div>
+        {f.columns.map((col) => (
+          <nav key={col.title} aria-label={col.title}>
+            <h3>{col.title}</h3>
+            <ul>
+              {col.links.map((l) => <li key={l.label}>{l.href ? <a href={l.href}>{l.label}</a> : <span>{l.label}</span>}</li>)}
+            </ul>
+          </nav>
+        ))}
+      </div>
     </footer>
+  );
+}
+
+// Cierre de la página: foto con llamado a la acción y footer negro, pegados en un mismo marco.
+export function SiteEnd() {
+  return (
+    <div className="site-end">
+      <Closing />
+      <Footer />
+    </div>
   );
 }

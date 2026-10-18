@@ -23,7 +23,7 @@ export function App() {
         <S.Team />
         <S.Faq />
       </main>
-      <S.Closing />
+      <S.SiteEnd />
     </>
   );
 }

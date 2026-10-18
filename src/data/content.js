@@ -198,3 +198,24 @@ export const team = {
     { label: 'Asesoría temática', name: 'Dr. Jaime Gómez', sub: 'Médico internista · Fundación Clínica' },
   ],
 };
+
+export const footer = {
+  wordmark: 'INSULIN·VR',
+  tagline: 'Prototipo educativo inmersivo para aprender la técnica de insulinización con el teléfono del paciente y un visor de cartón.',
+  copyright: ['© 2026 Insulin·VR · UNAB.', 'Proyecto de grado, Ingeniería de Sistemas.'],
+  columns: [
+    { title: 'Enlaces', links: nav },
+    { title: 'Módulos', links: [
+      ...modules.items.map((m) => ({ href: '#modulos', label: m.title })),
+      { href: '#prototipo', label: 'Exámenes' },
+      { href: '#prototipo', label: 'Árbol de avances' },
+    ] },
+    { title: 'Proyecto', links: [
+      { href: '#resultados', label: 'Resultados' },
+      { href: '#resultados', label: 'Validación con expertos · 21 oct.' },
+      { href: '#cronograma', label: 'IngenioTIC · 26 oct.' },
+      { href: '#faq', label: 'Preguntas frecuentes' },
+      { label: 'Universidad Autónoma de Bucaramanga' },
+    ] },
+  ],
+};

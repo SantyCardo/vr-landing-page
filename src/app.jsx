@@ -1,37 +1,29 @@
-// ============================================
-// APP — root, composes all sections, hosts tweaks
-// ============================================
+import React from 'react';
+import { ScrollProgress, useReveal, useScrollTriggers, useSpotlightCards } from './effects.jsx';
+import { SideRail, SectionDivider } from './motion.jsx';
+import { Nav } from './nav.jsx';
+import { Hero } from './hero.jsx';
+import { AboutSection, JustificationSection, ProblemSection } from './sections-a.jsx';
+import { QuestionSection, ObjectivesSection, TimelineSection } from './sections-b.jsx';
+import { MethodologySection, MechanicsSection } from './sections-c.jsx';
+import { ScopeSection, FAQSection, TeamSection, Footer, LegalSection, ResultsSection, StateOfArtSection, ReferencesSection } from './sections-d.jsx';
 
-const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-  "atmosphere": "off",
-  "motion": "cinematic",
-  "surface": "frosted"
-}/*EDITMODE-END*/;
+// Valores fijos que antes venían del panel de tweaks del editor de diseño.
+const LOOK = { atmosphere: 'off', motion: 'cinematic', surface: 'frosted' };
 
-function App() {
-  const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+export function App() {
   useReveal();
   useScrollTriggers();
   useSpotlightCards();
 
-  // Apply body classes for motion + surface treatment
   React.useEffect(() => {
-    document.body.dataset.motion = t.motion;
-    document.body.dataset.surface = t.surface;
-    document.body.dataset.atmosphere = t.atmosphere;
-  }, [t.motion, t.surface, t.atmosphere]);
-
-  // Soft fade on load
-  React.useEffect(() => {
+    document.body.dataset.motion = LOOK.motion;
+    document.body.dataset.surface = LOOK.surface;
+    document.body.dataset.atmosphere = LOOK.atmosphere;
     document.body.style.opacity = '0';
     document.body.style.transition = 'opacity .6s ease';
     requestAnimationFrame(() => { document.body.style.opacity = '1'; });
   }, []);
-
-  // Atmosphere → which background layers are visible
-  const showOrbs    = t.atmosphere !== 'off';
-  const showGrid    = t.atmosphere === 'standard' || t.atmosphere === 'cinematic';
-  const showStreaks = t.atmosphere === 'cinematic';
 
   return (
     <>
@@ -73,33 +65,6 @@ function App() {
 
       <div className="grain" aria-hidden="true" />
 
-      <TweaksPanel>
-        <TweakSection label="Atmosphere" />
-        <TweakRadio
-          label="Background"
-          value={t.atmosphere}
-          options={['off', 'minimal', 'standard', 'cinematic']}
-          onChange={(v) => setTweak('atmosphere', v)}
-        />
-
-        <TweakSection label="Motion" />
-        <TweakRadio
-          label="Intensity"
-          value={t.motion}
-          options={['calm', 'cinematic', 'kinetic']}
-          onChange={(v) => setTweak('motion', v)}
-        />
-
-        <TweakSection label="Surface" />
-        <TweakRadio
-          label="Treatment"
-          value={t.surface}
-          options={['frosted', 'matte', 'hologram']}
-          onChange={(v) => setTweak('surface', v)}
-        />
-      </TweaksPanel>
     </>
   );
 }
-
-ReactDOM.createRoot(document.getElementById('root')).render(<App />);

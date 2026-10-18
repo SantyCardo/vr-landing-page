@@ -1,9 +1,12 @@
+import React from 'react';
+import { SectionHeader } from './sections-a.jsx';
+
 // ============================================
 // SECTIONS PART 2: Question, Objectives, Timeline
 // ============================================
 
 // ----- RESEARCH QUESTION -----
-function QuestionSection() {
+export function QuestionSection() {
   return (
     <section id="pregunta">
       <div className="container">
@@ -97,7 +100,7 @@ function QuestionSection() {
 }
 
 // ----- OBJECTIVES -----
-function ObjectivesSection() {
+export function ObjectivesSection() {
   const specifics = [
     {
       title: 'Identificar Requerimientos',
@@ -240,7 +243,7 @@ function ObjectivesSection() {
 }
 
 // ----- TIMELINE / CRONOGRAMA -----
-function TimelineSection() {
+export function TimelineSection() {
   const [activePhase, setActivePhase] = React.useState(0);
 
   const phases = [
@@ -585,13 +588,13 @@ function TimelineSection() {
 }
 
 // ===== PHASE SVG ILLUSTRATIONS (entregable cards) =====
-function PhaseSVG({ phase, color }) {
+export function PhaseSVG({ phase, color }) {
   if (phase === 0) return <RequirementsSVG color={color}/>;
   if (phase === 1) return <DevelopmentSVG color={color}/>;
   return <ValidationSVG color={color}/>;
 }
 
-function RequirementsSVG({ color }) {
+export function RequirementsSVG({ color }) {
   return (
     <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: 'auto', display: 'block', overflow: 'visible' }}>
       <defs>
@@ -655,7 +658,7 @@ function RequirementsSVG({ color }) {
   );
 }
 
-function DevelopmentSVG({ color }) {
+export function DevelopmentSVG({ color }) {
   return (
     <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: 'auto', display: 'block', overflow: 'visible' }}>
       <defs>
@@ -741,7 +744,7 @@ function DevelopmentSVG({ color }) {
   );
 }
 
-function ValidationSVG({ color }) {
+export function ValidationSVG({ color }) {
   return (
     <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: 'auto', display: 'block', overflow: 'visible' }}>
       <defs>
@@ -826,4 +829,3 @@ function ValidationSVG({ color }) {
   );
 }
 
-Object.assign(window, { QuestionSection, ObjectivesSection, TimelineSection });

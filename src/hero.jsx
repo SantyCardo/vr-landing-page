@@ -1,8 +1,13 @@
+import React from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { AnimatedText, MagneticButton } from './motion.jsx';
+
 // ============================================
 // HERO — cinematic AI-OS command center (v2)
 // ============================================
 
-function Hero() {
+export function Hero() {
   const [time, setTime] = React.useState(() => new Date());
   const [frame, setFrame] = React.useState(0);
   const [penProgress, setPenProgress] = React.useState(0);
@@ -13,9 +18,9 @@ function Hero() {
 
   // GSAP ScrollTrigger PIN — assemble pen progressively, block scroll past hero until complete.
   React.useEffect(() => {
-    if (!window.gsap || !window.ScrollTrigger || !heroRef.current) return;
-    const ST = window.ScrollTrigger;
-    window.gsap.registerPlugin(ST);
+    if (!gsap || !ScrollTrigger || !heroRef.current) return;
+    const ST = ScrollTrigger;
+    gsap.registerPlugin(ST);
 
     const st = ST.create({
       trigger: heroRef.current,
@@ -267,7 +272,7 @@ function Hero() {
 
 }
 
-function HeroDashboard({ frame, progress = 0 }) {
+export function HeroDashboard({ frame, progress = 0 }) {
   return (
     <div style={{ position: 'relative', minHeight: 560 }}>
       {/* main panel — chrome stripped (no bg/border/HUD) */}
@@ -405,7 +410,7 @@ function HeroDashboard({ frame, progress = 0 }) {
 
 // Insulin pen — pieces fly into assembled positions as scroll progresses (pin-driven).
 // Reference: clinical "insulin pen parts" diagram with leader lines.
-function InsulinPenAssembly({ progress, frame }) {
+export function InsulinPenAssembly({ progress, frame }) {
   const t = progress; // 0 → 1
 
   // Eased phase helper
@@ -729,7 +734,7 @@ function InsulinPenAssembly({ progress, frame }) {
 }
 
 // Google Cardboard isometric outline SVG (matches site palette)
-function CardboardSVG() {
+export function CardboardSVG() {
   // Centered around (160, 360). Approx 230 wide × 160 tall.
   const stroke = '#00b1ff';
   const lightStroke = '#5350cc';

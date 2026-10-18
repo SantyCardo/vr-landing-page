@@ -1,9 +1,11 @@
+import React from 'react';
+
 // ============================================
 // MOTION primitives — Impilo-style cinematic motion
 // ============================================
 
 // AnimatedText: splits text into words/chars and reveals with stagger
-function AnimatedText({ children, as: As = 'span', split = 'word', stagger = 60, delay = 0, blur = true, className = '', style = {} }) {
+export function AnimatedText({ children, as: As = 'span', split = 'word', stagger = 60, delay = 0, blur = true, className = '', style = {} }) {
   const ref = React.useRef(null);
   const [played, setPlayed] = React.useState(false);
 
@@ -59,7 +61,7 @@ function AnimatedText({ children, as: As = 'span', split = 'word', stagger = 60,
 }
 
 // useScrollY — current scroll position
-function useScrollY() {
+export function useScrollY() {
   const [y, setY] = React.useState(0);
   React.useEffect(() => {
     const onS = () => setY(window.scrollY);
@@ -71,7 +73,7 @@ function useScrollY() {
 }
 
 // useParallax — translate based on element's distance from viewport center
-function useParallax(speed = 0.2) {
+export function useParallax(speed = 0.2) {
   const ref = React.useRef(null);
   React.useEffect(() => {
     const el = ref.current;
@@ -96,7 +98,7 @@ function useParallax(speed = 0.2) {
 }
 
 // useMouseParallax — translate on mouse position within element parent
-function useMouseParallax(strength = 20) {
+export function useMouseParallax(strength = 20) {
   const ref = React.useRef(null);
   React.useEffect(() => {
     const el = ref.current;
@@ -116,7 +118,7 @@ function useMouseParallax(strength = 20) {
 }
 
 // Magnetic button — hover pulls element toward cursor
-function useMagnetic(strength = 0.3) {
+export function useMagnetic(strength = 0.3) {
   const ref = React.useRef(null);
   React.useEffect(() => {
     const el = ref.current;
@@ -141,7 +143,7 @@ function useMagnetic(strength = 0.3) {
 }
 
 // MagneticButton wrapper
-function MagneticButton({ children, strength = 0.25, className = '', style = {}, ...props }) {
+export function MagneticButton({ children, strength = 0.25, className = '', style = {}, ...props }) {
   const ref = useMagnetic(strength);
   return (
     <span style={{ display: 'inline-block', transition: 'transform .35s cubic-bezier(.2,.8,.2,1)' }}>
@@ -153,7 +155,7 @@ function MagneticButton({ children, strength = 0.25, className = '', style = {},
 }
 
 // Light streaks — animated SVG lines drifting across viewport
-function LightStreaks() {
+export function LightStreaks() {
   const streaks = React.useMemo(() => Array.from({ length: 12 }).map((_, i) => ({
     id: i,
     top: Math.random() * 100,
@@ -193,7 +195,7 @@ function LightStreaks() {
 }
 
 // Side rail — vertical section navigator
-function SideRail() {
+export function SideRail() {
   const [active, setActive] = React.useState('inicio');
   const sections = [
     { id: 'inicio',        label: '01 · Inicio' },
@@ -283,7 +285,7 @@ function SideRail() {
 }
 
 // useEntranceTimeline — sequential entrance using anime.js if available
-function useEntranceTimeline(selectors, options = {}) {
+export function useEntranceTimeline(selectors, options = {}) {
   React.useEffect(() => {
     if (typeof anime === 'undefined') return;
     const tl = anime.timeline({
@@ -304,7 +306,7 @@ function useEntranceTimeline(selectors, options = {}) {
 }
 
 // SectionDivider — horizontal accent line with center marker between sections
-function SectionDivider({ variant = 'dot', label, color = '#00b1ff' }) {
+export function SectionDivider({ variant = 'dot', label, color = '#00b1ff' }) {
   return (
     <div className="section-divider" aria-hidden="true">
       <span className="section-divider-line section-divider-line--l"/>
@@ -403,7 +405,7 @@ function SectionDivider({ variant = 'dot', label, color = '#00b1ff' }) {
 }
 
 // section bleed gradient — soft transition between sections
-function SectionBleed({ from = '#0d0d3d', to = '#16165c', height = 200 }) {
+export function SectionBleed({ from = '#0d0d3d', to = '#16165c', height = 200 }) {
   return (
     <div style={{
       position: 'relative',
@@ -415,4 +417,3 @@ function SectionBleed({ from = '#0d0d3d', to = '#16165c', height = 200 }) {
   );
 }
 
-Object.assign(window, { AnimatedText, useScrollY, useParallax, useMouseParallax, useMagnetic, MagneticButton, LightStreaks, SideRail, useEntranceTimeline, SectionBleed, SectionDivider });

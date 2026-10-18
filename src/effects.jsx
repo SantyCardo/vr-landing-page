@@ -1,8 +1,12 @@
+import React from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
 // ============================================
 // EFFECTS — backgrounds, reveals, scroll progress
 // ============================================
 
-function BackgroundFX({ showOrbs = true, showGrid = true }) {
+export function BackgroundFX({ showOrbs = true, showGrid = true }) {
   return (
     <div className="bg-fx">
       {showGrid && <div className="bg-grid" />}
@@ -21,7 +25,7 @@ function BackgroundFX({ showOrbs = true, showGrid = true }) {
   );
 }
 
-function ScrollProgress() {
+export function ScrollProgress() {
   const ref = React.useRef(null);
   React.useEffect(() => {
     const onScroll = () => {
@@ -37,7 +41,7 @@ function ScrollProgress() {
   return <div className="scroll-progress" ref={ref} />;
 }
 
-function useReveal() {
+export function useReveal() {
   React.useEffect(() => {
     // assign --idx to each child of stagger-children groups for CSS cascade
     document.querySelectorAll('.stagger-children').forEach((parent) => {
@@ -74,17 +78,17 @@ function useReveal() {
 }
 
 // useScrollTriggers — global binder for [data-parallax], [data-scroll-stick], [data-draw]
-function useScrollTriggers() {
+export function useScrollTriggers() {
   React.useEffect(() => {
-    if (!window.gsap || !window.ScrollTrigger) return;
-    const ST = window.ScrollTrigger;
-    window.gsap.registerPlugin(ST);
+    if (!gsap || !ScrollTrigger) return;
+    const ST = ScrollTrigger;
+    gsap.registerPlugin(ST);
     const triggers = [];
 
     // 1. Parallax — data-parallax="0.2"  → element translates Y as section scrolls
     document.querySelectorAll('[data-parallax]').forEach((el) => {
       const speed = parseFloat(el.dataset.parallax) || 0.15;
-      const t = window.gsap.to(el, {
+      const t = gsap.to(el, {
         yPercent: -speed * 100,
         ease: 'none',
         scrollTrigger: {
@@ -111,7 +115,7 @@ function useScrollTriggers() {
 
     // 3. Draw — data-draw="line"  →  underline grows as element enters viewport
     document.querySelectorAll('[data-draw]').forEach((el) => {
-      const t = window.gsap.to(el, {
+      const t = gsap.to(el, {
         '--draw': '100%',
         scrollTrigger: {
           trigger: el,
@@ -125,7 +129,7 @@ function useScrollTriggers() {
 
     // 4. Scrub-fade — data-scrub-fade → opacity 0→1 across entry, 1→.4 across exit
     document.querySelectorAll('[data-scrub-fade]').forEach((el) => {
-      const t = window.gsap.fromTo(el,
+      const t = gsap.fromTo(el,
         { opacity: 0, y: 60 },
         {
           opacity: 1, y: 0,
@@ -153,7 +157,7 @@ function useScrollTriggers() {
 }
 
 // SpotlightHost — attaches mouse listener for cursor-driven CSS vars on .spotlight-card descendants
-function useSpotlightCards() {
+export function useSpotlightCards() {
   React.useEffect(() => {
     const onMove = (e) => {
       const card = e.target.closest('.spotlight-card');
@@ -168,7 +172,7 @@ function useSpotlightCards() {
 }
 
 // Marquee — kinetic infinite scroll band (CSS-driven, GPU-only)
-function Marquee({ children, duration = 38, reverse = false, pad = 32 }) {
+export function Marquee({ children, duration = 38, reverse = false, pad = 32 }) {
   const items = React.Children.toArray(children);
   return (
     <div className="marquee" style={{ '--marquee-duration': `${duration}s` }}>
@@ -184,7 +188,7 @@ function Marquee({ children, duration = 38, reverse = false, pad = 32 }) {
 }
 
 // Animated counter (counts up to target on view)
-function Counter({ to, prefix = '', suffix = '', duration = 1800, decimals = 0 }) {
+export function Counter({ to, prefix = '', suffix = '', duration = 1800, decimals = 0 }) {
   const ref = React.useRef(null);
   const [val, setVal] = React.useState(0);
   React.useEffect(() => {
@@ -211,7 +215,7 @@ function Counter({ to, prefix = '', suffix = '', duration = 1800, decimals = 0 }
 }
 
 // HUD-style cursor blip that follows mouse on parent
-function MouseGlow({ color = '#00b1ff', size = 400 }) {
+export function MouseGlow({ color = '#00b1ff', size = 400 }) {
   const ref = React.useRef(null);
   React.useEffect(() => {
     const el = ref.current;
@@ -237,4 +241,3 @@ function MouseGlow({ color = '#00b1ff', size = 400 }) {
   );
 }
 
-Object.assign(window, { BackgroundFX, ScrollProgress, useReveal, useScrollTriggers, useSpotlightCards, Counter, MouseGlow, Marquee });

@@ -1,9 +1,14 @@
+import React from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { SectionHeader } from './sections-a.jsx';
+
 // ============================================
 // SECTIONS PART 3: Methodology, Mechanics, Tech Stack
 // ============================================
 
 // ----- METHODOLOGY -----
-function MethodologySection() {
+export function MethodologySection() {
   const phases = [
   {
     n: 'Fase 1',
@@ -109,7 +114,7 @@ function MethodologySection() {
 }
 
 // row wraps card + node + deliverable; hover on card expands deliverable
-function MethodRow({ phase, icon, index }) {
+export function MethodRow({ phase, icon, index }) {
   const [hovered, setHovered] = React.useState(false);
   const handlers = {
     onMouseEnter: () => setHovered(true),
@@ -141,7 +146,7 @@ function MethodRow({ phase, icon, index }) {
     </div>);
 }
 
-function MethodCard({ phase, icon, align = 'left', hovered = false, handlers = {} }) {
+export function MethodCard({ phase, icon, align = 'left', hovered = false, handlers = {} }) {
   return (
     <div {...handlers} tabIndex={0} className="spotlight-card" style={{
       padding: 32,
@@ -173,7 +178,7 @@ function MethodCard({ phase, icon, align = 'left', hovered = false, handlers = {
 
 }
 
-function MethodNode({ phase, index, hovered = false }) {
+export function MethodNode({ phase, index, hovered = false }) {
   return (
     <div style={{
       position: 'relative',
@@ -207,7 +212,7 @@ function MethodNode({ phase, index, hovered = false }) {
 
 }
 
-function MethodDeliverable({ phase, align = 'left', expanded = false }) {
+export function MethodDeliverable({ phase, align = 'left', expanded = false }) {
   // Expanded state: white card, violet text scale (design.md palette).
   // Collapsed: dark surface with phase-color accent.
   return (
@@ -272,7 +277,7 @@ function MethodDeliverable({ phase, align = 'left', expanded = false }) {
 }
 
 // ----- MECH ILLUSTRATIONS (outline only) -----
-const MechIllustrations = {
+export const MechIllustrations = {
   // 1. Core Loop — 5 numbered nodes on dashed orbit, rotating arrows, central hub
   loop: (
     <svg viewBox="0 0 320 240" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" style={{ width: '100%', height: '100%', overflow: 'visible' }}>
@@ -559,14 +564,13 @@ const MechIllustrations = {
 };
 
 // ----- MECH CARD (GSAP ScrollTrigger reveal) -----
-function MechCard({ mech, index }) {
+export function MechCard({ mech, index }) {
   const ref = React.useRef(null);
 
   React.useEffect(() => {
     const el = ref.current;
-    if (!el || !window.gsap || !window.ScrollTrigger) return;
-    const gsap = window.gsap;
-    gsap.registerPlugin(window.ScrollTrigger);
+    if (!el || !gsap || !ScrollTrigger) return;
+    gsap.registerPlugin(ScrollTrigger);
 
     const eyebrow = el.querySelector('.mech-eyebrow');
     const title = el.querySelector('.mech-title');
@@ -653,7 +657,7 @@ function MechCard({ mech, index }) {
 }
 
 // ----- MECHANICS / FLOW + TECH STACK -----
-function MechanicsSection() {
+export function MechanicsSection() {
   const mechanics = [
   {
     title: 'Core Loop',
@@ -1811,7 +1815,7 @@ function MechanicsSection() {
 }
 
 // ===== Mech Intro Header =====
-function MechIntro({ mechanics }) {
+export function MechIntro({ mechanics }) {
   const ref = React.useRef(null);
   React.useEffect(() => {
     const el = ref.current;
@@ -1862,7 +1866,7 @@ function MechIntro({ mechanics }) {
 }
 
 // ===== Mech hero SVG — animated tech illustration =====
-function MechHeroSVG() {
+export function MechHeroSVG() {
   const V = '#16165c';   // midnight indigo (primary on white)
   const A = '#5350cc';   // action violet
   const B = '#00b1ff';   // bright blue
@@ -2050,7 +2054,7 @@ function MechHeroSVG() {
 }
 
 // ===== Stack subcomponents =====
-function StackHeader() {
+export function StackHeader() {
   const ref = React.useRef(null);
   React.useEffect(() => {
     const el = ref.current;
@@ -2085,7 +2089,7 @@ function StackHeader() {
   );
 }
 
-function StackFooter() {
+export function StackFooter() {
   const flow = ['Blender', 'Unity', 'C# Scripts', 'APK Build', 'Cardboard', 'Paciente'];
   return (
     <div className="stack-footer">
@@ -2108,7 +2112,7 @@ function StackFooter() {
   );
 }
 
-const StackIcons = {
+export const StackIcons = {
   unity: (
     <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
       <path d="M13 3 L22 8 L22 18 L13 23 L4 18 L4 8 Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
@@ -2159,7 +2163,7 @@ const StackIcons = {
   )
 };
 
-function StackCard({ item, index, total }) {
+export function StackCard({ item, index, total }) {
   const ref = React.useRef(null);
 
   React.useEffect(() => {
@@ -2244,4 +2248,3 @@ function StackCard({ item, index, total }) {
   );
 }
 
-Object.assign(window, { MethodologySection, MechanicsSection });

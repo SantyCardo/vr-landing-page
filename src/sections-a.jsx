@@ -1,9 +1,13 @@
+import React from 'react';
+import { Counter } from './effects.jsx';
+import { AnimatedText } from './motion.jsx';
+
 // ============================================
 // SECTIONS PART 1: About, Justification, Problem
 // ============================================
 
 // reusable section header — uses AnimatedText for cinematic reveal
-function SectionHeader({ eyebrow, title, subtitle, align = 'left', maxWidth = 760, marginBottom = 80 }) {
+export function SectionHeader({ eyebrow, title, subtitle, align = 'left', maxWidth = 760, marginBottom = 80 }) {
   return (
     <div style={{ textAlign: align, maxWidth, marginBottom, ...(align === 'center' ? { marginLeft: 'auto', marginRight: 'auto' } : {}) }}>
       {eyebrow &&
@@ -24,7 +28,7 @@ function SectionHeader({ eyebrow, title, subtitle, align = 'left', maxWidth = 76
 }
 
 // ----- ABOUT (Proyecto) -----
-function AboutSection() {
+export function AboutSection() {
   const tags = ['Insulinización', 'Realidad Virtual', 'Salud', 'Seguridad', 'Educación', 'Inmersión'];
   const stats = [
   { val: 537, suffix: 'M', label: 'Personas con diabetes en el mundo (OMS)', color: '#00b1ff' },
@@ -350,7 +354,7 @@ function AboutSection() {
 }
 
 // VR Goggles orbital — 6 icon nodes around centered goggles
-function VRGogglesCarousel({ active: extActive, onActive }) {
+export function VRGogglesCarousel({ active: extActive, onActive }) {
   const topics = [
     { label: 'Insulinización',  icon: 'syringe', color: '#00b1ff' },
     { label: 'Realidad Virtual', icon: 'goggles', color: '#00ffaa' },
@@ -563,7 +567,7 @@ function VRGogglesCarousel({ active: extActive, onActive }) {
 
 
 // ----- JUSTIFICATION -----
-function JustificationSection() {
+export function JustificationSection() {
   const blocks = [
   {
     eyebrow: 'PROBLEMA',
@@ -835,7 +839,7 @@ function JustificationSection() {
 
 }
 
-function PillarCard({ title, body, icon, index }) {
+export function PillarCard({ title, body, icon, index }) {
   const icons = {
     code: <path d="M8 6l-5 6 5 6M16 6l5 6-5 6M14 4l-4 16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />,
     health: <path d="M12 21s-7-4.5-7-11a4 4 0 018-1 4 4 0 018 1c0 6.5-7 11-7 11h-2zM12 9v6M9 12h6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />,
@@ -856,7 +860,7 @@ function PillarCard({ title, body, icon, index }) {
 }
 
 // ----- PROBLEM -----
-function ProblemSection() {
+export function ProblemSection() {
   const errors = [
   {
     title: 'Vía incorrecta',
@@ -1013,4 +1017,3 @@ function ProblemSection() {
 
 }
 
-Object.assign(window, { SectionHeader, AboutSection, JustificationSection, ProblemSection });

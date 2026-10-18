@@ -1,8 +1,10 @@
+import React from 'react';
+
 // ============================================
 // NAV — floating translucent command bar
 // ============================================
 
-function Nav() {
+export function Nav() {
   const [scrolled, setScrolled] = React.useState(false);
   const [active, setActive] = React.useState('inicio');
   const [open, setOpen] = React.useState(false);

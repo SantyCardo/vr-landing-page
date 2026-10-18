@@ -1,9 +1,12 @@
+import React from 'react';
+import { SectionHeader } from './sections-a.jsx';
+
 // ============================================
 // SECTIONS PART 4: Scope, FAQ, Team, Footer
 // ============================================
 
 // ----- SCOPE -----
-function ScopeSection() {
+export function ScopeSection() {
   const stages = [
     { n: 1, phase: 'setup',   title: 'Preparación del dispositivo', body: 'Configurar visor VR y dispositivo móvil. Calibración inicial.', icon: 'device' },
     { n: 2, phase: 'setup',   title: 'Selección de zona', body: 'Elegir y rotar sitios anatómicos de inyección.', icon: 'target' },
@@ -521,7 +524,7 @@ function ScopeSection() {
 }
 
 // ===== Scope subcomponents =====
-function ScopeHeader({ includes, excludes, stages }) {
+export function ScopeHeader({ includes, excludes, stages }) {
   const ref = React.useRef(null);
   React.useEffect(() => {
     const el = ref.current;
@@ -570,7 +573,7 @@ function ScopeHeader({ includes, excludes, stages }) {
   );
 }
 
-const ScopeIcons = {
+export const ScopeIcons = {
   device: <><rect x="6" y="3" width="12" height="18" rx="2" stroke="currentColor" strokeWidth="1.5"/><line x1="6" y1="7" x2="18" y2="7" stroke="currentColor" strokeWidth="1.2"/><circle cx="12" cy="18" r="0.8" fill="currentColor"/></>,
   target: <><circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.5"/><circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.2"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/></>,
   needle: <><path d="M3 21 L13 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/><rect x="12" y="6" width="7" height="5" rx="1" transform="rotate(45 15 8)" stroke="currentColor" strokeWidth="1.4"/><path d="M19 3 L21 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></>,
@@ -580,7 +583,7 @@ const ScopeIcons = {
   shield: <><path d="M12 3 L19 6 V12 C 19 16.5 16 19.5 12 21 C 8 19.5 5 16.5 5 12 V6 Z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round"/><path d="M9 12 L11.5 14.5 L15 10.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></>
 };
 
-function ScopeTimeline({ stages, phases }) {
+export function ScopeTimeline({ stages, phases }) {
   const ref = React.useRef(null);
   React.useEffect(() => {
     const el = ref.current;
@@ -639,7 +642,7 @@ function ScopeTimeline({ stages, phases }) {
   );
 }
 
-function ScopeListCard({ kind, items }) {
+export function ScopeListCard({ kind, items }) {
   const ref = React.useRef(null);
   React.useEffect(() => {
     const el = ref.current;
@@ -722,7 +725,7 @@ function ScopeListCard({ kind, items }) {
   );
 }
 
-function ScopeMatrix({ includes, excludes }) {
+export function ScopeMatrix({ includes, excludes }) {
   return (
     <div className="scope-matrix">
       <ScopeListCard kind="include" items={includes}/>
@@ -731,7 +734,7 @@ function ScopeMatrix({ includes, excludes }) {
   );
 }
 
-function ScopeMilestones({ milestones }) {
+export function ScopeMilestones({ milestones }) {
   const ref = React.useRef(null);
   React.useEffect(() => {
     const el = ref.current;
@@ -763,7 +766,7 @@ function ScopeMilestones({ milestones }) {
 }
 
 // ----- FAQ -----
-function FAQSection() {
+export function FAQSection() {
   const faqs = [
     {
       cat: 'Ámbito',
@@ -1496,7 +1499,7 @@ function FAQSection() {
 }
 
 // ----- TEAM -----
-function TeamSection() {
+export function TeamSection() {
   const team = [
     {
       init: 'SC',
@@ -1654,7 +1657,7 @@ function TeamSection() {
 }
 
 // ----- FOOTER -----
-function Footer() {
+export function Footer() {
   return (
     <footer style={{
       position: 'relative',
@@ -1768,7 +1771,7 @@ function Footer() {
 // ============================================
 // LEGAL & ETHICAL — compact holographic grid
 // ============================================
-function LegalSection() {
+export function LegalSection() {
   const items = [
     {
       n: '01',
@@ -2101,7 +2104,7 @@ function LegalSection() {
   );
 }
 
-function LegalCard({ item, index, total }) {
+export function LegalCard({ item, index, total }) {
   const ref = React.useRef(null);
 
   React.useEffect(() => {
@@ -2143,7 +2146,7 @@ function LegalCard({ item, index, total }) {
   );
 }
 
-const LegalIcons = {
+export const LegalIcons = {
   lock: (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
       <rect x="5" y="11" width="14" height="10" rx="2" stroke="currentColor" strokeWidth="1.6"/>
@@ -2182,7 +2185,7 @@ const LegalIcons = {
 // ============================================
 // RESULTADOS ESPERADOS — dashboard metrics
 // ============================================
-function ResultsSection() {
+export function ResultsSection() {
   const results = [
     {
       n: '01',
@@ -2562,7 +2565,7 @@ function ResultsSection() {
   );
 }
 
-const ResultIcons = {
+export const ResultIcons = {
   brain: (
     <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
       <path d="M9 5a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3 3 0 0 0 1 5 3 3 0 0 0 5 1 3 3 0 0 0 5-1 3 3 0 0 0 1-5 3 3 0 0 0-2-5 3 3 0 0 0-3-3 3 3 0 0 0-2 1 3 3 0 0 0-2-1z"
@@ -2590,7 +2593,7 @@ const ResultIcons = {
   )
 };
 
-function ResultCard({ item, index }) {
+export function ResultCard({ item, index }) {
   const ref = React.useRef(null);
 
   React.useEffect(() => {
@@ -2650,7 +2653,7 @@ function ResultCard({ item, index }) {
 // ============================================
 // MARCO TEÓRICO — connected concept cards
 // ============================================
-function FrameworkSection() {
+export function FrameworkSection() {
   const concepts = [
     {
       n: '01',
@@ -2889,7 +2892,7 @@ function FrameworkSection() {
   );
 }
 
-const FrameworkIcons = {
+export const FrameworkIcons = {
   immersion: (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
       <ellipse cx="12" cy="12" rx="9" ry="6" stroke="currentColor" strokeWidth="1.6"/>
@@ -2919,7 +2922,7 @@ const FrameworkIcons = {
   )
 };
 
-function FrameworkCard({ item, index }) {
+export function FrameworkCard({ item, index }) {
   const ref = React.useRef(null);
   React.useEffect(() => {
     const el = ref.current;
@@ -2948,7 +2951,7 @@ function FrameworkCard({ item, index }) {
 // ============================================
 // ESTADO DEL ARTE — comparison matrix
 // ============================================
-function StateOfArtSection() {
+export function StateOfArtSection() {
   const criteria = [
     'Educación inmersiva',
     'Accesibilidad local',
@@ -3206,7 +3209,7 @@ function StateOfArtSection() {
   );
 }
 
-function SoaCard({ sol, criteria, index }) {
+export function SoaCard({ sol, criteria, index }) {
   const ref = React.useRef(null);
   React.useEffect(() => {
     const el = ref.current;
@@ -3262,7 +3265,7 @@ function SoaCard({ sol, criteria, index }) {
 // ============================================
 // REFERENTES INTERACTIVOS — cinematic showcase
 // ============================================
-function ReferencesSection() {
+export function ReferencesSection() {
   const refs = [
     {
       n: '01',
@@ -3488,7 +3491,7 @@ function ReferencesSection() {
   );
 }
 
-function RefCard({ item, index }) {
+export function RefCard({ item, index }) {
   const ref = React.useRef(null);
   React.useEffect(() => {
     const el = ref.current;
@@ -3529,7 +3532,7 @@ function RefCard({ item, index }) {
   );
 }
 
-function RefVisual({ variant, color }) {
+export function RefVisual({ variant, color }) {
   if (variant === 'lands-end') {
     return (
       <svg viewBox="0 0 320 220" preserveAspectRatio="xMidYMid slice" className="ref-card-svg">
@@ -3657,4 +3660,3 @@ function RefVisual({ variant, color }) {
   );
 }
 
-Object.assign(window, { ScopeSection, FAQSection, TeamSection, Footer, LegalSection, ResultsSection, FrameworkSection, StateOfArtSection, ReferencesSection });

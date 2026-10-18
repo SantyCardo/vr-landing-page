@@ -180,25 +180,21 @@ main > .section:nth-last-child(even) { background: var(--bg-soft); }
 .grid-3 { grid-template-columns: repeat(3, 1fr); }
 .grid-4 { grid-template-columns: repeat(4, 1fr); }
 
-.card, .tile {
+.card {
   background: var(--surface); border-radius: var(--r); padding: 26px;
   display: flex; flex-direction: column; gap: 10px;
 }
-main > .section:nth-last-child(even) :is(.card, .quote-card, .shift, .module-list li:not(.module-pending), .tile, .specialty) { background: #fff; }
-main > .section:nth-last-child(even) :is(.tile-icon, .specialty-icon) { background: var(--bg-soft); }
-.card h3, .tile h3 { font-size: 18px; font-weight: 500; letter-spacing: -0.01em; }
-.card p, .tile p { color: var(--ink-2); font-size: 14px; }
+main > .section:nth-last-child(even) :is(.card, .quote-card, .shift, .module-list li:not(.module-pending), .specialty) { background: #fff; }
+main > .section:nth-last-child(even) .specialty-icon { background: var(--bg-soft); }
+.card h3 { font-size: 18px; font-weight: 500; letter-spacing: -0.01em; }
+.card p { color: var(--ink-2); font-size: 14px; }
 .num { font-size: 12px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
 .card .tag { align-self: flex-start; margin-top: auto; }
 
-.tile-icon, .specialty-icon {
+.specialty-icon {
   width: 56px; height: 56px; border-radius: var(--r-sm); background: #fff;
   display: grid; place-items: center; color: var(--accent);
 }
-.level { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 8px; }
-.level-crítico { color: var(--crit); }
-.level-alto { color: var(--warn); }
-.level-medio { color: var(--accent); }
 
 .quote {
   font-size: clamp(22px, 2.6vw, 32px); line-height: 1.25; letter-spacing: -0.02em;

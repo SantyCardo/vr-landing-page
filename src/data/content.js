@@ -1,5 +1,11 @@
 // Contenido de la landing. Versión 2: presentación del prototipo funcional (octubre de 2026).
 
+// Fotos del problema: Unsplash (licencia gratuita), convertidas a WebP.
+import imgVia from '../assets/problema/via.webp';
+import imgRotacion from '../assets/problema/rotacion.webp';
+import imgAlmacenamiento from '../assets/problema/almacenamiento.webp';
+import imgAnsiedad from '../assets/problema/ansiedad.webp';
+
 export const nav = [
   { href: '#problema', label: 'Problema' },
   { href: '#objetivos', label: 'Objetivos' },
@@ -58,13 +64,13 @@ export const problem = {
   title: ['El problema.', 'Errores que comprometen la salud.'],
   lead: 'La formación insuficiente en técnica de insulinización genera errores clínicos que comprometen la salud del paciente y su calidad de vida.',
   errors: [
-    { level: 'Crítico', title: 'Vía incorrecta', icon: 'syringe',
+    { level: 'Crítico', title: 'Vía incorrecta', img: imgVia, alt: 'Hombre aplicándose insulina con lapicero en el muslo',
       body: 'La administración IV accidental causa hipoglucemia severa. La vía IM genera variabilidad glucémica impredecible.' },
-    { level: 'Alto', title: 'No rotar sitios', icon: 'rotate',
+    { level: 'Alto', title: 'No rotar sitios', img: imgRotacion, alt: 'Persona inyectándose insulina en el abdomen',
       body: '98.3 % de quienes reutilizan agujas presentan lipohipertrofia, reduciendo la absorción de insulina hasta en un 25 %.' },
-    { level: 'Alto', title: 'Almacenamiento incorrecto', icon: 'fridge',
+    { level: 'Alto', title: 'Almacenamiento incorrecto', img: imgAlmacenamiento, alt: 'Nevera abierta en una cocina a oscuras',
       body: 'Congelar, guardar destapada o usar insulina vencida desnaturaliza la molécula y elimina su eficacia terapéutica.' },
-    { level: 'Medio', title: 'Ansiedad del paciente', icon: 'heart',
+    { level: 'Medio', title: 'Ansiedad del paciente', img: imgAnsiedad, alt: 'Mujer preocupada con la cabeza entre las manos',
       body: '36 % de pacientes con diabetes reportan ansiedad; 63 % teme el desarrollo de complicaciones. El miedo reduce la adherencia.' },
   ],
   quote: 'Las estrategias convencionales no garantizan comprensión adecuada ni reducción del miedo al procedimiento.',

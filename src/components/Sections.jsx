@@ -55,11 +55,13 @@ export function Problem() {
         <SectionHead eyebrow="Diagnóstico" title={C.problem.title} lead={C.problem.lead} />
         <div className="grid-4">
           {C.problem.errors.map((e) => (
-            <article key={e.title} className="tile reveal">
-              <span className="tile-icon"><Icon name={e.icon} size={22} /></span>
-              <span className={`level level-${e.level.toLowerCase()}`}>{e.level}</span>
-              <h3>{e.title}</h3>
-              <p>{e.body}</p>
+            <article key={e.title} className="photo-card reveal">
+              <img src={e.img} alt={e.alt} loading="lazy" />
+              <div className="photo-card-text">
+                <span className="tag">{e.level}</span>
+                <h3>{e.title}</h3>
+                <p>{e.body}</p>
+              </div>
             </article>
           ))}
         </div>

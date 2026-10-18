@@ -123,6 +123,8 @@ vr-landing-page/
     ├── main.jsx            # Punto de entrada: monta <App /> y carga los estilos
     ├── app.jsx             # Composición y orden de las secciones
     ├── styles.css          # Tokens de diseño, componentes y responsive
+    ├── assets/
+    │   └── problema/       # Fotos WebP de la sección «El problema» (Unsplash)
     ├── data/
     │   └── content.js      # Texto, cifras, fechas y enlaces de la página
     └── components/
@@ -211,3 +213,12 @@ Cada push a `master` genera un despliegue de producción en Vercel.
 Proyecto de grado · Ingeniería de Sistemas · Universidad Autónoma de Bucaramanga (UNAB) · 2026.
 
 Referencia de diseño: «Healthcare Clinic Platform», de Shuvo, publicado en Dribbble.
+
+Fotografías de la sección «El problema» (`src/assets/problema/`, convertidas a WebP), tomadas de [Unsplash](https://unsplash.com/license) con licencia gratuita:
+
+| Archivo | Foto | Autor |
+|---|---|---|
+| `via.webp` | [Hombre inyectando insulina en el muslo](https://unsplash.com/photos/UM90Wz08pJE) | Sweet Life |
+| `rotacion.webp` | [Persona que se inyecta insulina en el estómago](https://unsplash.com/photos/Q2WEVTw6wyw) | Sweet Life |
+| `almacenamiento.webp` | [Frigorífico de puertas francesas](https://unsplash.com/photos/FDQFZHY9iG4) | nrd |
+| `ansiedad.webp` | [Mujer con la cabeza entre las manos](https://unsplash.com/photos/WI4k8Z15hbQ) | engin akyurt |

@@ -5,6 +5,9 @@ import imgVia from '../assets/problema/via.webp';
 import imgRotacion from '../assets/problema/rotacion.webp';
 import imgAlmacenamiento from '../assets/problema/almacenamiento.webp';
 import imgAnsiedad from '../assets/problema/ansiedad.webp';
+// Fondo de la pregunta: «Lost In Reality», Matthew Kwong (Unsplash, licencia gratuita).
+import imgPregunta from '../assets/pregunta/cardboard.webp';
+import imgPreguntaMovil from '../assets/pregunta/cardboard-mobile.webp';
 
 export const nav = [
   { href: '#problema', label: 'Problema' },
@@ -107,7 +110,16 @@ export const justification = {
   ],
 };
 
-export const question = '¿Cómo se puede desarrollar una herramienta educativa inmersiva e interactiva que ayude a fortalecer la correcta técnica de insulinización y el adecuado almacenamiento de la insulina en pacientes con diabetes?';
+export const question = {
+  text: '¿Cómo se puede desarrollar una herramienta educativa inmersiva e interactiva que ayude a fortalecer la correcta técnica de insulinización y el adecuado almacenamiento de la insulina en pacientes con diabetes?',
+  highlights: [
+    { icon: 'eye', text: 'Herramienta inmersiva e interactiva' },
+    { icon: 'check', text: 'Técnica correcta de insulinización' },
+    { icon: 'shield', text: 'Almacenamiento adecuado de la insulina' },
+  ],
+  img: imgPregunta,
+  imgMobile: imgPreguntaMovil,
+};
 
 export const objectives = {
   general: 'Desarrollar un prototipo de herramienta educativa inmersiva e interactiva, basada en requerimientos clínicos, procedimientos y almacenamiento de la insulinización, para el fortalecimiento de la técnica de aplicación en pacientes adultos con diabetes tipo II.',

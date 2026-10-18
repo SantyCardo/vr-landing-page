@@ -124,10 +124,24 @@ export function Justification() {
 }
 
 export function Question() {
+  const q = C.question;
   return (
-    <section id="pregunta" className="section">
-      <div className="container narrow reveal">
-        <p className="question">{C.question}</p>
+    <section id="pregunta" className="question-block">
+      <picture>
+        <source media="(max-width: 560px)" srcSet={q.imgMobile} />
+        <img className="question-bg" src={q.img} alt="" loading="lazy" />
+      </picture>
+      <div className="question-veil" />
+      <div className="question-inner reveal">
+        <div className="question-text">
+          <p className="eyebrow eyebrow-light">Pregunta problema</p>
+          <p className="question">{q.text}</p>
+        </div>
+        <ul className="question-points">
+          {q.highlights.map((h) => (
+            <li key={h.text}><Icon name={h.icon} size={18} />{h.text}</li>
+          ))}
+        </ul>
       </div>
     </section>
   );

@@ -124,7 +124,8 @@ vr-landing-page/
     ├── app.jsx             # Composición y orden de las secciones
     ├── styles.css          # Tokens de diseño, componentes y responsive
     ├── assets/
-    │   └── problema/       # Fotos WebP de la sección «El problema» (Unsplash)
+    │   ├── problema/       # Fotos WebP de la sección «El problema» (Unsplash)
+    │   └── pregunta/       # Fondo WebP de la pregunta problema, escritorio y móvil (Unsplash)
     ├── data/
     │   └── content.js      # Texto, cifras, fechas y enlaces de la página
     └── components/
@@ -214,7 +215,7 @@ Proyecto de grado · Ingeniería de Sistemas · Universidad Autónoma de Bucaram
 
 Referencia de diseño: «Healthcare Clinic Platform», de Shuvo, publicado en Dribbble.
 
-Fotografías de la sección «El problema» (`src/assets/problema/`, convertidas a WebP), tomadas de [Unsplash](https://unsplash.com/license) con licencia gratuita:
+Fotografías de «El problema» (`src/assets/problema/`) y de la pregunta problema (`src/assets/pregunta/`), convertidas a WebP, tomadas de [Unsplash](https://unsplash.com/license) con licencia gratuita:
 
 | Archivo | Foto | Autor |
 |---|---|---|
@@ -222,3 +223,4 @@ Fotografías de la sección «El problema» (`src/assets/problema/`, convertidas
 | `rotacion.webp` | [Persona que se inyecta insulina en el estómago](https://unsplash.com/photos/Q2WEVTw6wyw) | Sweet Life |
 | `almacenamiento.webp` | [Frigorífico de puertas francesas](https://unsplash.com/photos/FDQFZHY9iG4) | nrd |
 | `ansiedad.webp` | [Mujer con la cabeza entre las manos](https://unsplash.com/photos/WI4k8Z15hbQ) | engin akyurt |
+| `pregunta/cardboard.webp` (y `cardboard-mobile.webp`) | [Lost In Reality, mujer con visor Google Cardboard](https://unsplash.com/photos/VZN-f2gsvb4) | Matthew Kwong |

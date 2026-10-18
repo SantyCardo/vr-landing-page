@@ -40,7 +40,6 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 .container { width: 100%; padding-inline: var(--edge); }
 .hero-inner.container, .closing-inner.container { padding-inline: var(--gutter); }
-.narrow .question { max-width: 32ch; }
 .muted { color: var(--muted); font-style: normal; }
 .count-up { font-variant-numeric: tabular-nums; }
 
@@ -196,7 +195,25 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   font-size: clamp(22px, 2.6vw, 32px); line-height: 1.25; letter-spacing: -0.02em;
   max-width: 28ch; margin-top: 56px;
 }
-.question { font-size: clamp(26px, 3.2vw, 42px); line-height: 1.2; letter-spacing: -0.03em; }
+/* ---------- Pregunta problema (bloque con foto, mismo marco que la portada) ---------- */
+.question-block {
+  position: relative; margin: var(--frame); border-radius: var(--r-lg); overflow: hidden;
+  min-height: 80svh; display: flex; color: #fff;
+}
+.question-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 60% 40%; transform: scaleX(-1); }
+.question-veil { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(15, 20, 25, 0.8) 0%, rgba(15, 20, 25, 0.5) 45%, rgba(15, 20, 25, 0.05) 75%); }
+.question-inner {
+  position: relative; flex: 1; display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 40px;
+  padding: clamp(48px, 7vw, 96px) var(--gutter);
+}
+.question-text { align-self: center; }
+.question { font-size: clamp(26px, 3vw, 44px); line-height: 1.18; letter-spacing: -0.03em; max-width: 22ch; font-weight: 500; }
+.question-points { list-style: none; display: grid; gap: 10px; justify-items: end; }
+.question-points li {
+  display: inline-flex; align-items: center; gap: 10px; padding: 12px 18px; border-radius: var(--pill);
+  background: rgba(15, 20, 25, 0.5); border: 1px solid rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); font-size: 14px; font-weight: 500;
+}
 
 
 .chips { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 10px; margin-bottom: 12px; }
@@ -416,6 +433,11 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .transform-photo:first-of-type, .transform-pill, .transform-photo:last-of-type { grid-column: 1; grid-row: auto; }
   .transform-pill { padding: 28px 24px; border-radius: var(--r); }
   .transform-arrow { display: none; }
+  .question-block { min-height: 0; }
+  .question-bg { object-position: 40% 30%; }
+  .question-veil { background: linear-gradient(180deg, rgba(15, 20, 25, 0.1) 0%, rgba(15, 20, 25, 0.55) 40%, rgba(15, 20, 25, 0.88) 100%); }
+  .question-inner { grid-template-columns: 1fr; gap: 24px; padding-top: 220px; }
+  .question-points { justify-items: start; display: flex; flex-wrap: wrap; }
   .section-head { flex-direction: column; align-items: flex-start; }
   .arrow { width: 48px; height: 48px; }
   .closing-inner { flex-direction: column; align-items: flex-start; }
@@ -425,6 +447,12 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 @media (max-width: 560px) {
   :root { --frame: 6px; }
+  .question { font-size: 24px; }
+  .question-inner { padding-top: 320px; }
+  .question-bg { height: 360px; bottom: auto; object-position: 38% 25%; }
+  .question-block { background: rgb(15, 20, 25); }
+  .question-veil { background: linear-gradient(180deg, transparent 0, transparent 170px, rgba(15, 20, 25, 0.85) 300px, rgb(15, 20, 25) 360px); }
+  .question-points li { width: 100%; }
   .nav { top: 14px; }
   .grid-4, .grid-specialty { grid-template-columns: 1fr; }
   .photo-grid { grid-template-rows: repeat(4, minmax(260px, 1fr) auto auto auto); }

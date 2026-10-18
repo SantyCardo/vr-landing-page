@@ -12,7 +12,6 @@ export function App() {
         <S.Justification />
         <S.Question />
         <S.Objectives />
-        <S.StateOfArt />
         <S.Methodology />
         <S.References />
         <S.Prototype />

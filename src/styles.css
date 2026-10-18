@@ -254,17 +254,6 @@ main > .section:nth-child(even) :is(.tile-icon, .specialty-icon) { background: v
 .specialty .muted { font-size: 12px; }
 .specialty p { color: var(--ink-2); font-size: 13.5px; margin-top: 6px; }
 
-.table-wrap { overflow-x: auto; border-radius: var(--r); border: 1px solid var(--line); }
-.compare { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 640px; }
-.compare th, .compare td { padding: 16px 18px; text-align: left; border-bottom: 1px solid var(--line); }
-.compare thead th { font-size: 12px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; background: var(--surface); }
-.compare tbody th { font-weight: 500; }
-.compare tbody th .muted { display: block; font-size: 12px; font-weight: 400; }
-.compare td[data-v="Sí"] { color: var(--ok); }
-.compare td[data-v="No"] { color: var(--muted); }
-.compare td[data-v="Parcial"] { color: var(--warn); }
-.compare tr.is-highlight { background: var(--accent-soft); }
-.compare tr:last-child > * { border-bottom: 0; }
 
 .quote-card { background: var(--surface); border-radius: var(--r); padding: 18px; display: flex; gap: 16px; min-height: 150px; }
 .quote-card p { font-size: 14px; margin-bottom: 18px; }

@@ -202,30 +202,6 @@ export function Legal() {
   );
 }
 
-export function StateOfArt() {
-  const s = C.stateOfArt;
-  return (
-    <section id="estado-arte" className="section">
-      <div className="container">
-        <SectionHead eyebrow="Estado del arte" title={['Comparación', 'con soluciones existentes.']} lead={s.note} />
-        <div className="table-wrap reveal">
-          <table className="compare">
-            <thead><tr><th>Solución</th>{s.criteria.map((c) => <th key={c}>{c}</th>)}</tr></thead>
-            <tbody>
-              {s.rows.map((r) => (
-                <tr key={r.name} className={r.highlight ? 'is-highlight' : ''}>
-                  <th scope="row">{r.name}<span className="muted">{r.tag}</span></th>
-                  {r.values.map((v, i) => <td key={i} data-v={v}>{v}</td>)}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 export function References() {
   return (
     <section id="referentes" className="section">

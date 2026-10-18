@@ -137,17 +137,6 @@ export const legal = [
   { title: 'Acceso tecnológico', tag: 'Bajo costo', body: 'Hardware económico para contextos con recursos limitados.' },
 ];
 
-export const stateOfArt = {
-  criteria: ['Educación inmersiva', 'Accesibilidad local', 'Bajo costo', 'Educación en insulinización'],
-  rows: [
-    { name: 'Virti', tag: 'VR · Health training', values: ['Sí', 'No', 'No', 'No'] },
-    { name: 'SocialDiabetes', tag: 'Mobile · DM', values: ['No', 'Sí', 'Sí', 'No'] },
-    { name: 'Insulclock', tag: 'Device + App', values: ['No', 'Sí', 'Sí', 'Parcial'] },
-    { name: 'Prototipo propuesto', tag: 'Insulin-VR · UNAB', values: ['Sí', 'Sí', 'Sí', 'Sí'], highlight: true },
-  ],
-  note: 'Actualmente no existe una solución que combine educación en insulinización, realidad virtual inmersiva y accesibilidad mediante hardware de bajo costo en una misma plataforma.',
-};
-
 export const references = [
   { title: 'Lands End', studio: 'ustwo · Gaze VR', body: 'Interacción por mirada y exploración inmersiva sin controles.' },
   { title: 'Detroit: Become Human', studio: 'Quantic Dream', body: 'Navegación visual y diseño futurista.' },

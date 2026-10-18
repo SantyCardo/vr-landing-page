@@ -154,14 +154,15 @@ export function Objectives() {
             <p>{o.general}</p>
           </div>
         </div>
-        <div className="grid-3 photo-grid photo-grid-3">
+        {/* Solo el título a la vista; el objetivo completo aparece al pasar el cursor o al enfocar la tarjeta. */}
+        <div className="grid-3 objective-cards">
           {o.specific.map((s, i) => (
-            <article key={s.title} className="photo-card reveal">
+            <article key={s.title} className="photo-card objective-card reveal" tabIndex={0}>
               <img src={s.img} alt={s.alt} loading="lazy" style={s.pos ? { objectPosition: s.pos } : undefined} />
               <div className="photo-card-text">
                 <span className="tag tag-source">0{i + 1} · Objetivo específico</span>
                 <h3>{s.title}</h3>
-                <p>{s.body}</p>
+                <div className="objective-more"><p>{s.body}</p></div>
               </div>
             </article>
           ))}

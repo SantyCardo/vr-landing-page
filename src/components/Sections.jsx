@@ -147,10 +147,10 @@ export function Objectives() {
   return (
     <section id="objetivos" className="section">
       <div className="container">
-        <div className="objectives-head reveal">
+        <div className="split-head reveal">
           <h2 className="h2">Objetivos<br />del proyecto.</h2>
-          <div className="objective-general">
-            <span className="objective-label">Objetivo general</span>
+          <div className="split-text">
+            <span className="split-label">Objetivo general</span>
             <p>{o.general}</p>
           </div>
         </div>
@@ -174,19 +174,44 @@ export function Objectives() {
 
 
 export function Methodology() {
+  const m = C.methodology;
   return (
     <section id="metodologia" className="section">
       <div className="container">
-        <SectionHead title={['Cómo se', 'construyó.']} lead="Gestión con PHVA y PMBOK, desarrollo por incrementos cortos y seguimiento en Kanban." />
-        <div className="grid-4">
-          {C.methodology.map((m) => (
-            <article key={m.title} className="card reveal">
-              <h3>{m.title}</h3>
-              <p>{m.body}</p>
-              <span className="tag">{m.tag}</span>
+        <div className="split-head reveal">
+          <h2 className="h2">Metodología.<br />Así se construyó el prototipo.</h2>
+          <div className="split-text"><p>{m.lead}</p></div>
+        </div>
+
+        <div className="grid-5 hover-cards">
+          {m.phases.map((f, i) => (
+            <article key={f.title} className="photo-card hover-card reveal" tabIndex={0}>
+              <img src={f.img} alt={f.alt} loading="lazy" />
+              <div className="photo-card-text">
+                <span className="tag tag-source">Fase {i + 1} · PMBOK</span>
+                <h3>{f.title}</h3>
+                <div className="hover-more"><p>{f.body}<small className="hover-source">Entregable: {f.deliverable}</small></p></div>
+              </div>
             </article>
           ))}
         </div>
+
+        <ol className="goals goals-4 reveal">
+          {m.phva.map((p) => (
+            <li key={p.title}>
+              <span className="goal-num">{p.title[0]} · Ciclo PHVA</span>
+              <h3>{p.title}</h3>
+              <p>{p.body}</p>
+            </li>
+          ))}
+        </ol>
+        <p className="method-note reveal">Cada incremento fue una vuelta completa del ciclo PHVA.</p>
+
+        <dl className="method-facts reveal">
+          {m.facts.map((f) => (
+            <div key={f.value}><dt>{f.value}</dt><dd>{f.label}</dd></div>
+          ))}
+        </dl>
       </div>
     </section>
   );

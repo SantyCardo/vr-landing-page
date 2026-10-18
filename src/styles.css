@@ -283,13 +283,13 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .figure-row .figure-source { font-size: 16px; color: var(--muted); margin-top: auto; padding-top: 4px; }
 .figure-source a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; }
 
-/* ---------- Objetivos ---------- */
-.objectives-head {
+/* ---------- Encabezado en dos columnas (objetivos, metodología) ---------- */
+.split-head {
   display: grid; grid-template-columns: 1fr 1.4fr; gap: 48px; align-items: start;
   padding-bottom: 40px; margin-bottom: 40px; border-bottom: 1px solid var(--line);
 }
-.objective-label { display: block; font-size: 15px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
-.objective-general p { font-size: clamp(23px, 2.18vw, 31px); line-height: 1.35; letter-spacing: -0.02em; color: var(--ink); }
+.split-label { display: block; font-size: 15px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
+.split-text p { font-size: clamp(23px, 2.18vw, 31px); line-height: 1.35; letter-spacing: -0.02em; color: var(--ink); }
 
 /* Tarjetas con foto (problema y objetivos): título visible, texto completo al pasar el cursor */
 .hover-cards .photo-card { aspect-ratio: auto; min-height: clamp(420px, 38vw, 580px); }
@@ -310,6 +310,17 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .hover-more { grid-template-rows: 1fr; }
   .hover-more p { opacity: 1; padding-top: 10px; }
 }
+
+/* ---------- Metodología ---------- */
+.grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+.grid-5.hover-cards .photo-card { min-height: clamp(380px, 32vw, 520px); }
+.goals.goals-4 { grid-template-columns: repeat(4, 1fr); margin-bottom: 12px; }
+.method-note { color: var(--muted); font-size: 16px; margin-bottom: 40px; }
+.method-facts { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.method-facts > div { padding: 22px 24px; border-left: 1px solid var(--line); }
+.method-facts > div:first-child { padding-left: 0; border-left: 0; }
+.method-facts dt { font-size: 24px; font-weight: 500; letter-spacing: -0.02em; }
+.method-facts dd { font-size: 16px; color: var(--ink-2); margin-top: 4px; }
 
 /* ---------- Justificación ---------- */
 .transform { position: relative; display: grid; grid-template-columns: 1fr 0.8fr 1fr; gap: 12px; height: 280px; }
@@ -424,6 +435,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 /* ---------- Responsive ---------- */
 @media (max-width: 1024px) {
   .grid-4, .figures { grid-template-columns: repeat(2, 1fr); }
+  .grid-5 { grid-template-columns: repeat(3, 1fr); }
+  .goals.goals-4 { grid-template-columns: repeat(2, 1fr); }
     .figures { row-gap: 28px; }
   .grid-specialty { grid-template-columns: repeat(2, 1fr); }
   .carousel { grid-auto-columns: minmax(240px, 40%); }
@@ -449,7 +462,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .transform-photo:first-of-type, .transform-pill, .transform-photo:last-of-type { grid-column: 1; grid-row: auto; }
   .transform-pill { padding: 28px 24px; border-radius: var(--r); }
   .transform-arrow { display: none; }
-  .objectives-head { grid-template-columns: 1fr; gap: 20px; }
+  .split-head { grid-template-columns: 1fr; gap: 20px; }
+  .grid-5, .method-facts, .goals.goals-4 { grid-template-columns: 1fr; }
+  .method-facts > div { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
+  .method-facts > div:first-child { border-top: 0; }
     .question-block { min-height: 0; }
   .question-bg { object-position: 40% 30%; }
   .question-veil { background: linear-gradient(180deg, rgba(15, 20, 25, 0.1) 0%, rgba(15, 20, 25, 0.55) 40%, rgba(15, 20, 25, 0.88) 100%); }

@@ -126,7 +126,8 @@ vr-landing-page/
     ├── assets/
     │   ├── problema/       # Fotos WebP de la sección «El problema» (Unsplash)
     │   ├── pregunta/       # Fondo WebP de la pregunta problema, escritorio y móvil (Unsplash)
-    │   └── objetivos/      # Fotos WebP de los objetivos específicos (Unsplash)
+    │   ├── objetivos/      # Fotos WebP de los objetivos específicos (Unsplash)
+    │   └── metodologia/    # Fotos WebP de las fases PMBOK (Unsplash)
     ├── data/
     │   └── content.js      # Texto, cifras, fechas y enlaces de la página
     └── components/
@@ -216,7 +217,7 @@ Proyecto de grado · Ingeniería de Sistemas · Universidad Autónoma de Bucaram
 
 Referencia de diseño: «Healthcare Clinic Platform», de Shuvo, publicado en Dribbble.
 
-Fotografías de «El problema» (`src/assets/problema/`), la pregunta problema (`src/assets/pregunta/`) y los objetivos (`src/assets/objetivos/`), convertidas a WebP, tomadas de [Unsplash](https://unsplash.com/license) con licencia gratuita:
+Fotografías de «El problema» (`src/assets/problema/`), la pregunta problema (`src/assets/pregunta/`) los objetivos (`src/assets/objetivos/`) y la metodología (`src/assets/metodologia/`), convertidas a WebP, tomadas de [Unsplash](https://unsplash.com/license) con licencia gratuita:
 
 | Archivo | Foto | Autor |
 |---|---|---|
@@ -228,3 +229,8 @@ Fotografías de «El problema» (`src/assets/problema/`), la pregunta problema (
 | `objetivos/requerimientos.webp` | [Médico consultando con un paciente en un consultorio](https://unsplash.com/photos/MJmsLpeHPfg) | Vitaly Gariev |
 | `objetivos/diseno.webp` | [Persona dibujando un wireframe en papel](https://unsplash.com/photos/v9FQR4tbIq8) | Kelly Sikkema |
 | `objetivos/validacion.webp` | [Profesionales de la salud revisando una tableta](https://unsplash.com/photos/DbCfSrTnflA) | Nappy |
+| `metodologia/inicio.webp` | [Personas colaborando en el plan del proyecto](https://unsplash.com/photos/v89zhr0iBFY) | airfocus |
+| `metodologia/planificacion.webp` | [Calendario con chinchetas rojas](https://unsplash.com/photos/bwOAixLG0uc) | Towfiqu barbhuiya |
+| `metodologia/ejecucion.webp` | [Portátil con código de programación](https://unsplash.com/photos/f77Bh3inUpE) | Arnold Francisca |
+| `metodologia/monitoreo.webp` | [Post-its para gestión de proyectos](https://unsplash.com/photos/OXmym9cuaEY) | Eden Constantino |
+| `metodologia/cierre.webp` | [Profesional presentando frente a una pantalla](https://unsplash.com/photos/xoCrMyMFt7s) | ThisisEngineering |

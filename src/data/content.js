@@ -12,6 +12,12 @@ import imgPreguntaMovil from '../assets/pregunta/cardboard-mobile.webp';
 import imgObjRequerimientos from '../assets/objetivos/requerimientos.webp';
 import imgObjDiseno from '../assets/objetivos/diseno.webp';
 import imgObjValidacion from '../assets/objetivos/validacion.webp';
+// Fases de la metodología: airfocus, Towfiqu barbhuiya, Arnold Francisca, Eden Constantino y ThisisEngineering (Unsplash, licencia gratuita).
+import imgFaseInicio from '../assets/metodologia/inicio.webp';
+import imgFasePlanificacion from '../assets/metodologia/planificacion.webp';
+import imgFaseEjecucion from '../assets/metodologia/ejecucion.webp';
+import imgFaseMonitoreo from '../assets/metodologia/monitoreo.webp';
+import imgFaseCierre from '../assets/metodologia/cierre.webp';
 
 export const nav = [
   { href: '#problema', label: 'Problema' },
@@ -129,12 +135,32 @@ export const objectives = {
   ],
 };
 
-export const methodology = [
-  { title: 'Iterativo e incremental', body: 'Nueve incrementos entre el 11 de septiembre y el 1 de octubre de 2026, desde el primer módulo hasta el curso completo.', tag: '9 incrementos' },
-  { title: 'Ciclo PHVA', body: 'Planear, hacer, verificar y actuar, aplicado al proyecto completo y a cada incremento.', tag: 'Calidad' },
-  { title: 'Fases PMBOK', body: 'Fases de la guía PMBOK adaptadas a la escala de un proyecto de grado.', tag: 'Gestión' },
-  { title: 'Kanban', body: 'Tablero en Trello con tareas por hacer, en progreso y terminadas; código en Git y GitHub.', tag: 'Seguimiento' },
-];
+export const methodology = {
+  lead: 'El proyecto se gestionó con las fases del PMBOK y el ciclo PHVA, y el prototipo se desarrolló por incrementos cortos con seguimiento en Kanban.',
+  phases: [
+    { title: 'Inicio', img: imgFaseInicio, alt: 'Dos personas planeando un proyecto con notas adhesivas',
+      body: 'Se definieron el problema, los objetivos, el alcance y los entregables.', deliverable: 'Anteproyecto aprobado' },
+    { title: 'Planificación', img: imgFasePlanificacion, alt: 'Calendario con chinchetas rojas',
+      body: 'Se armó el cronograma de 18 semanas, la estructura del trabajo y la matriz de riesgos.', deliverable: 'Cronograma y matriz de riesgos' },
+    { title: 'Ejecución', img: imgFaseEjecucion, alt: 'Portátil con código en pantalla',
+      body: 'Se desarrolló el prototipo por incrementos, cada uno completo y verificable.', deliverable: 'Prototipo funcional y documentación técnica' },
+    { title: 'Monitoreo y control', img: imgFaseMonitoreo, alt: 'Notas adhesivas «por hacer, en curso, hecho»',
+      body: 'Se siguió el avance en un tablero Kanban, con bitácoras y pruebas en cada incremento.', deliverable: 'Bitácoras y registro de defectos' },
+    { title: 'Cierre', img: imgFaseCierre, alt: 'Profesional presentando frente a una pantalla',
+      body: 'Se validó con expertos, se hicieron los ajustes y se entregó el documento final.', deliverable: 'APK validado, documento final y sustentación' },
+  ],
+  phva: [
+    { title: 'Planear', body: 'Diagnóstico, requerimientos clínicos y técnicos, estudio de alternativas y cronograma.' },
+    { title: 'Hacer', body: 'Desarrollo del prototipo por incrementos e integración de los módulos.' },
+    { title: 'Verificar', body: 'Pruebas técnicas en cada incremento y validación con expertos.' },
+    { title: 'Actuar', body: 'Ajustes según la validación, documentación y cierre del proyecto.' },
+  ],
+  facts: [
+    { value: '9 incrementos', label: 'Desarrollo iterativo entre el 11 de septiembre y el 1 de octubre de 2026' },
+    { value: 'Kanban', label: 'Tablero en Trello: por hacer, en progreso y terminado' },
+    { value: 'Git y GitHub', label: 'Un commit por incremento' },
+  ],
+};
 
 export const stack = [
   { name: 'Unity 2022.3 LTS', role: 'Motor · Universal Render Pipeline', icon: 'cube', body: 'Escenas, animaciones y lógica del prototipo.' },

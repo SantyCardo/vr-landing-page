@@ -274,14 +274,6 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .institutions { margin-top: 12px; }
 
 .photo-card-text .tag-source { text-transform: none; letter-spacing: 0; }
-/* Tarjetas con foto alineadas: fuente, título y texto comparten filas entre tarjetas (subgrid). */
-.photo-grid { grid-template-rows: minmax(300px, 1fr) auto auto auto; row-gap: 0; }
-.photo-grid .photo-card { aspect-ratio: auto; grid-row: span 4; display: grid; grid-template-rows: subgrid; margin-bottom: 12px; }
-.photo-grid .photo-card-text { display: contents; }
-.photo-grid .photo-card-text > * { position: relative; z-index: 1; margin: 0 16px; }
-.photo-grid .photo-card-text > .tag { grid-row: 2; align-self: end; justify-self: start; margin-bottom: 10px; }
-.photo-grid .photo-card-text > h3 { grid-row: 3; align-self: end; }
-.photo-grid .photo-card-text > p { grid-row: 4; margin-top: 4px; margin-bottom: 16px; }
 
 /* ---------- Cifras del problema (una fila, alineada con las tarjetas) ---------- */
 .figures { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 36px; }
@@ -299,21 +291,24 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .objective-label { display: block; font-size: 15px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
 .objective-general p { font-size: clamp(23px, 2.18vw, 31px); line-height: 1.35; letter-spacing: -0.02em; color: var(--ink); }
 
-/* Objetivos específicos: título visible y objetivo completo al pasar el cursor */
-.objective-cards .photo-card { aspect-ratio: auto; min-height: clamp(420px, 38vw, 580px); }
-.objective-card::after { transition: background .4s ease; }
-.objective-card:hover::after, .objective-card:focus-within::after, .objective-card:focus::after {
+/* Tarjetas con foto (problema y objetivos): título visible, texto completo al pasar el cursor */
+.hover-cards .photo-card { aspect-ratio: auto; min-height: clamp(420px, 38vw, 580px); }
+.hover-card::after { transition: background .4s ease; }
+.hover-card:hover::after, .hover-card:focus-within::after, .hover-card:focus::after {
   background: linear-gradient(180deg, rgba(40, 60, 85, 0.25) 0%, rgba(50, 80, 115, 0.75) 45%, rgba(45, 75, 110, 0.96) 100%);
 }
-.objective-card h3 { font-size: clamp(24px, 2.2vw, 32px); }
-.objective-more { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .45s ease; }
-.objective-more p { overflow: hidden; opacity: 0; transition: opacity .35s ease; font-size: 18px; line-height: 1.5; }
-.objective-card:hover .objective-more, .objective-card:focus .objective-more, .objective-card:focus-within .objective-more { grid-template-rows: 1fr; }
-.objective-card:hover .objective-more p, .objective-card:focus .objective-more p, .objective-card:focus-within .objective-more p { opacity: 1; padding-top: 10px; }
+.hover-card h3 { font-size: clamp(22px, 2vw, 30px); line-height: 1.15; }
+/* En el problema los títulos pueden ocupar dos líneas: se reserva ese alto para que las etiquetas queden alineadas. */
+#problema .hover-card h3 { min-height: 2.3em; display: flex; align-items: flex-end; }
+.hover-source { display: block; margin-top: 12px; font-size: 15px; opacity: 0.8; }
+.hover-more { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .45s ease; }
+.hover-more p { overflow: hidden; opacity: 0; transition: opacity .35s ease; font-size: 18px; line-height: 1.5; }
+.hover-card:hover .hover-more, .hover-card:focus .hover-more, .hover-card:focus-within .hover-more { grid-template-rows: 1fr; }
+.hover-card:hover .hover-more p, .hover-card:focus .hover-more p, .hover-card:focus-within .hover-more p { opacity: 1; padding-top: 10px; }
 /* En pantallas táctiles no hay hover: el objetivo se muestra siempre. */
 @media (hover: none) {
-  .objective-more { grid-template-rows: 1fr; }
-  .objective-more p { opacity: 1; padding-top: 10px; }
+  .hover-more { grid-template-rows: 1fr; }
+  .hover-more p { opacity: 1; padding-top: 10px; }
 }
 
 /* ---------- Justificación ---------- */
@@ -420,7 +415,6 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 @media (max-width: 1024px) {
   .grid-4, .figures { grid-template-columns: repeat(2, 1fr); }
     .figures { row-gap: 28px; }
-  .photo-grid { grid-template-rows: repeat(2, minmax(300px, 1fr) auto auto auto); }
   .grid-specialty { grid-template-columns: repeat(2, 1fr); }
   .carousel { grid-auto-columns: minmax(240px, 40%); }
   .nav-links { gap: 14px; font-size: 15px; }
@@ -466,7 +460,6 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .question-veil { background: linear-gradient(180deg, transparent 0, transparent 170px, rgba(15, 20, 25, 0.85) 300px, rgb(15, 20, 25) 360px); }
   .nav { top: 14px; }
   .grid-4, .grid-specialty { grid-template-columns: 1fr; }
-  .photo-grid { grid-template-rows: repeat(4, minmax(260px, 1fr) auto auto auto); }
     .carousel { grid-auto-columns: 78%; }
   #referentes .carousel { grid-auto-columns: 88%; }
   .chips, .chips-grid, .validation, .footer-cols { grid-template-columns: 1fr; }

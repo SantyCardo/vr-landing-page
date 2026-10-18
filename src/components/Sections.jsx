@@ -53,14 +53,14 @@ export function Problem() {
     <section id="problema" className="section">
       <div className="container">
         <SectionHead title={C.problem.title} lead={C.problem.lead} />
-        <div className="grid-4 photo-grid">
-          {C.problem.errors.map((e) => (
-            <article key={e.title} className="photo-card reveal">
+        <div className="grid-4 hover-cards">
+          {C.problem.errors.map((e, i) => (
+            <article key={e.title} className="photo-card hover-card reveal" tabIndex={0}>
               <img src={e.img} alt={e.alt} loading="lazy" />
               <div className="photo-card-text">
-                <span className="tag tag-source">Fuente: {e.source}</span>
+                <span className="tag tag-source">0{i + 1} · Problema</span>
                 <h3>{e.title}</h3>
-                <p>{e.body}</p>
+                <div className="hover-more"><p>{e.body}<small className="hover-source">Fuente: {e.source}</small></p></div>
               </div>
             </article>
           ))}
@@ -154,15 +154,15 @@ export function Objectives() {
             <p>{o.general}</p>
           </div>
         </div>
-        {/* Solo el título a la vista; el objetivo completo aparece al pasar el cursor o al enfocar la tarjeta. */}
-        <div className="grid-3 objective-cards">
+        {/* Solo el título a la vista; el objetivo completo aparece al pasar el cursor o al enfocar la tarjeta (.hover-card). */}
+        <div className="grid-3 hover-cards">
           {o.specific.map((s, i) => (
-            <article key={s.title} className="photo-card objective-card reveal" tabIndex={0}>
+            <article key={s.title} className="photo-card hover-card reveal" tabIndex={0}>
               <img src={s.img} alt={s.alt} loading="lazy" style={s.pos ? { objectPosition: s.pos } : undefined} />
               <div className="photo-card-text">
                 <span className="tag tag-source">0{i + 1} · Objetivo específico</span>
                 <h3>{s.title}</h3>
-                <div className="objective-more"><p>{s.body}</p></div>
+                <div className="hover-more"><p>{s.body}</p></div>
               </div>
             </article>
           ))}

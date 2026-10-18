@@ -12,7 +12,6 @@ export const nav = [
   { href: '#metodologia', label: 'Metodología' },
   { href: '#prototipo', label: 'Prototipo' },
   { href: '#resultados', label: 'Resultados' },
-  { href: '#cronograma', label: 'Cronograma' },
   { href: '#equipo', label: 'Equipo' },
 ];
 
@@ -101,21 +100,6 @@ export const objectives = {
     { title: 'Identificar requerimientos', body: 'Identificar los requerimientos clínicos, educativos, funcionales y no funcionales del procedimiento de insulinización, mediante revisión documental y consulta a profesionales de salud.' },
     { title: 'Diseñar el prototipo', body: 'Diseñar el prototipo educativo integrando componentes interactivos de las etapas del procedimiento, orientado al entrenamiento práctico y seguro del usuario.' },
     { title: 'Validar con expertos', body: 'Validar el prototipo con expertos del área, como médicos de la fundación clínica, para verificar que el procedimiento esté correctamente explicado.' },
-  ],
-};
-
-export const timeline = {
-  lead: 'Actualizado al 18 de octubre de 2026, semana 10 de 18.',
-  phases: [
-    { label: 'Fase 1', title: 'Planeación y diseño', weeks: 'Semanas 1–4', status: 'Terminada',
-      items: [['Revisión del anteproyecto y requisitos', 'Hecho'], ['Arquitectura y guion pedagógico', 'Hecho']] },
-    { label: 'Fase 2', title: 'Desarrollo del prototipo', weeks: 'Semanas 4–10', status: 'En curso',
-      items: [['Modelado 3D de la vivienda', 'Hecho'], ['Módulos, exámenes, mapa y árbol de avances', 'Hecho'],
-        ['Pruebas en el teléfono con el visor', 'En curso'], ['Preguntas definitivas con audio', 'En curso']] },
-    { label: 'Fase 3', title: 'Validación con expertos', weeks: 'Semanas 9–11', status: 'Próxima',
-      items: [['Protocolo, consentimientos e instrumentos', 'En curso'], ['Prueba en vivo con médicos', '21 oct.'], ['Análisis de datos', '22 oct.']] },
-    { label: 'Fase 4', title: 'Presentación y cierre', weeks: 'Semanas 11–18', status: 'Próxima',
-      items: [['Presentación en IngenioTIC', '26 oct.'], ['Tutorial, puntuaciones y pulido visual', 'Nov.'], ['Documento final y sustentación', 'Dic.']] },
   ],
 };
 
@@ -219,7 +203,6 @@ export const footer = {
     { title: 'Proyecto', links: [
       { href: '#resultados', label: 'Resultados' },
       { href: '#resultados', label: 'Validación con expertos · 21 oct.' },
-      { href: '#cronograma', label: 'IngenioTIC · 26 oct.' },
       { href: '#faq', label: 'Preguntas frecuentes' },
       { label: 'Universidad Autónoma de Bucaramanga' },
     ] },

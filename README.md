@@ -23,7 +23,7 @@ Página de presentación de **Insulin·VR**, un prototipo educativo inmersivo pa
 
 ## Descripción
 
-La página cuenta el proyecto en orden: el problema clínico, la justificación, los objetivos, la metodología y el prototipo construido. Luego muestra los resultados, el cronograma y el equipo.
+La página cuenta el proyecto en orden: el problema clínico, la justificación, los objetivos, la metodología y el prototipo construido. Luego muestra los resultados y el equipo.
 
 El prototipo que presenta tiene:
 
@@ -82,8 +82,8 @@ flowchart TD
 flowchart LR
     A["Hero"] --> B["Problema"] --> C["Justificación"] --> D["Pregunta"] --> E["Objetivos"]
     E --> F["Metodología"] --> G["Referentes"] --> H["Prototipo"] --> I["Módulos"]
-    I --> J["Tecnología"] --> K["Normas"] --> L["Resultados"] --> M["Cronograma"]
-    M --> N["Equipo"] --> O["Preguntas frecuentes"] --> P["Cierre + footer"]
+    I --> J["Tecnología"] --> K["Normas"] --> L["Resultados"]
+    L --> N["Equipo"] --> O["Preguntas frecuentes"] --> P["Cierre + footer"]
 ```
 
 ### Flujo de datos
@@ -151,7 +151,6 @@ Todo el texto está en `src/data/content.js`. Algunos ejemplos:
 - **Cifras de la portada:** `hero.stats`.
 - **Resultados de la validación:** `results.validation.items` (instrumento, qué mide y meta). Por ahora el componente `Results` de `Sections.jsx` muestra «Pendiente» fijo; cuando haya datos, agrega el valor a cada ítem y muéstralo en lugar de ese texto.
 - **Rendimiento en otros dispositivos:** `results.performance.pending`.
-- **Cronograma:** `timeline.phases`, con el estado de cada actividad (`Hecho`, `En curso` o una fecha).
 - **Preguntas frecuentes:** `faq`.
 - **Enlaces del footer:** `footer.columns`. La columna «Enlaces» reutiliza `nav`.
 

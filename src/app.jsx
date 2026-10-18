@@ -19,7 +19,6 @@ export function App() {
         <S.Stack />
         <S.Legal />
         <S.Results />
-        <S.Timeline />
         <S.Team />
         <S.Faq />
       </main>

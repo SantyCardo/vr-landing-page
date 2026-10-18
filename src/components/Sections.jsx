@@ -126,27 +126,6 @@ export function Objectives() {
 }
 
 
-export function Timeline() {
-  const statusClass = (v) => (v === 'Hecho' ? 'is-done' : v === 'En curso' ? 'is-active' : '');
-  return (
-    <section id="cronograma" className="section">
-      <div className="container">
-        <SectionHead title={['Dónde va', 'el proyecto.']} lead={C.timeline.lead} />
-        <div className="grid-4">
-          {C.timeline.phases.map((p) => (
-            <article key={p.label} className="card phase reveal">
-              <div className="phase-top"><span className="tag">{p.label}</span><span className={`status status-${p.status === 'Terminada' ? 'done' : p.status === 'En curso' ? 'active' : 'next'}`}>{p.status}</span></div>
-              <h3>{p.title}</h3>
-              <span className="muted">{p.weeks}</span>
-              <ul>{p.items.map(([t, v]) => <li key={t}><span>{t}</span><span className={`when ${statusClass(v)}`}>{v}</span></li>)}</ul>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 export function Methodology() {
   return (
     <section id="metodologia" className="section">

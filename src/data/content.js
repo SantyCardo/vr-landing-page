@@ -2,11 +2,11 @@
 
 export const nav = [
   { href: '#problema', label: 'Problema' },
+  { href: '#objetivos', label: 'Objetivos' },
+  { href: '#metodologia', label: 'Metodología' },
   { href: '#prototipo', label: 'Prototipo' },
-  { href: '#modulos', label: 'Módulos' },
   { href: '#resultados', label: 'Resultados' },
   { href: '#cronograma', label: 'Cronograma' },
-  { href: '#tecnologia', label: 'Tecnología' },
   { href: '#equipo', label: 'Equipo' },
 ];
 

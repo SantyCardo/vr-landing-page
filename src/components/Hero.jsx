@@ -55,7 +55,7 @@ export function Hero() {
         </dl>
 
         <p className="hero-lead">{hero.lead}</p>
-        <a href="#prototipo" className="scroll-cue" aria-label="Bajar"><Icon name="chevron" size={16} /></a>
+        <a href="#problema" className="scroll-cue" aria-label="Bajar"><Icon name="chevron" size={16} /></a>
       </div>
     </header>
   );

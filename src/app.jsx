@@ -9,18 +9,18 @@ export function App() {
       <Hero />
       <main>
         <S.Problem />
-        <S.Prototype />
-        <S.Modules />
-        <S.Results />
-        <S.Methodology />
-        <S.Timeline />
-        <S.Stack />
         <S.Justification />
         <S.Question />
         <S.Objectives />
-        <S.Legal />
         <S.StateOfArt />
+        <S.Methodology />
         <S.References />
+        <S.Prototype />
+        <S.Modules />
+        <S.Stack />
+        <S.Legal />
+        <S.Results />
+        <S.Timeline />
         <S.Faq />
         <S.Team />
       </main>

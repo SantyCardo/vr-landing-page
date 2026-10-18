@@ -92,15 +92,18 @@ export const justification = {
   lead: 'Transformar la educación en insulinización a través de la inmersión, el acceso y la evidencia clínica.',
   from: 'Mala educación en insulinización',
   to: 'Mejor cumplimiento del tratamiento',
+  fromImg: imgAnsiedad,
+  toImg: '/img/cocina_general.jpg',
+  bridge: 'Prototipo inmersivo en realidad virtual',
   goals: [
     { title: 'Desarrollo de software educativo', body: 'Software para mejorar el bienestar.' },
     { title: 'Implementación de técnicas de cuidado', body: 'Enseñar cuidado, almacenamiento y aplicación.' },
     { title: 'Acceso constante al software', body: 'Priorizar el acceso para poblaciones de riesgo.' },
   ],
   pillars: [
-    { title: 'Brecha clínica', body: 'En Colombia, ~8.4 % de la población adulta vive con diabetes (FID, 2024). Errores como la reutilización de agujas o la falta de rotación provocan lipohipertrofia y afectan el control glucémico.' },
-    { title: 'Convergencia tecnológica', body: 'Software educativo inmersivo que fortalece la formación, mitiga la desinformación y prioriza el acceso para poblaciones de riesgo.' },
-    { title: 'Aplicación en sistemas', body: 'Diseño de software, interacción humano-computador y prototipado inmersivo con enfoque social para educación en salud.' },
+    { tag: 'Problema', icon: 'search', title: 'Brecha clínica', body: 'En Colombia, cerca del 8,4 % de la población adulta vive con diabetes (FID, 2024). Errores como la reutilización de agujas o la falta de rotación provocan lipohipertrofia y afectan el control glucémico.' },
+    { tag: 'Innovación', icon: 'cube', title: 'Convergencia tecnológica', body: 'Software educativo inmersivo que fortalece la formación, mitiga la desinformación y prioriza el acceso para poblaciones de riesgo.' },
+    { tag: 'Formación', icon: 'code', title: 'Aplicación en sistemas', body: 'Diseño de software, interacción humano-computador y prototipado inmersivo con enfoque social para educación en salud.' },
   ],
 };
 

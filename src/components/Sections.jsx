@@ -85,19 +85,37 @@ export function Justification() {
     <section id="justificacion" className="section">
       <div className="container">
         <SectionHead title={j.title} lead={j.lead} />
-        <div className="shift reveal">
-          <div><span>Estado actual</span><strong>{j.from}</strong></div>
-          <Icon name="arrowR" size={22} />
-          <div><span>Resultado esperado</span><strong>{j.to}</strong></div>
+
+        <div className="transform reveal">
+          <figure className="transform-photo">
+            <img src={j.fromImg} alt="" loading="lazy" />
+            <figcaption><span>Estado actual</span>{j.from}</figcaption>
+          </figure>
+          <span className="transform-arrow" aria-hidden="true"><Icon name="arrowR" size={18} /></span>
+          <div className="transform-pill">{j.bridge}</div>
+          <span className="transform-arrow" aria-hidden="true"><Icon name="arrowR" size={18} /></span>
+          <figure className="transform-photo">
+            <img src={j.toImg} alt="" loading="lazy" />
+            <figcaption><span>Resultado esperado</span>{j.to}</figcaption>
+          </figure>
         </div>
-        <div className="chips reveal">
-          {j.goals.map((g) => (
-            <div key={g.title} className="chip"><Icon name="check" size={16} /><span><b>{g.title}.</b> {g.body}</span></div>
+
+        <ol className="goals reveal">
+          {j.goals.map((g, i) => (
+            <li key={g.title}>
+              <span className="goal-num">0{i + 1}</span>
+              <h3>{g.title}</h3>
+              <p>{g.body}</p>
+            </li>
           ))}
-        </div>
-        <div className="grid-3">
+        </ol>
+
+        <div className="grid-specialty pillars">
           {j.pillars.map((p) => (
-            <article key={p.title} className="card reveal"><h3>{p.title}</h3><p>{p.body}</p></article>
+            <article key={p.title} className="specialty reveal">
+              <span className="specialty-icon"><Icon name={p.icon} size={22} /></span>
+              <div><span className="pillar-tag">{p.tag}</span><h3>{p.title}</h3><p>{p.body}</p></div>
+            </article>
           ))}
         </div>
       </div>

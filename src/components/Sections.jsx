@@ -2,12 +2,12 @@ import { useState } from 'react';
 import * as C from '../data/content.js';
 import { Icon, SectionHead, Carousel } from './ui.jsx';
 
-export function About() {
+export function Prototype() {
   return (
-    <section id="proyecto" className="section">
+    <section id="prototipo" className="section">
       <div className="container">
-        <Carousel head={{ eyebrow: 'Acerca del proyecto', title: ['Todo lo necesario para aprender', 'la técnica, en un solo lugar.'], lead: C.about.paragraphs[0] }}>
-          {C.mechanics.map((m) => (
+        <Carousel head={{ eyebrow: 'El prototipo', title: C.about.title, lead: C.about.lead }}>
+          {C.features.map((m) => (
             <article key={m.title} className="photo-card">
               <img src={m.img} alt="" loading="lazy" />
               <div className="photo-card-text">
@@ -18,7 +18,31 @@ export function About() {
             </article>
           ))}
         </Carousel>
-        <p className="note reveal">{C.about.paragraphs[1]}</p>
+        <p className="note reveal">{C.about.note}</p>
+      </div>
+    </section>
+  );
+}
+
+export function Modules() {
+  const m = C.modules;
+  return (
+    <section id="modulos" className="section">
+      <div className="container">
+        <SectionHead eyebrow="Curso" title={['Cinco módulos,', 'un examen al final de cada uno.']} lead={m.lead} />
+        <div className="modules">
+          <img className="modules-map reveal" src="/img/plano_casa.jpg" alt="Vista superior de la vivienda virtual con los puntos de teletransporte" loading="lazy" />
+          <ol className="module-list">
+            {m.items.map((it) => (
+              <li key={it.id} className="reveal">
+                <span className="module-id">{it.id}</span>
+                <div><h3>{it.title}</h3><p>{it.body}</p></div>
+                <span className="muted module-steps">{it.steps} pasos</span>
+              </li>
+            ))}
+            <li className="reveal module-pending"><span className="module-id">+</span><div><p>{m.pending}</p></div></li>
+          </ol>
+        </div>
       </div>
     </section>
   );
@@ -48,7 +72,7 @@ export function Problem() {
 export function Justification() {
   const j = C.justification;
   return (
-    <section id="justificacion" className="section section-soft">
+    <section id="justificacion" className="section">
       <div className="container">
         <SectionHead eyebrow="Justificación" title={j.title} lead={j.lead} />
         <div className="shift reveal">
@@ -101,48 +125,20 @@ export function Objectives() {
   );
 }
 
-export function Scope() {
-  const s = C.scope;
-  return (
-    <section id="alcance" className="section section-soft">
-      <div className="container">
-        <SectionHead eyebrow="Alcance" title={s.title} lead={s.lead} />
-        <ol className="stages reveal">
-          {s.stages.map((st, i) => (
-            <li key={st.title}>
-              <span className="num">{i + 1}</span>
-              <div><span className="tag">{st.phase}</span><h3>{st.title}</h3><p>{st.body}</p></div>
-            </li>
-          ))}
-        </ol>
-        <div className="scope-lists">
-          <div className="reveal">
-            <h3 className="h3">Incluye</h3>
-            <div className="chips">{s.includes.map((t) => <div key={t} className="chip"><Icon name="check" size={16} />{t}</div>)}</div>
-          </div>
-          <div className="reveal">
-            <h3 className="h3">Trabajo futuro</h3>
-            <div className="chips">{s.excludes.map((t) => <div key={t} className="chip chip-muted"><Icon name="x" size={16} />{t}</div>)}</div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 export function Timeline() {
+  const statusClass = (v) => (v === 'Hecho' ? 'is-done' : v === 'En curso' ? 'is-active' : '');
   return (
     <section id="cronograma" className="section">
       <div className="container">
-        <SectionHead eyebrow="Cronograma" title={['Plan de trabajo', 'en 18 semanas.']} lead="Tres fases secuenciales con entregables verificables al cierre de cada etapa." />
-        <div className="grid-3">
-          {C.timeline.map((p) => (
+        <SectionHead eyebrow="Cronograma" title={['Dónde va', 'el proyecto.']} lead={C.timeline.lead} />
+        <div className="grid-4">
+          {C.timeline.phases.map((p) => (
             <article key={p.label} className="card phase reveal">
-              <div className="phase-top"><span className="tag">{p.label}</span><span className="muted">{p.weeks}</span></div>
+              <div className="phase-top"><span className="tag">{p.label}</span><span className={`status status-${p.status === 'Terminada' ? 'done' : p.status === 'En curso' ? 'active' : 'next'}`}>{p.status}</span></div>
               <h3>{p.title}</h3>
-              <p>{p.desc}</p>
-              <ul>{p.items.map(([t, w]) => <li key={t}><span>{t}</span><span className="muted">{w}</span></li>)}</ul>
-              <p className="deliverable"><Icon name="doc" size={16} /> {p.deliverable}</p>
+              <span className="muted">{p.weeks}</span>
+              <ul>{p.items.map(([t, v]) => <li key={t}><span>{t}</span><span className={`when ${statusClass(v)}`}>{v}</span></li>)}</ul>
             </article>
           ))}
         </div>
@@ -153,16 +149,15 @@ export function Timeline() {
 
 export function Methodology() {
   return (
-    <section id="metodologia" className="section section-soft">
+    <section id="metodologia" className="section">
       <div className="container">
-        <SectionHead eyebrow="Metodología" title={['Arquitectura', 'de trabajo.']} lead="Basada en Kanban, validación clínica y prototipado inmersivo en Unity." />
+        <SectionHead eyebrow="Metodología" title={['Cómo se', 'construyó.']} lead="Gestión con PHVA y PMBOK, desarrollo por incrementos cortos y seguimiento en Kanban." />
         <div className="grid-4">
-          {C.methodology.map((m, i) => (
-            <article key={m.title} className="card numbered reveal">
-              <span className="num">Fase {i + 1}</span>
+          {C.methodology.map((m) => (
+            <article key={m.title} className="card reveal">
               <h3>{m.title}</h3>
               <p>{m.body}</p>
-              <span className="tag">{m.deliverable}</span>
+              <span className="tag">{m.tag}</span>
             </article>
           ))}
         </div>
@@ -191,7 +186,7 @@ export function Stack() {
 
 export function Legal() {
   return (
-    <section id="normas" className="section section-soft">
+    <section id="normas" className="section">
       <div className="container">
         <SectionHead eyebrow="Normas legales y éticas" title={['Principios', 'regulatorios.']} lead="Principios éticos y de accesibilidad considerados en el desarrollo del prototipo." />
         <div className="chips chips-grid">
@@ -233,7 +228,7 @@ export function StateOfArt() {
 
 export function References() {
   return (
-    <section id="referentes" className="section section-soft">
+    <section id="referentes" className="section">
       <div className="container">
         <Carousel head={{ eyebrow: 'Referentes interactivos', title: ['Experiencias que', 'inspiraron la interacción.'] }}>
           {C.references.map((r) => (
@@ -249,19 +244,47 @@ export function References() {
 }
 
 export function Results() {
+  const r = C.results;
   return (
     <section id="resultados" className="section">
       <div className="container">
-        <SectionHead eyebrow="Resultados esperados" title={['Impactos', 'proyectados.']} lead="Resultados esperados del prototipo inmersivo en la educación para la insulinización." />
+        <SectionHead eyebrow="Resultados" title={['Lo que se ha logrado', 'y lo que falta medir.']} lead="Verificación técnica interna al 1 de octubre de 2026. La validación con expertos está en curso." />
         <div className="grid-4">
-          {C.results.map((r) => (
-            <article key={r.title} className="card stat reveal">
-              <strong>{r.metric}</strong>
-              <span className="muted">{r.label}</span>
-              <h3>{r.title}</h3>
-              <p>{r.body}</p>
+          {r.verified.map((v) => (
+            <article key={v.label} className="card stat reveal">
+              <strong>{v.metric}</strong>
+              <span className="muted">{v.label}</span>
+              <p>{v.body}</p>
             </article>
           ))}
+        </div>
+
+        <div className="results-split">
+          <article className="card reveal">
+            <span className="tag">Rendimiento · {r.performance.device}</span>
+            <img className="perf-img" src={r.performance.img} alt="Tiempo de cuadro por segmento del recorrido en el teléfono" loading="lazy" />
+            <p>{r.performance.body}</p>
+            <h3 className="h3 perf-pending">Otros dispositivos</h3>
+            <table className="pending-table">
+              <thead><tr><th>Dispositivo</th><th>FPS medio</th><th>FPS mínimo</th></tr></thead>
+              <tbody>{r.performance.pending.map((d) => <tr key={d}><td>{d}: pendiente</td><td>—</td><td>—</td></tr>)}</tbody>
+            </table>
+          </article>
+          <article className="card reveal">
+            <span className="tag">Validación con expertos</span>
+            <h3>{r.validation.date}</h3>
+            <p>Entre 5 y 10 médicos usan el APK con el visor y responden tres instrumentos. Los resultados se publicarán aquí.</p>
+            <div className="validation">
+              {r.validation.items.map((v) => (
+                <div key={v.name} className="validation-item">
+                  <span className="muted">{v.what}</span>
+                  <strong>{v.name}</strong>
+                  <span className="validation-result">Pendiente</span>
+                  <span className="muted">Meta {v.goal}</span>
+                </div>
+              ))}
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -291,7 +314,7 @@ export function Faq() {
 
 export function Team() {
   return (
-    <section id="equipo" className="section section-soft">
+    <section id="equipo" className="section">
       <div className="container">
         <SectionHead eyebrow="Equipo" title={['Equipo', 'de investigación.']} lead="Universidad Autónoma de Bucaramanga · Facultad de Ingeniería, programa de Ingeniería de Sistemas." />
         <div className="grid-3">
@@ -326,11 +349,11 @@ export function Closing() {
       <div className="container closing-inner">
         <div>
           <h2 className="display">Aprender la técnica<br />sin riesgo real.</h2>
-          <p>Prototipo educativo inmersivo · UNAB · Bucaramanga, Colombia · 2026</p>
+          <p>Presentación en IngenioTIC · 26 de octubre de 2026 · UNAB · Bucaramanga</p>
         </div>
         <div className="closing-ctas">
           <a href="#inicio" className="btn btn-light btn-sm"><Icon name="arrowUR" size={14} /> Volver arriba</a>
-          <a href="#proyecto" className="btn btn-ghost btn-sm"><Icon name="search" size={14} /> Ver proyecto</a>
+          <a href="#prototipo" className="btn btn-ghost btn-sm"><Icon name="search" size={14} /> Ver el prototipo</a>
         </div>
       </div>
     </footer>

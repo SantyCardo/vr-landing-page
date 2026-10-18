@@ -1,48 +1,58 @@
-// Contenido de la landing (versión 1, anteproyecto). Se actualizará con la información del prototipo.
+// Contenido de la landing. Versión 2: presentación del prototipo funcional (octubre de 2026).
 
 export const nav = [
-  { href: '#proyecto', label: 'Proyecto' },
   { href: '#problema', label: 'Problema' },
-  { href: '#objetivos', label: 'Objetivos' },
-  { href: '#alcance', label: 'Alcance' },
+  { href: '#prototipo', label: 'Prototipo' },
+  { href: '#modulos', label: 'Módulos' },
+  { href: '#resultados', label: 'Resultados' },
   { href: '#cronograma', label: 'Cronograma' },
   { href: '#tecnologia', label: 'Tecnología' },
   { href: '#equipo', label: 'Equipo' },
 ];
 
 export const hero = {
-  eyebrow: 'Anteproyecto de grado · UNAB',
-  lead: 'Prototipo educativo inmersivo para el fortalecimiento de la técnica de aplicación de insulina en pacientes adultos con diabetes tipo II.',
+  eyebrow: 'Proyecto de grado · UNAB · Prototipo funcional',
+  lead: 'Prototipo educativo inmersivo para aprender la técnica de insulinización con el teléfono del paciente y un visor de cartón. Cinco módulos guiados en una vivienda virtual, sin conexión a internet.',
   stats: [
-    { value: 'USD 8', label: 'Costo del visor Google Cardboard' },
-    { value: '100%', label: 'Funciona sin conexión' },
-    { value: '6', label: 'Mecánicas del prototipo' },
-    { value: '18', label: 'Semanas de trabajo' },
+    { value: '5', label: 'Módulos de enseñanza' },
+    { value: '60', label: 'Pasos narrados con subtítulos' },
+    { value: '5', label: 'Exámenes, uno por módulo' },
+    { value: '13', label: 'Puntos de teletransporte' },
   ],
 };
 
 export const about = {
-  title: ['Acerca del', 'proyecto.'],
-  paragraphs: [
-    'El proyecto propone un prototipo funcional de herramienta educativa inmersiva e interactiva mediante Realidad Virtual y Google Cardboard para enseñar la técnica de insulinización y el almacenamiento correcto de insulina a pacientes adultos con diabetes tipo 2 en Bucaramanga.',
-    'Este prototipo ocupa la intersección de tres dimensiones que ninguna solución existente cubre simultáneamente: educación en insulinización, experiencia inmersiva y accesibilidad local sin internet.',
-  ],
+  title: ['Un recorrido guiado por la técnica,', 'dentro de una vivienda virtual.'],
+  lead: 'El paciente se mueve por una casa con cocina, sala, vestíbulo y sala de estudio. Todo se controla con la mirada: no hacen falta mandos ni conexión.',
+  note: 'Lo que se enseña, en qué orden, con qué audio y con qué preguntas vive en archivos de datos y no en el código, así que el equipo de salud puede ajustar textos y orden sin programar.',
 };
 
-export const mechanics = [
-  { title: 'Core Loop', kicker: 'Mecánica nuclear', img: '/img/m1_paso1.jpg',
-    body: 'Observar la técnica, ensamblar la aguja, inyectar, desechar la aguja y almacenar la insulina respetando la cadena de frío.' },
-  { title: 'Mecánica Gaze', kicker: 'Input', img: '/img/teleport_mantener.jpg',
-    body: 'Selección por mirada con temporizador visual circular, sin controles externos.' },
-  { title: 'Flujo educativo', kicker: 'Pedagogía', img: '/img/m1_paso1_contexto.jpg',
-    body: 'Lecciones modulares de 15 a 20 minutos basadas en microaprendizaje.' },
-  { title: 'Arquitectura técnica', kicker: 'Plataforma', img: '/img/cocina_general.jpg',
-    body: 'Unity 2022.3 LTS, APK Android nativo, interacción 3DOF y ejecución 100 % offline.' },
-  { title: 'Feedback clínico', kicker: 'Validación', img: '/img/examen_pregunta.png',
-    body: 'Panel de médicos expertos con SUS para usabilidad, Likert para la experiencia e IVC para el contenido.' },
-  { title: 'Accesibilidad', kicker: 'Inclusión', img: '/img/botonera_situaciones.jpg',
-    body: 'Texto sobredimensionado, contraste WCAG AA, voz opcional y sin dependencia de internet.' },
+export const features = [
+  { title: 'Vivienda virtual', kicker: 'Entorno', img: '/img/cocina_general.jpg',
+    body: 'Cuatro espacios. La cocina concentra los cinco módulos; nevera, gabinetes y estufa dan el contexto real.' },
+  { title: 'Control por mirada', kicker: 'Interacción', img: '/img/m1_paso1_contexto.jpg',
+    body: 'Una retícula y una barra que se llena al mirar. Los botones piden 1.5 s; «Salir», 2.5 s.' },
+  { title: 'Teletransporte', kicker: 'Movimiento', img: '/img/teleport_cocina.jpg',
+    body: '13 puntos con color por cuarto y viñeta de confort, para moverse sin mareo.' },
+  { title: 'Pasos narrados', kicker: 'Contenido', img: '/img/m1_paso1.jpg',
+    body: 'Cada paso une animación 3D, narración y subtítulos sincronizados con el audio.' },
+  { title: 'Exámenes', kicker: 'Evaluación', img: '/img/examen_respuesta.png',
+    body: 'Uno por módulo. El resultado se muestra con color y con texto para quien distingue mal los colores.' },
+  { title: 'Árbol de avances', kicker: 'Progreso', img: '/img/arbol_avances_m1.png',
+    body: 'Cada módulo y paso aparece como hecho, disponible o bloqueado. El progreso se guarda en el teléfono.' },
 ];
+
+export const modules = {
+  lead: 'Cada módulo se desbloquea al completar el anterior y termina con su examen; se aprueba con el 60 % o más.',
+  items: [
+    { id: 'M1', title: 'Extracción e inspección', steps: 17, body: 'Sacar la insulina de la nevera y explorar cinco cajas de insulina.' },
+    { id: 'M2', title: 'Preparación e higiene', steps: 17, body: 'Preparar el lapicero y las manos antes de la aplicación.' },
+    { id: 'M3', title: 'Mapeo, rotación y asepsia', steps: 10, body: 'Zonas de inyección y rotación con el método de las manecillas del reloj.' },
+    { id: 'M4', title: 'Técnica de inyección', steps: 10, body: 'Aplicación paso a paso con el lapicero SoloStar.' },
+    { id: 'M5', title: 'Desecho seguro y conservación', steps: 6, body: 'Desechar la aguja y conservar la insulina después de usarla.' },
+  ],
+  pending: 'Tutorial de uso del visor: en desarrollo.',
+};
 
 export const problem = {
   title: ['El problema.', 'Errores que comprometen la salud.'],
@@ -88,73 +98,35 @@ export const objectives = {
   ],
 };
 
-export const scope = {
-  title: ['Alcance y delimitación', 'del prototipo.'],
-  lead: 'Siete etapas modulares organizadas en tres fases: lo que entra al MVP, lo que se posterga y los hitos que validan el avance.',
-  stages: [
-    { phase: 'Preparación', title: 'Preparación del dispositivo', body: 'Configurar visor VR y dispositivo móvil. Calibración inicial.' },
-    { phase: 'Preparación', title: 'Selección de zona', body: 'Elegir y rotar sitios anatómicos de inyección.' },
-    { phase: 'Práctica', title: 'Técnica de inyección', body: 'Aprender y practicar la técnica correcta paso a paso.' },
-    { phase: 'Práctica', title: 'Almacenamiento de insulina', body: 'Condiciones adecuadas de cadena de frío y conservación.' },
-    { phase: 'Práctica', title: 'Desecho de elementos', body: 'Manejo seguro de agujas, lancetas y residuos cortopunzantes.' },
-    { phase: 'Validación', title: 'Evaluación', body: 'Cuestionarios SUS/Likert para medir comprensión.' },
-    { phase: 'Validación', title: 'Validación clínica', body: 'Personal de salud revisa la herramienta con IVC.' },
-  ],
-  includes: [
-    'App Android con Google Cardboard', 'Navegación por mirada con temporizador', 'Animaciones 3D, narración y subtítulos',
-    'Menú, historial y resumen de sesiones', 'Evaluación por módulo (SUS/Likert)', 'Almacenamiento 100 % local',
-    'Validación por profesionales de salud (IVC)',
-  ],
-  excludes: [
-    'Interacción física o simulación háptica', 'Integración con historia clínica', 'Pruebas directas con pacientes',
-    'Sincronización entre dispositivos', 'Modelos 3D fotorrealistas',
+export const timeline = {
+  lead: 'Actualizado al 18 de octubre de 2026, semana 10 de 18.',
+  phases: [
+    { label: 'Fase 1', title: 'Planeación y diseño', weeks: 'Semanas 1–4', status: 'Terminada',
+      items: [['Revisión del anteproyecto y requisitos', 'Hecho'], ['Arquitectura y guion pedagógico', 'Hecho']] },
+    { label: 'Fase 2', title: 'Desarrollo del prototipo', weeks: 'Semanas 4–10', status: 'En curso',
+      items: [['Modelado 3D de la vivienda', 'Hecho'], ['Módulos, exámenes, mapa y árbol de avances', 'Hecho'],
+        ['Pruebas en el teléfono con el visor', 'En curso'], ['Preguntas definitivas con audio', 'En curso']] },
+    { label: 'Fase 3', title: 'Validación con expertos', weeks: 'Semanas 9–11', status: 'Próxima',
+      items: [['Protocolo, consentimientos e instrumentos', 'En curso'], ['Prueba en vivo con médicos', '21 oct.'], ['Análisis de datos', '22 oct.']] },
+    { label: 'Fase 4', title: 'Presentación y cierre', weeks: 'Semanas 11–18', status: 'Próxima',
+      items: [['Presentación en IngenioTIC', '26 oct.'], ['Tutorial, puntuaciones y pulido visual', 'Nov.'], ['Documento final y sustentación', 'Dic.']] },
   ],
 };
 
-export const timeline = [
-  { label: 'Fase 1', title: 'Requerimientos', weeks: 'Semanas 1–5',
-    desc: 'Levantamiento de requerimientos clínicos, educativos, funcionales y no funcionales.',
-    items: [
-      ['Revisión de literatura clínica y pedagógica sobre insulinización y sus errores.', 'S1–2'],
-      ['Entrevistas con profesionales de la Fundación Clínica.', 'S2–3'],
-      ['Construcción de la propuesta final a desarrollar.', 'S3–4'],
-      ['Definición de controles del prototipo por mirada.', 'S4–5'],
-    ],
-    deliverable: 'Documento formal de requerimientos.' },
-  { label: 'Fase 2', title: 'Desarrollo', weeks: 'Semanas 4–15',
-    desc: 'Construcción técnica del prototipo en Unity con Google Cardboard.',
-    items: [
-      ['Construcción del Game Design Document (GDD).', 'S4–6'],
-      ['Modelado 3D de escenarios y elementos clínicos.', 'S6–9'],
-      ['Sistema de mirada y temporizador visual.', 'S7–10'],
-      ['Animaciones, audio guiado y subtítulos.', 'S10–13'],
-      ['Sistema de evaluación por módulos.', 'S13–15'],
-    ],
-    deliverable: 'APK Android funcional con escenas inmersivas y evaluación integrada.' },
-  { label: 'Fase 3', title: 'Validación', weeks: 'Semanas 15–18',
-    desc: 'Validación clínica y técnica con expertos de la FOSUNAB.',
-    items: [
-      ['Pruebas técnicas y QA en el dispositivo objetivo.', 'S15–16'],
-      ['Validación clínica con SUS, Likert e IVC (≥ 0.80).', 'S16–17'],
-      ['Iteración final y entrega del prototipo validado.', 'S17–18'],
-    ],
-    deliverable: 'Informe de validación clínica y prototipo final aprobado.' },
-];
-
 export const methodology = [
-  { title: 'Planeación clínica', body: 'Requerimientos médicos, educativos y de UX junto a profesionales de salud.', deliverable: 'Investigación clínica' },
-  { title: 'Diseño GDD + UX', body: 'Game Design Document, navegación por mirada, arquitectura de interacción y flujo inmersivo.', deliverable: 'Game Design Document' },
-  { title: 'Desarrollo en Unity', body: 'Implementación con Unity, Google Cardboard, audio guiado, escenas 3D y sistema de mirada.', deliverable: 'Prototipo Unity' },
-  { title: 'Validación y testing', body: 'Pruebas técnicas y evaluación clínica con Likert, SUS e IVC (≥ 0.80).', deliverable: 'Evaluación clínica' },
+  { title: 'Iterativo e incremental', body: 'Nueve incrementos entre el 11 de septiembre y el 1 de octubre de 2026, desde el primer módulo hasta el curso completo.', tag: '9 incrementos' },
+  { title: 'Ciclo PHVA', body: 'Planear, hacer, verificar y actuar, aplicado al proyecto completo y a cada incremento.', tag: 'Calidad' },
+  { title: 'Fases PMBOK', body: 'Fases de la guía PMBOK adaptadas a la escala de un proyecto de grado.', tag: 'Gestión' },
+  { title: 'Kanban', body: 'Tablero en Trello con tareas por hacer, en progreso y terminadas; código en Git y GitHub.', tag: 'Seguimiento' },
 ];
 
 export const stack = [
-  { name: 'Unity', role: 'Motor 3D', icon: 'cube', body: 'Escena VR, interacción y sistema de mirada. Pipeline URP para móviles.' },
-  { name: 'Google Cardboard', role: 'Visor VR', icon: 'cardboard', body: 'Visor de bajo costo compatible con smartphones Android.' },
-  { name: 'Android APK', role: 'Distribución', icon: 'phone', body: 'Build nativa que corre sin conexión, instalable sin tienda.' },
-  { name: 'Interacción por mirada', role: 'Input', icon: 'eye', body: 'Selección con temporizador y retroalimentación radial, sin mandos.' },
-  { name: 'Blender', role: 'Modelado 3D', icon: 'shape', body: 'Modelado del lapicero, escenarios y animaciones de la técnica.' },
-  { name: 'C#', role: 'Lógica', icon: 'code', body: 'Lógica de los pasos clínicos y arquitectura modular.' },
+  { name: 'Unity 2022.3 LTS', role: 'Motor · Universal Render Pipeline', icon: 'cube', body: 'Escenas, animaciones y lógica del prototipo.' },
+  { name: 'Google Cardboard XR', role: 'Realidad virtual · 3 DOF', icon: 'cardboard', body: 'Complemento oficial para visores de cartón.' },
+  { name: 'Android', role: 'API 26 o superior', icon: 'phone', body: 'Se instala como APK y funciona sin conexión.' },
+  { name: 'Interacción por mirada', role: 'Retícula y barra de carga', icon: 'eye', body: 'Selección y teletransporte sin mandos.' },
+  { name: 'C# y ScriptableObjects', role: 'Lógica y datos', icon: 'code', body: 'Arquitectura por capas con bus de eventos; contenido separado del código.' },
+  { name: 'JSON local', role: 'Persistencia', icon: 'shield', body: 'Progreso en la carpeta privada de la app, con respaldo y sin datos personales.' },
 ];
 
 export const legal = [
@@ -183,18 +155,34 @@ export const references = [
   { title: 'Keep Talking and Nobody Explodes', studio: 'Steel Crate', body: 'Instrucciones secuenciales y claridad procedural.' },
 ];
 
-export const results = [
-  { title: 'Mejor comprensión del procedimiento', metric: '+45%', label: 'Retención esperada',
-    body: 'Aprendizaje paso a paso mediante simulación inmersiva, sin riesgo real.' },
-  { title: 'Reducción de errores técnicos', metric: '−38%', label: 'Errores típicos',
-    body: 'Menos lipohipertrofia, mala rotación, reutilización de agujas y vía incorrecta.' },
-  { title: 'Mayor adherencia terapéutica', metric: '+52%', label: 'Adherencia a 6 meses',
-    body: 'Más confianza y autonomía al iniciar la insulinoterapia.' },
-  { title: 'Accesibilidad educativa', metric: 'USD 8', label: 'Costo del hardware',
-    body: 'Formación inmersiva con smartphones Android y Google Cardboard.' },
-];
+export const results = {
+  verified: [
+    { metric: '36', label: 'Requerimientos', body: 'Clínicos, educativos, funcionales y no funcionales, de dos entrevistas con médicos internistas.' },
+    { metric: '35/35', label: 'Pruebas superadas', body: 'Progreso, árbol, teletransporte, exámenes y botonera, ejecutadas en el editor.' },
+    { metric: '15', label: 'Defectos corregidos', body: 'Ninguno abierto al cierre de los incrementos.' },
+    { metric: 'TRL 3', label: 'Madurez tecnológica', body: 'Prueba de concepto. La meta es TRL 4 con el APK validado en teléfonos.' },
+  ],
+  performance: {
+    device: 'Samsung Galaxy A56',
+    body: 'Un recorrido automático por los cinco módulos y exámenes arrancó a 57 FPS y bajó a unos 30 FPS cuando el teléfono se calentó. El costo está en el render, con cerca de 1.6 millones de triángulos por cuadro; scripts y animaciones ocupan menos de 0.3 ms.',
+    img: '/img/perfil_tiempo_cuadro.png',
+    pending: ['Equipo 2', 'Equipo 3', 'Equipo 4'],
+  },
+  validation: {
+    date: 'Prueba en vivo con médicos · 21 de octubre de 2026',
+    items: [
+      { name: 'SUS', what: 'Usabilidad', goal: '≥ 70 / 100' },
+      { name: 'IVC', what: 'Validez del contenido', goal: '≥ 0.80' },
+      { name: 'Likert', what: 'Experiencia inmersiva', goal: '≥ 4.0 / 5' },
+    ],
+  },
+};
 
 export const faq = [
+  { q: '¿Qué necesito para usar el prototipo?',
+    a: 'Un teléfono Android 8.0 o superior y un visor tipo Google Cardboard. La aplicación se instala como APK y funciona sin conexión a internet.' },
+  { q: '¿Cuándo se valida con médicos?',
+    a: 'La prueba en vivo es el 21 de octubre de 2026. Cada médico usa el APK con el visor y luego responde las escalas SUS, IVC y Likert.' },
   { q: '¿El prototipo reemplaza la orientación médica profesional?',
     a: 'No. El prototipo es exclusivamente una herramienta educativa de apoyo. No sustituye la consulta, el diagnóstico ni el tratamiento prescrito por un profesional de salud. Complementa la formación que el paciente recibe del personal médico, reforzando la técnica entre consultas.' },
   { q: '¿Por qué utilizar realidad virtual para enseñar técnicas de insulinización?',
@@ -211,13 +199,13 @@ export const faq = [
 
 export const team = {
   members: [
-    { init: 'BL', name: 'Brayan Steven León Martínez', role: 'Co-investigador', sub: 'Ingeniería de Sistemas, UNAB' },
-    { init: 'SC', name: 'Santiago Cardona Prada', role: 'Co-investigador', sub: 'Ingeniería de Sistemas, UNAB' },
-    { init: 'LP', name: 'Leonardo Stiven Pardo Niño', role: 'Director', sub: 'Proyecto de Grado' },
+    { init: 'BL', name: 'Brayan Steven León Martínez', role: 'Líder de desarrollo', sub: 'Arquitectura, sistemas en C#, progreso, exámenes y pruebas' },
+    { init: 'SC', name: 'Santiago Cardona Prada', role: 'Contenido 3D, audio y documentación', sub: 'Modelos, escenario, animaciones, shaders y landing' },
+    { init: 'LP', name: 'Leonardo Stiven Pardo Niño', role: 'Director', sub: 'Rumbo del proyecto y decisiones de alcance' },
   ],
   institutions: [
-    { label: 'Universidad', name: 'UNAB', sub: 'Universidad Autónoma de Bucaramanga' },
-    { label: 'Asesoría temática', name: 'FOSUNAB', sub: 'Fundación Clínica FOSUNAB' },
-    { label: 'Validación clínica', name: 'Fundación Clínica UNAB', sub: 'Bucaramanga, Colombia' },
+    { label: 'Universidad', name: 'UNAB', sub: 'Ingeniería de Sistemas · Bucaramanga' },
+    { label: 'Asesoría temática', name: 'Dra. Ana María Ospina Galeano', sub: 'Médica internista · Fundación Clínica' },
+    { label: 'Asesoría temática', name: 'Dr. Jaime Gómez', sub: 'Médico internista · Fundación Clínica' },
   ],
 };

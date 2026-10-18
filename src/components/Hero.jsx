@@ -40,7 +40,7 @@ export function Hero() {
             virtual
           </h1>
           <div className="hero-ctas">
-            <a href="#proyecto" className="btn btn-dark"><Icon name="search" size={15} /> Explorar proyecto</a>
+            <a href="#prototipo" className="btn btn-dark"><Icon name="search" size={15} /> Ver el prototipo</a>
             <a href="#equipo" className="btn btn-light"><Icon name="arrowUR" size={15} /> Ver equipo</a>
           </div>
         </div>
@@ -55,7 +55,7 @@ export function Hero() {
         </dl>
 
         <p className="hero-lead">{hero.lead}</p>
-        <a href="#proyecto" className="scroll-cue" aria-label="Bajar"><Icon name="chevron" size={16} /></a>
+        <a href="#prototipo" className="scroll-cue" aria-label="Bajar"><Icon name="chevron" size={16} /></a>
       </div>
     </header>
   );

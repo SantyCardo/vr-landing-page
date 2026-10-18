@@ -48,24 +48,6 @@ export function Modules() {
   );
 }
 
-export function Stats() {
-  return (
-    <section id="cifras" className="section section-tight">
-      <div className="container">
-        <dl className="stats reveal">
-          {C.stats.map((s) => (
-            <div key={s.label} className="stat-item">
-              <dt>{s.value}</dt>
-              <dd>{s.label}</dd>
-              <dd className="stat-source">Fuente: <a href={s.url} target="_blank" rel="noreferrer">{s.source}</a></dd>
-            </div>
-          ))}
-        </dl>
-      </div>
-    </section>
-  );
-}
-
 export function Problem() {
   return (
     <section id="problema" className="section">
@@ -83,6 +65,15 @@ export function Problem() {
             </article>
           ))}
         </div>
+        <dl className="figures reveal">
+          {C.stats.map((f) => (
+            <div key={f.label} className="figure-row">
+              <dt>{f.value}</dt>
+              <dd>{f.label}</dd>
+              <dd className="figure-source"><a href={f.url} target="_blank" rel="noreferrer">{f.source}</a></dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
   );

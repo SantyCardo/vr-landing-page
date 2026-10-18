@@ -80,7 +80,7 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    A["Hero"] --> A2["Cifras"] --> B["Problema"] --> C["Justificación"] --> D["Pregunta"] --> E["Objetivos"]
+    A["Hero"] --> B["Problema y cifras"] --> C["Justificación"] --> D["Pregunta"] --> E["Objetivos"]
     E --> F["Metodología"] --> G["Referentes"] --> H["Prototipo"] --> I["Módulos"]
     I --> J["Tecnología"] --> K["Normas"] --> L["Resultados"]
     L --> N["Equipo"] --> O["Preguntas frecuentes"] --> P["Cierre + footer"]
@@ -149,6 +149,7 @@ npm run preview    # servir el build localmente
 Todo el texto está en `src/data/content.js`. Algunos ejemplos:
 
 - **Cifras de la portada:** `hero.stats`.
+- **Cifras del problema:** `stats`, con `value`, `label`, `source` y `url` de la fuente (todas tomadas del documento del proyecto).
 - **Resultados de la validación:** `results.validation.items`. Cada ítem tiene `value` (por ejemplo `'82 / 100'`), que reemplaza el «—», y su `goal` (meta).
 - **Rendimiento por dispositivo:** `results.performance.devices`, con `name`, `avg` (FPS medio) y `min` (FPS mínimo).
 - **Preguntas frecuentes:** `faq`.

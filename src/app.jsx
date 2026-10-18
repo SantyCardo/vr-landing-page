@@ -8,7 +8,6 @@ export function App() {
     <>
       <Hero />
       <main>
-        <S.Stats />
         <S.Problem />
         <S.Justification />
         <S.Question />

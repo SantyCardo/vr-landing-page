@@ -71,7 +71,7 @@ export function Problem() {
     <section id="problema" className="section">
       <div className="container">
         <SectionHead title={C.problem.title} lead={C.problem.lead} />
-        <div className="grid-4">
+        <div className="grid-4 photo-grid">
           {C.problem.errors.map((e) => (
             <article key={e.title} className="photo-card reveal">
               <img src={e.img} alt={e.alt} loading="lazy" />

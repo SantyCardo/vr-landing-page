@@ -33,10 +33,7 @@ export function Hero() {
           <p className="eyebrow eyebrow-light">{hero.eyebrow}</p>
           <h1 className="display">
             Insulinización<br />
-            <span>
-              <img src="/img/m1_paso1.jpg" alt="" className="display-thumb" />
-              con realidad
-            </span><br />
+            con realidad<br />
             virtual
           </h1>
           <div className="hero-ctas">

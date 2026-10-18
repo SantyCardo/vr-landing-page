@@ -50,11 +50,6 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   font-weight: 500;
   text-transform: uppercase;
 }
-.display-thumb {
-  display: inline-block; vertical-align: -0.04em; margin-right: 0.12em;
-  height: 0.78em; width: 1.25em; object-fit: cover;
-  border-radius: 8px;
-}
 .h2 { font-size: clamp(28px, 3.4vw, 44px); line-height: 1.08; letter-spacing: -0.03em; font-weight: 500; }
 .h3 { font-size: 18px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 14px; }
 .eyebrow {

@@ -80,7 +80,7 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    A["Hero"] --> B["Problema"] --> C["Justificación"] --> D["Pregunta"] --> E["Objetivos"]
+    A["Hero"] --> A2["Cifras"] --> B["Problema"] --> C["Justificación"] --> D["Pregunta"] --> E["Objetivos"]
     E --> F["Metodología"] --> G["Referentes"] --> H["Prototipo"] --> I["Módulos"]
     I --> J["Tecnología"] --> K["Normas"] --> L["Resultados"]
     L --> N["Equipo"] --> O["Preguntas frecuentes"] --> P["Cierre + footer"]

@@ -59,6 +59,13 @@ export const modules = {
   extra: 'Tutorial inicial para aprender a usar la mirada, la botonera y el teletransporte.',
 };
 
+export const stats = [
+  { value: '537M', label: 'Personas con diabetes en el mundo', source: 'OMS · 2024' },
+  { value: '3.5M+', label: 'Casos en Colombia', source: 'FID Atlas · 10ª ed. 2024' },
+  { value: '<50%', label: 'Adherencia terapéutica en LMIC', source: 'OMS · Adherence Report 2003' },
+  { value: '36%', label: 'Pacientes con ansiedad asociada', source: 'Smith et al. · Diabetes Care 2013' },
+];
+
 export const problem = {
   title: ['El problema.', 'Errores que comprometen la salud.'],
   lead: 'La formación insuficiente en técnica de insulinización genera errores clínicos que comprometen la salud del paciente y su calidad de vida.',

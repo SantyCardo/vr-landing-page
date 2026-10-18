@@ -48,6 +48,24 @@ export function Modules() {
   );
 }
 
+export function Stats() {
+  return (
+    <section id="cifras" className="section section-tight">
+      <div className="container">
+        <dl className="stats reveal">
+          {C.stats.map((s) => (
+            <div key={s.label} className="stat-item">
+              <dt>{s.value}</dt>
+              <dd>{s.label}</dd>
+              <dd className="stat-source">Fuente · {s.source}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </section>
+  );
+}
+
 export function Problem() {
   return (
     <section id="problema" className="section">

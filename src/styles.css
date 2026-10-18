@@ -340,10 +340,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .arch-3d { display: none; }
 @media (min-width: 1200px) {
   .arch-layout { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 32px; align-items: start; }
-  .arch-3d { display: flex; flex-direction: column; position: sticky; top: 110px; height: calc(100vh - 160px); background: radial-gradient(120% 90% at 50% 40%, #ffffff 0%, var(--surface) 70%); border-radius: var(--r-lg); overflow: hidden; }
+  .arch-3d { display: flex; flex-direction: column; position: sticky; top: 110px; height: calc(100vh - 160px); }
   .arch-3d-canvas { flex: 1; min-height: 0; }
   .arch-3d-canvas canvas { display: block; width: 100% !important; height: 100% !important; }
-  .arch-3d-caption { font-size: 14px; color: var(--muted); text-align: center; padding: 0 16px 16px; }
 }
 
 /* ---------- Justificación ---------- */

@@ -273,7 +273,6 @@ export function Architecture() {
           </ol>
           <aside className="arch-3d" aria-label="Modelo 3D del lapicero">
             <Suspense fallback={null}><PenModel progressRef={listRef} /></Suspense>
-            <p className="arch-3d-caption">Modelo 3D del lapicero usado en el prototipo</p>
           </aside>
         </div>
       </div>

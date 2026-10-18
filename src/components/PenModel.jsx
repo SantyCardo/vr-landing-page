@@ -34,8 +34,9 @@ export default function PenModel({ progressRef }) {
     let disposed = false;
     new FBXLoader().load('/models/lapicero.fbx', (obj) => {
       if (disposed) return;
-      // El FBX trae piezas sueltas, luces y cámara; solo se deja el lapicero armado.
-      [...obj.children].forEach((c) => { if (c.name !== 'Cylinder005') obj.remove(c); });
+      // El FBX trae piezas sueltas, luces y cámara; solo se deja el lapicero armado (cuerpo + tapa).
+      const keep = new Set(['Cylinder005', 'Circle001']);
+      [...obj.children].forEach((c) => { if (!keep.has(c.name)) obj.remove(c); });
       obj.traverse((c) => {
         if (c.isMesh) {
           const mats = Array.isArray(c.material) ? c.material : [c.material];

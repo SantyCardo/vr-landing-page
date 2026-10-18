@@ -59,25 +59,30 @@ export const modules = {
   extra: 'Tutorial inicial para aprender a usar la mirada, la botonera y el teletransporte.',
 };
 
+// Cifras tomadas del documento del proyecto (planteamiento del problema), con su fuente.
 export const stats = [
-  { value: '537M', label: 'Personas con diabetes en el mundo', source: 'OMS · 2024' },
-  { value: '3.5M+', label: 'Casos en Colombia', source: 'FID Atlas · 10ª ed. 2024' },
-  { value: '<50%', label: 'Adherencia terapéutica en LMIC', source: 'OMS · Adherence Report 2003' },
-  { value: '36%', label: 'Pacientes con ansiedad asociada', source: 'Smith et al. · Diabetes Care 2013' },
+  { value: '830M', label: 'Personas con diabetes en el mundo en 2022',
+    source: 'OMS, 2024', url: 'https://www.who.int/es/news-room/fact-sheets/detail/diabetes' },
+  { value: '8,4 %', label: 'De la población adulta de Colombia vive con diabetes',
+    source: 'FID, 2024', url: 'https://idf.org/es/our-network/regions-and-members/south-and-central-america/members/colombia/' },
+  { value: '2.186.861', label: 'Casos registrados en Colombia al 31 de agosto de 2024',
+    source: 'Cuenta de Alto Costo, 2024', url: 'https://cuentadealtocosto.org/noticias/dia-mundial-de-la-diabetes-2024/' },
+  { value: '40,3 %', label: 'De los pacientes tuvo medición de hemoglobina glucosilada en 2023',
+    source: 'Cuenta de Alto Costo, 2024', url: 'https://cuentadealtocosto.org/noticias/dia-mundial-de-la-diabetes-2024/' },
 ];
 
 export const problem = {
   title: ['El problema.', 'Errores que comprometen la salud.'],
   lead: 'La formación insuficiente en técnica de insulinización genera errores clínicos que comprometen la salud del paciente y su calidad de vida.',
   errors: [
-    { level: 'Crítico', title: 'Vía incorrecta', img: imgVia, alt: 'Hombre aplicándose insulina con lapicero en el muslo',
-      body: 'La administración IV accidental causa hipoglucemia severa. La vía IM genera variabilidad glucémica impredecible.' },
-    { level: 'Alto', title: 'No rotar sitios', img: imgRotacion, alt: 'Persona inyectándose insulina en el abdomen',
-      body: '98.3 % de quienes reutilizan agujas presentan lipohipertrofia, reduciendo la absorción de insulina hasta en un 25 %.' },
-    { level: 'Alto', title: 'Almacenamiento incorrecto', img: imgAlmacenamiento, alt: 'Nevera abierta en una cocina a oscuras',
-      body: 'Congelar, guardar destapada o usar insulina vencida desnaturaliza la molécula y elimina su eficacia terapéutica.' },
-    { level: 'Medio', title: 'Ansiedad del paciente', img: imgAnsiedad, alt: 'Mujer preocupada con la cabeza entre las manos',
-      body: '36 % de pacientes con diabetes reportan ansiedad; 63 % teme el desarrollo de complicaciones. El miedo reduce la adherencia.' },
+    { source: 'López Sauras et al., 2025', title: 'Reutilización de agujas', img: imgVia, alt: 'Hombre aplicándose insulina con lapicero en el muslo',
+      body: 'La inyección repetida con una técnica incorrecta produce lipodistrofias, relacionadas con la reutilización de agujas.' },
+    { source: 'López Sauras et al., 2025 · Klonoff et al., 2025', title: 'Sitios sin rotar', img: imgRotacion, alt: 'Persona inyectándose insulina en el abdomen',
+      body: 'No rotar los sitios de inyección produce lipohipertrofia y afecta el control metabólico.' },
+    { source: 'Diagnóstico con médicos internistas, 2026', title: 'Almacenamiento incorrecto', img: imgAlmacenamiento, alt: 'Nevera abierta en una cocina a oscuras',
+      body: 'Los médicos reportaron confusión entre refrigerar y congelar la insulina; un mal almacenamiento desperdicia el medicamento.' },
+    { source: 'Diagnóstico con médicos internistas, 2026', title: 'Formación insuficiente', img: imgAnsiedad, alt: 'Mujer preocupada con la cabeza entre las manos',
+      body: 'La educación llega a una minoría de los pacientes, en una sola sesión de unos veinte minutos y sin verificar la comprensión. Aparecen el miedo y la inseguridad.' },
   ],
   quote: 'Las estrategias convencionales no garantizan comprensión adecuada ni reducción del miedo al procedimiento.',
 };

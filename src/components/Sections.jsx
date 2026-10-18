@@ -57,7 +57,7 @@ export function Stats() {
             <div key={s.label} className="stat-item">
               <dt>{s.value}</dt>
               <dd>{s.label}</dd>
-              <dd className="stat-source">Fuente · {s.source}</dd>
+              <dd className="stat-source">Fuente: <a href={s.url} target="_blank" rel="noreferrer">{s.source}</a></dd>
             </div>
           ))}
         </dl>
@@ -76,7 +76,7 @@ export function Problem() {
             <article key={e.title} className="photo-card reveal">
               <img src={e.img} alt={e.alt} loading="lazy" />
               <div className="photo-card-text">
-                <span className="tag">{e.level}</span>
+                <span className="tag tag-source">Fuente: {e.source}</span>
                 <h3>{e.title}</h3>
                 <p>{e.body}</p>
               </div>

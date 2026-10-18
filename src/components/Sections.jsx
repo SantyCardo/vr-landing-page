@@ -268,11 +268,11 @@ export function Results() {
 }
 
 export function Faq() {
-  const [open, setOpen] = useState(0);
+  const [open, setOpen] = useState(-1);
   return (
     <section id="faq" className="section">
       <div className="container faq">
-        <h2 className="h2 reveal">Preguntas<br />frecuentes</h2>
+        <h2 className="h2 reveal">Preguntas frecuentes</h2>
         <div className="faq-list reveal">
           {C.faq.map((f, i) => (
             <div key={f.q} className={`faq-item ${open === i ? 'is-open' : ''}`}>
@@ -324,12 +324,12 @@ export function Closing() {
       <div className="closing-veil" />
       <div className="container closing-inner">
         <div>
-          <h2 className="display">Aprender la técnica<br />sin riesgo real.</h2>
-          <p>Presentación en IngenioTIC · 26 de octubre de 2026 · UNAB · Bucaramanga</p>
+          <h2 className="display">Tu tratamiento<br />merece una<br />técnica<br />segura.</h2>
+          <p>Desde la nevera hasta el desecho de la aguja, el prototipo guía cada paso de la insulinización con el teléfono del paciente y un visor de cartón. Presentación en IngenioTIC, 26 de octubre de 2026.</p>
         </div>
         <div className="closing-ctas">
-          <a href="#inicio" className="btn btn-light btn-sm"><Icon name="arrowUR" size={14} /> Volver arriba</a>
-          <a href="#prototipo" className="btn btn-ghost btn-sm"><Icon name="search" size={14} /> Ver el prototipo</a>
+          <a href="#prototipo" className="btn btn-light btn-sm"><Icon name="search" size={14} /> Ver el prototipo</a>
+          <a href="#equipo" className="btn btn-ghost btn-sm"><Icon name="arrowUR" size={14} /> Conocer el equipo</a>
         </div>
       </div>
     </footer>

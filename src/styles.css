@@ -139,8 +139,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 /* ---------- Secciones ---------- */
 .section { padding: clamp(72px, 9vw, 120px) 0; }
-/* Fondo alterno automático entre secciones */
-main > .section:nth-child(even) { background: var(--bg-soft); }
+/* Fondo alterno automático, contado desde el final para que la última sección (antes del cierre) quede blanca */
+main > .section:nth-last-child(even) { background: var(--bg-soft); }
 .section-head {
   display: flex; justify-content: space-between; align-items: flex-end; gap: 24px;
   margin-bottom: 44px;
@@ -184,8 +184,8 @@ main > .section:nth-child(even) { background: var(--bg-soft); }
   background: var(--surface); border-radius: var(--r); padding: 26px;
   display: flex; flex-direction: column; gap: 10px;
 }
-main > .section:nth-child(even) :is(.card, .quote-card, .shift, .module-list li:not(.module-pending), .tile, .specialty) { background: #fff; }
-main > .section:nth-child(even) :is(.tile-icon, .specialty-icon) { background: var(--bg-soft); }
+main > .section:nth-last-child(even) :is(.card, .quote-card, .shift, .module-list li:not(.module-pending), .tile, .specialty) { background: #fff; }
+main > .section:nth-last-child(even) :is(.tile-icon, .specialty-icon) { background: var(--bg-soft); }
 .card h3, .tile h3 { font-size: 18px; font-weight: 500; letter-spacing: -0.01em; }
 .card p, .tile p { color: var(--ink-2); font-size: 14px; }
 .num { font-size: 12px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
@@ -269,11 +269,12 @@ main > .section:nth-child(even) :is(.tile-icon, .specialty-icon) { background: v
 .stat .muted { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; }
 .stat h3 { margin-top: 16px; }
 
-.faq { display: grid; grid-template-columns: 1fr 1.4fr; gap: 48px; }
+.faq { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+.faq .h2 { font-size: clamp(24px, 2.4vw, 32px); }
 .faq-item { border-bottom: 1px solid var(--line); }
 .faq-item button {
   width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 16px;
-  padding: 18px 0; text-align: left; font-size: 15px; font-weight: 500;
+  padding: 16px 0; text-align: left; font-size: 14px; font-weight: 500;
 }
 .faq-item button svg { transition: transform .25s ease; flex-shrink: 0; }
 .faq-item.is-open button svg { transform: rotate(180deg); }
@@ -338,14 +339,15 @@ main > .section:nth-child(even) :is(.tile-icon, .specialty-icon) { background: v
 }
 
 /* ---------- Cierre ---------- */
-.closing { position: relative; margin: var(--frame); border-radius: var(--r-lg); overflow: hidden; color: #fff; min-height: 80svh; display: flex; }
+.closing { position: relative; margin: var(--frame); border-radius: var(--r-lg); overflow: hidden; color: #fff; min-height: 92svh; display: flex; }
 .closing-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.closing-veil { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(20,25,30,0.7) 0%, rgba(20,25,30,0.1) 60%); }
+.closing-veil { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(15,20,25,0.62) 0%, rgba(15,20,25,0.18) 45%, transparent 70%); }
+.closing .display { font-size: clamp(40px, 5.4vw, 76px); }
 .closing-inner {
   position: relative; align-self: flex-end;
   display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; padding-bottom: 32px;
 }
-.closing p { font-size: 13px; opacity: 0.85; margin-top: 16px; }
+.closing p { font-size: 13px; opacity: 0.9; margin-top: 18px; max-width: 46ch; }
 .closing-ctas { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; }
 
 /* ---------- Animación de entrada ---------- */

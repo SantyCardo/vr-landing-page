@@ -20,8 +20,8 @@ export function App() {
         <S.Legal />
         <S.Results />
         <S.Timeline />
-        <S.Faq />
         <S.Team />
+        <S.Faq />
       </main>
       <S.Closing />
     </>

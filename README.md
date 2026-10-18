@@ -82,8 +82,8 @@ flowchart TD
 ```mermaid
 flowchart LR
     A["Hero"] --> B["Problema y cifras"] --> C["Justificación"] --> D["Pregunta"] --> E["Objetivos"]
-    E --> F["Metodología"] --> G["Referentes"] --> H["Prototipo"] --> I["Módulos"]
-    I --> J["Tecnología"] --> K["Normas"] --> L["Resultados"]
+    E --> F["Metodología"] --> G["Arquitectura"] --> H["Prototipo"] --> I["Módulos"]
+    I --> J["Tecnología"] --> L["Resultados"]
     L --> N["Equipo"] --> O["Preguntas frecuentes"] --> P["Cierre + footer"]
 ```
 
@@ -129,7 +129,8 @@ vr-landing-page/
     │   ├── problema/       # Fotos WebP de la sección «El problema» (Unsplash)
     │   ├── pregunta/       # Fondo WebP de la pregunta problema, escritorio y móvil (Unsplash)
     │   ├── objetivos/      # Fotos WebP de los objetivos específicos (Unsplash)
-    │   └── metodologia/    # Fotos WebP de las fases PMBOK (Unsplash)
+    │   ├── metodologia/    # Fotos WebP de las fases PMBOK (Unsplash)
+    │   └── equipo/         # Fotos WebP del equipo (aportadas por el equipo)
     ├── data/
     │   └── content.js      # Texto, cifras, fechas y enlaces de la página
     └── components/

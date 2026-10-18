@@ -298,41 +298,6 @@ export function Stack() {
   );
 }
 
-export function Legal() {
-  return (
-    <section id="normas" className="section">
-      <div className="container">
-        <SectionHead title={['Principios', 'regulatorios.']} lead="Principios éticos y de accesibilidad considerados en el desarrollo del prototipo." />
-        <div className="chips chips-grid">
-          {C.legal.map((l) => (
-            <div key={l.title} className="chip chip-block reveal">
-              <Icon name="shield" size={18} />
-              <span><b>{l.title}</b> <em className="muted">· {l.tag}</em><br />{l.body}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-export function References() {
-  return (
-    <section id="referentes" className="section">
-      <div className="container">
-        <Carousel head={{ title: ['Experiencias que', 'inspiraron la interacción.'] }}>
-          {C.references.map((r) => (
-            <article key={r.title} className="quote-card">
-              <span className="avatar">{r.title.slice(0, 2)}</span>
-              <div><p>“{r.body}”</p><span className="muted">{r.title} · {r.studio}</span></div>
-            </article>
-          ))}
-        </Carousel>
-      </div>
-    </section>
-  );
-}
-
 export function Results() {
   const r = C.results;
   return (
@@ -403,29 +368,22 @@ export function Faq() {
 }
 
 export function Team() {
+  const t = C.team;
   return (
     <section id="equipo" className="section">
       <div className="container">
-        <SectionHead title={['Equipo', 'de investigación.']} lead="Universidad Autónoma de Bucaramanga · Facultad de Ingeniería, programa de Ingeniería de Sistemas." />
-        <div className="grid-3">
-          {C.team.members.map((m) => (
-            <article key={m.name} className="person reveal">
-              <div className="person-photo"><span>{m.init}</span></div>
-              <div className="person-info">
+        <Carousel head={{ title: ['Equipo.', 'Quiénes lo hicieron posible.'], lead: t.lead }}>
+          {[...t.members, ...t.institutions].map((m) => (
+            <article key={m.name} className="photo-card hover-card team-card" tabIndex={0}>
+              <img src={m.img} alt={m.alt} loading="lazy" style={{ objectPosition: m.pos }} />
+              <div className="photo-card-text">
+                <span className="tag tag-source">{m.role}</span>
                 <h3>{m.name}</h3>
-                <span className="muted">{m.role}</span>
-                <span className="tag">{m.sub}</span>
+                <div className="hover-more"><p>{m.body}</p></div>
               </div>
             </article>
           ))}
-        </div>
-        <div className="chips chips-grid institutions">
-          {C.team.institutions.map((i) => (
-            <div key={i.name} className="chip chip-block reveal">
-              <span><em className="muted">{i.label}</em><br /><b>{i.name}</b> · {i.sub}</span>
-            </div>
-          ))}
-        </div>
+        </Carousel>
       </div>
     </section>
   );

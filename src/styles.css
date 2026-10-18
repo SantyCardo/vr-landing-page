@@ -210,8 +210,6 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   background: #fff; font-size: 17px;
 }
 .chip svg { flex-shrink: 0; color: var(--accent); }
-.chip-block { align-items: flex-start; padding: 18px; line-height: 1.5; }
-.chips-grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
 
 .stages {
   list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -234,16 +232,6 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .specialty p { color: var(--ink-2); font-size: 17px; margin-top: 6px; }
 
 
-.quote-card { background: var(--surface); border-radius: var(--r); padding: 18px; display: flex; gap: 16px; min-height: 150px; }
-.quote-card p { font-size: 18px; margin-bottom: 18px; }
-.quote-card .muted { font-size: 15px; }
-.avatar {
-  width: 56px; height: 72px; border-radius: var(--r-sm); flex-shrink: 0;
-  background: linear-gradient(160deg, var(--accent), #c9a48a);
-  color: #fff; display: grid; place-items: center; font-weight: 600; text-transform: uppercase;
-}
-#referentes .carousel { grid-auto-columns: minmax(280px, 32%); }
-
 .stat strong { font-size: clamp(41px, 4.14vw, 62px); font-weight: 500; letter-spacing: -0.04em; line-height: 1; }
 .stat .muted { font-size: 15px; text-transform: uppercase; letter-spacing: 0.06em; }
 .stat h3 { margin-top: 16px; }
@@ -261,17 +249,6 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .faq-a p { overflow: hidden; color: var(--ink-2); font-size: 18px; }
 .faq-item.is-open .faq-a { grid-template-rows: 1fr; }
 .faq-item.is-open .faq-a p { padding-bottom: 18px; }
-
-.person { border-radius: var(--r); overflow: hidden; background: var(--surface); }
-.person-photo {
-  aspect-ratio: 4 / 3.4; display: grid; place-items: center;
-  background: linear-gradient(180deg, #dfe7ee 0%, #c7d5e2 100%);
-  font-size: 66px; letter-spacing: -0.04em; color: var(--accent); font-weight: 500;
-}
-.person-info { padding: 18px; display: flex; flex-direction: column; gap: 6px; }
-.person-info h3 { font-size: 21px; font-weight: 500; }
-.person-info .tag { align-self: flex-start; margin-top: 6px; }
-.institutions { margin-top: 12px; }
 
 .photo-card-text .tag-source { text-transform: none; letter-spacing: 0; }
 
@@ -344,6 +321,19 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .arch-3d { display: flex; flex-direction: column; position: sticky; top: 110px; height: calc(100vh - 160px); }
   .arch-3d-canvas { flex: 1; min-height: 0; }
   .arch-3d-canvas canvas { display: block; width: 100% !important; height: 100% !important; }
+}
+
+/* ---------- Equipo (carrusel) ---------- */
+#equipo .carousel { grid-auto-columns: minmax(260px, calc((100% - 36px) / 4)); }
+.team-card { aspect-ratio: 3 / 4; }
+/* Texto alineado entre tarjetas: rol en una línea y nombre con alto fijo de dos líneas, anclado abajo. */
+.team-card .tag { white-space: nowrap; }
+.team-card h3 { font-size: clamp(22px, 1.9vw, 28px); line-height: 1.15; min-height: 2.3em; display: flex; align-items: flex-end; }
+@media (min-width: 1025px) and (min-height: 700px) {
+  #equipo { min-height: 100svh; padding: 100px 0 24px; display: flex; align-items: center; }
+  #equipo > .container { width: 100%; }
+  #equipo .section-head { margin-bottom: 24px; }
+  #equipo .team-card { aspect-ratio: auto; height: clamp(300px, calc(100svh - 400px), 560px); }
 }
 
 /* ---------- Justificación ---------- */
@@ -523,8 +513,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .nav { top: 14px; }
   .grid-4, .grid-specialty { grid-template-columns: 1fr; }
     .carousel { grid-auto-columns: 78%; }
-  #referentes .carousel { grid-auto-columns: 88%; }
-  .chips, .chips-grid, .validation, .footer-cols { grid-template-columns: 1fr; }
+  .chips, .validation, .footer-cols { grid-template-columns: 1fr; }
   .module-list li { grid-template-columns: auto 1fr; }
   .module-steps { grid-column: 2; }
 }

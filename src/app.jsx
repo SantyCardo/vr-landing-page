@@ -14,11 +14,9 @@ export function App() {
         <S.Objectives />
         <S.Methodology />
         <S.Architecture />
-        <S.References />
         <S.Prototype />
         <S.Modules />
         <S.Stack />
-        <S.Legal />
         <S.Results />
         <S.Team />
         <S.Faq />

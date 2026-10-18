@@ -18,6 +18,12 @@ import imgFasePlanificacion from '../assets/metodologia/planificacion.webp';
 import imgFaseEjecucion from '../assets/metodologia/ejecucion.webp';
 import imgFaseMonitoreo from '../assets/metodologia/monitoreo.webp';
 import imgFaseCierre from '../assets/metodologia/cierre.webp';
+// Fotos del equipo: aportadas por el equipo del proyecto.
+import imgBrayan from '../assets/equipo/brayan.webp';
+import imgSantiago from '../assets/equipo/santiago.webp';
+import imgLeonardo from '../assets/equipo/leonardo.webp';
+import imgFundacion from '../assets/equipo/fundacion.webp';
+import imgUnab from '../assets/equipo/unab.webp';
 
 export const nav = [
   { href: '#problema', label: 'Problema' },
@@ -167,21 +173,6 @@ export const stack = [
   { name: 'JSON local', role: 'Persistencia', icon: 'shield', body: 'Progreso en la carpeta privada de la app, con respaldo y sin datos personales.' },
 ];
 
-export const legal = [
-  { title: 'Protección de datos', tag: 'Privacidad', body: 'Datos almacenados localmente, sin transferencia a terceros.' },
-  { title: 'Accesibilidad', tag: 'WCAG 2.1', body: 'Subtítulos y navegación simple para baja alfabetización digital.' },
-  { title: 'Uso educativo', tag: 'Ámbito', body: 'Complemento de la práctica clínica; no reemplaza la orientación médica.' },
-  { title: 'Calidad del software', tag: 'ISO 25010', body: 'Prioridad en usabilidad y experiencia de usuario.' },
-  { title: 'Acceso tecnológico', tag: 'Bajo costo', body: 'Hardware económico para contextos con recursos limitados.' },
-];
-
-export const references = [
-  { title: 'Lands End', studio: 'ustwo · Gaze VR', body: 'Interacción por mirada y exploración inmersiva sin controles.' },
-  { title: 'Detroit: Become Human', studio: 'Quantic Dream', body: 'Navegación visual y diseño futurista.' },
-  { title: 'Job Simulator', studio: 'Owlchemy · VR', body: 'Aprendizaje interactivo accesible.' },
-  { title: 'Keep Talking and Nobody Explodes', studio: 'Steel Crate', body: 'Instrucciones secuenciales y claridad procedural.' },
-];
-
 export const results = {
   verified: [
     { metric: '36', label: 'Requerimientos', body: 'Clínicos, educativos, funcionales y no funcionales, de dos entrevistas con médicos internistas.' },
@@ -230,15 +221,24 @@ export const faq = [
 ];
 
 export const team = {
+  lead: 'Proyecto de grado de Ingeniería de Sistemas de la UNAB, con la asesoría clínica de médicos internistas de la Fundación Clínica.',
   members: [
-    { init: 'BL', name: 'Brayan Steven León Martínez', role: 'Líder de desarrollo', sub: 'Arquitectura, sistemas en C#, progreso, exámenes y pruebas' },
-    { init: 'SC', name: 'Santiago Cardona Prada', role: 'Contenido 3D, audio y documentación', sub: 'Modelos, escenario, animaciones, shaders y landing' },
-    { init: 'LP', name: 'Leonardo Stiven Pardo Niño', role: 'Director', sub: 'Rumbo del proyecto y decisiones de alcance' },
+    { name: 'Brayan Steven León Martinez', role: 'Líder de desarrollo', img: imgBrayan, pos: '40% 25%', alt: 'Retrato de Brayan Steven León Martinez',
+      body: 'Dirigió el desarrollo: arquitectura por capas, sistemas en C#, progreso, exámenes, teletransporte y las pruebas de cada incremento.' },
+    { name: 'Santiago Cardona Prada', role: 'Contenido 3D y audio', img: imgSantiago, pos: '50% 25%', alt: 'Retrato de Santiago Cardona Prada',
+      body: 'Creó los modelos 3D, el escenario de la vivienda, las animaciones y los shaders, y apoyó el audio, la documentación y la landing.' },
+    { name: 'Leonardo Stiven Pardo Niño', role: 'Director', img: imgLeonardo, pos: '50% 30%', alt: 'Retrato de Leonardo Stiven Pardo Niño',
+      body: 'Orientó el rumbo del proyecto, revisó cada incremento y aprobó las decisiones de alcance.' },
+    { name: 'Dra. Ana María Ospina Galeano', role: 'Asesora clínica', img: imgFundacion, pos: '30% 50%', alt: 'Edificio de la Fundación Clínica',
+      body: 'Médica internista. Validó el contenido clínico: los requerimientos, la técnica de aplicación, el guion de las narraciones y las preguntas de los exámenes.' },
+    { name: 'Dr. Jaime Gómez', role: 'Asesor clínico', img: imgFundacion, pos: '70% 50%', alt: 'Edificio de la Fundación Clínica',
+      body: 'Médico internista. Validó el contenido clínico: los requerimientos, la técnica de aplicación, el guion de las narraciones y las preguntas de los exámenes.' },
   ],
   institutions: [
-    { label: 'Universidad', name: 'UNAB', sub: 'Ingeniería de Sistemas · Bucaramanga' },
-    { label: 'Asesoría temática', name: 'Dra. Ana María Ospina Galeano', sub: 'Médica internista · Fundación Clínica' },
-    { label: 'Asesoría temática', name: 'Dr. Jaime Gómez', sub: 'Médico internista · Fundación Clínica' },
+    { name: 'Universidad Autónoma de Bucaramanga', role: 'Universidad', img: imgUnab, pos: '60% 40%', alt: 'Campus de la Universidad Autónoma de Bucaramanga',
+      body: 'Programa de Ingeniería de Sistemas, donde se desarrolló el proyecto de grado.' },
+    { name: 'Fundación Clínica', role: 'Aliado clínico', img: imgFundacion, pos: '50% 50%', alt: 'Edificio de la Fundación Clínica',
+      body: 'Institución de los asesores temáticos; aportó la asesoría y la validación del contenido clínico.' },
   ],
 };
 

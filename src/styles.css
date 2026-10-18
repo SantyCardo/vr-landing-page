@@ -431,6 +431,18 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   #problema .figures { margin-top: 24px; }
   #problema .figure-row { padding-top: 12px; gap: 4px; }
 }
+/* Metodología en una sola pantalla al presentar. */
+@media (min-width: 1025px) and (min-height: 700px) {
+  #metodologia { min-height: 100svh; padding: 100px 0 24px; display: flex; align-items: center; }
+  #metodologia > .container { width: 100%; }
+  #metodologia .split-head { padding-bottom: 18px; margin-bottom: 18px; }
+  #metodologia .grid-5.hover-cards .photo-card { min-height: 0; height: clamp(200px, calc(100svh - 690px), 400px); }
+  #metodologia .goals { margin: 22px 0 6px; }
+  #metodologia .goals li { padding-top: 12px; }
+  #metodologia .goals h3 { margin: 4px 0 4px; }
+  #metodologia .method-note { margin-bottom: 14px; }
+  #metodologia .method-facts > div { padding-top: 12px; padding-bottom: 12px; }
+}
 
 /* ---------- Responsive ---------- */
 @media (max-width: 1024px) {

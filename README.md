@@ -155,7 +155,7 @@ Todo el texto está en `src/data/content.js`. Algunos ejemplos:
 - **Preguntas frecuentes:** `faq`.
 - **Enlaces del footer:** `footer.columns`. La columna «Enlaces» reutiliza `nav`.
 
-Para **reordenar o quitar secciones**, edita la lista dentro de `<main>` en `src/app.jsx`. El fondo alterno (blanco y gris claro) se calcula solo con `nth-last-child`, así que no hace falta ajustar estilos al moverlas.
+Para **reordenar o quitar secciones**, edita la lista dentro de `<main>` en `src/app.jsx`. Todas las secciones tienen fondo blanco; el color va en las tarjetas, así que se pueden mover sin ajustar estilos.
 
 Las imágenes nuevas van en `public/img/` y se referencian como `/img/nombre.jpg`.
 
@@ -165,7 +165,7 @@ Inspirado en la plantilla «Healthcare Clinic Platform»: estilo clínico claro,
 
 | Token | Uso |
 |---|---|
-| `--bg`, `--bg-soft`, `--surface` | Fondos de página, secciones alternas y tarjetas |
+| `--bg`, `--surface` | Fondo blanco de la página y gris claro de las tarjetas |
 | `--ink`, `--ink-2`, `--muted`, `--line` | Texto principal, secundario, atenuado y líneas |
 | `--accent`, `--accent-soft` | Azul grisáceo de acentos y beige de etiquetas |
 | `--frame` | Margen exterior de la portada y del cierre (12 px; 6 px en móvil) |

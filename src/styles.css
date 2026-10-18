@@ -1,7 +1,6 @@
 /* Estilo clínico claro, inspirado en "Healthcare Clinic Platform" (Synora). */
 :root {
   --bg: #ffffff;
-  --bg-soft: #f4f3f1;
   --surface: #f2f2f2;
   --ink: #111111;
   --ink-2: #4a4a4a;
@@ -140,8 +139,6 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 /* ---------- Secciones ---------- */
 .section { padding: clamp(72px, 9vw, 120px) 0; }
-/* Fondo alterno automático, contado desde el final para que la última sección (antes del cierre) quede blanca */
-main > .section:nth-last-child(even) { background: var(--bg-soft); }
 .section-head {
   display: flex; justify-content: space-between; align-items: flex-end; gap: 24px;
   margin-bottom: 44px;
@@ -185,8 +182,6 @@ main > .section:nth-last-child(even) { background: var(--bg-soft); }
   background: var(--surface); border-radius: var(--r); padding: 26px;
   display: flex; flex-direction: column; gap: 10px;
 }
-main > .section:nth-last-child(even) :is(.card, .quote-card, .shift, .module-list li:not(.module-pending), .specialty) { background: #fff; }
-main > .section:nth-last-child(even) .specialty-icon { background: var(--bg-soft); }
 .card h3 { font-size: 18px; font-weight: 500; letter-spacing: -0.01em; }
 .card p { color: var(--ink-2); font-size: 14px; }
 .num { font-size: 12px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
@@ -271,7 +266,7 @@ main > .section:nth-last-child(even) .specialty-icon { background: var(--bg-soft
 .faq-item.is-open .faq-a { grid-template-rows: 1fr; }
 .faq-item.is-open .faq-a p { padding-bottom: 18px; }
 
-.person { border-radius: var(--r); overflow: hidden; background: #fff; }
+.person { border-radius: var(--r); overflow: hidden; background: var(--surface); }
 .person-photo {
   aspect-ratio: 4 / 3.4; display: grid; place-items: center;
   background: linear-gradient(180deg, #dfe7ee 0%, #c7d5e2 100%);
@@ -329,7 +324,7 @@ main > .section:nth-last-child(even) .specialty-icon { background: var(--bg-soft
 .pending-table th, .pending-table td { padding: 10px 0; border-bottom: 1px solid var(--line); }
 .pending-table td { color: var(--ink-2); }
 .validation { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 8px; }
-.validation-item { background: var(--bg-soft); border-radius: var(--r-sm); padding: 16px; display: flex; flex-direction: column; gap: 4px; }
+.validation-item { background: #fff; border-radius: var(--r-sm); padding: 16px; display: flex; flex-direction: column; gap: 4px; }
 .validation-item strong { font-size: 26px; font-weight: 500; letter-spacing: -0.03em; }
 .validation-item .muted { font-size: 12px; }
 .validation-value { font-size: 15px; font-weight: 500; }

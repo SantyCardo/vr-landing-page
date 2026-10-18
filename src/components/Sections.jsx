@@ -154,13 +154,15 @@ export function Objectives() {
             <p>{o.general}</p>
           </div>
         </div>
-        <div className="objective-grid">
+        <div className="grid-3 photo-grid photo-grid-3">
           {o.specific.map((s, i) => (
-            <article key={s.title} className="objective-card reveal">
-              <div className="objective-photo"><img src={s.img} alt={s.alt} loading="lazy" /></div>
-              <span className="objective-num">0{i + 1} · Objetivo específico</span>
-              <h3>{s.title}</h3>
-              <p>{s.body}</p>
+            <article key={s.title} className="photo-card reveal">
+              <img src={s.img} alt={s.alt} loading="lazy" style={s.pos ? { objectPosition: s.pos } : undefined} />
+              <div className="photo-card-text">
+                <span className="tag tag-source">0{i + 1} · Objetivo específico</span>
+                <h3>{s.title}</h3>
+                <p>{s.body}</p>
+              </div>
             </article>
           ))}
         </div>

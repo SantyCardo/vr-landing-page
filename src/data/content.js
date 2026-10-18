@@ -123,7 +123,7 @@ export const question = {
 export const objectives = {
   general: 'Desarrollar un prototipo de herramienta educativa inmersiva e interactiva, basada en requerimientos clínicos, procedimientos y almacenamiento de la insulinización, para el fortalecimiento de la técnica de aplicación en pacientes adultos con diabetes tipo II.',
   specific: [
-    { title: 'Identificar requerimientos', img: imgObjRequerimientos, alt: 'Médica entrevistando a un paciente en el consultorio', body: 'Identificar los requerimientos clínicos, educativos, funcionales y no funcionales del procedimiento de insulinización, mediante revisión documental y consulta a profesionales de salud.' },
+    { title: 'Identificar requerimientos', img: imgObjRequerimientos, pos: '78% center', alt: 'Médica entrevistando a un paciente en el consultorio', body: 'Identificar los requerimientos clínicos, educativos, funcionales y no funcionales del procedimiento de insulinización, mediante revisión documental y consulta a profesionales de salud.' },
     { title: 'Diseñar el prototipo', img: imgObjDiseno, alt: 'Mano dibujando el boceto de una interfaz', body: 'Diseñar el prototipo educativo integrando componentes interactivos de las etapas del procedimiento, orientado al entrenamiento práctico y seguro del usuario.' },
     { title: 'Validar con expertos', img: imgObjValidacion, alt: 'Dos profesionales de la salud revisando una tableta', body: 'Validar el prototipo con expertos del área, como médicos de la fundación clínica, para verificar que el procedimiento esté correctamente explicado.' },
   ],

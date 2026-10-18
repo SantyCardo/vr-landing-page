@@ -45,11 +45,10 @@ export function useReveal() {
   }, []);
 }
 
-export function SectionHead({ eyebrow, title, lead, children }) {
+export function SectionHead({ title, lead, children }) {
   return (
     <div className="section-head reveal">
       <div>
-        {eyebrow && <p className="eyebrow">{eyebrow}</p>}
         <h2 className="h2">{title[0]}<br />{title[1]}</h2>
         {lead && <p className="lead">{lead}</p>}
       </div>

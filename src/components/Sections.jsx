@@ -6,7 +6,7 @@ export function Prototype() {
   return (
     <section id="prototipo" className="section">
       <div className="container">
-        <Carousel head={{ eyebrow: 'El prototipo', title: C.about.title, lead: C.about.lead }}>
+        <Carousel head={{ title: C.about.title, lead: C.about.lead }}>
           {C.features.map((m) => (
             <article key={m.title} className="photo-card">
               <img src={m.img} alt="" loading="lazy" />
@@ -29,7 +29,7 @@ export function Modules() {
   return (
     <section id="modulos" className="section">
       <div className="container">
-        <SectionHead eyebrow="Curso" title={['Cinco módulos,', 'un examen al final de cada uno.']} lead={m.lead} />
+        <SectionHead title={['Cinco módulos,', 'un examen al final de cada uno.']} lead={m.lead} />
         <div className="modules">
           <img className="modules-map reveal" src="/img/plano_casa.jpg" alt="Vista superior de la vivienda virtual con los puntos de teletransporte" loading="lazy" />
           <ol className="module-list">
@@ -52,7 +52,7 @@ export function Problem() {
   return (
     <section id="problema" className="section">
       <div className="container">
-        <SectionHead eyebrow="Diagnóstico" title={C.problem.title} lead={C.problem.lead} />
+        <SectionHead title={C.problem.title} lead={C.problem.lead} />
         <div className="grid-4">
           {C.problem.errors.map((e) => (
             <article key={e.title} className="photo-card reveal">
@@ -76,7 +76,7 @@ export function Justification() {
   return (
     <section id="justificacion" className="section">
       <div className="container">
-        <SectionHead eyebrow="Justificación" title={j.title} lead={j.lead} />
+        <SectionHead title={j.title} lead={j.lead} />
         <div className="shift reveal">
           <div><span>Estado actual</span><strong>{j.from}</strong></div>
           <Icon name="arrowR" size={22} />
@@ -101,7 +101,6 @@ export function Question() {
   return (
     <section id="pregunta" className="section">
       <div className="container narrow reveal">
-        <p className="eyebrow">Pregunta problema</p>
         <p className="question">{C.question}</p>
       </div>
     </section>
@@ -112,7 +111,7 @@ export function Objectives() {
   return (
     <section id="objetivos" className="section">
       <div className="container">
-        <SectionHead eyebrow="Objetivos" title={['Objetivos', 'del proyecto.']} lead={C.objectives.general} />
+        <SectionHead title={['Objetivos', 'del proyecto.']} lead={C.objectives.general} />
         <div className="grid-3">
           {C.objectives.specific.map((o, i) => (
             <article key={o.title} className="card numbered reveal">
@@ -133,7 +132,7 @@ export function Timeline() {
   return (
     <section id="cronograma" className="section">
       <div className="container">
-        <SectionHead eyebrow="Cronograma" title={['Dónde va', 'el proyecto.']} lead={C.timeline.lead} />
+        <SectionHead title={['Dónde va', 'el proyecto.']} lead={C.timeline.lead} />
         <div className="grid-4">
           {C.timeline.phases.map((p) => (
             <article key={p.label} className="card phase reveal">
@@ -153,7 +152,7 @@ export function Methodology() {
   return (
     <section id="metodologia" className="section">
       <div className="container">
-        <SectionHead eyebrow="Metodología" title={['Cómo se', 'construyó.']} lead="Gestión con PHVA y PMBOK, desarrollo por incrementos cortos y seguimiento en Kanban." />
+        <SectionHead title={['Cómo se', 'construyó.']} lead="Gestión con PHVA y PMBOK, desarrollo por incrementos cortos y seguimiento en Kanban." />
         <div className="grid-4">
           {C.methodology.map((m) => (
             <article key={m.title} className="card reveal">
@@ -172,7 +171,7 @@ export function Stack() {
   return (
     <section id="tecnologia" className="section">
       <div className="container">
-        <SectionHead eyebrow="Tecnología" title={['Herramientas accesibles,', 'pensadas para escalar.']} lead="Cada pieza del stack se eligió por su bajo costo y su madurez técnica." />
+        <SectionHead title={['Herramientas accesibles,', 'pensadas para escalar.']} lead="Cada pieza del stack se eligió por su bajo costo y su madurez técnica." />
         <div className="grid-specialty">
           {C.stack.map((s) => (
             <article key={s.name} className="specialty reveal">
@@ -190,7 +189,7 @@ export function Legal() {
   return (
     <section id="normas" className="section">
       <div className="container">
-        <SectionHead eyebrow="Normas legales y éticas" title={['Principios', 'regulatorios.']} lead="Principios éticos y de accesibilidad considerados en el desarrollo del prototipo." />
+        <SectionHead title={['Principios', 'regulatorios.']} lead="Principios éticos y de accesibilidad considerados en el desarrollo del prototipo." />
         <div className="chips chips-grid">
           {C.legal.map((l) => (
             <div key={l.title} className="chip chip-block reveal">
@@ -208,7 +207,7 @@ export function References() {
   return (
     <section id="referentes" className="section">
       <div className="container">
-        <Carousel head={{ eyebrow: 'Referentes interactivos', title: ['Experiencias que', 'inspiraron la interacción.'] }}>
+        <Carousel head={{ title: ['Experiencias que', 'inspiraron la interacción.'] }}>
           {C.references.map((r) => (
             <article key={r.title} className="quote-card">
               <span className="avatar">{r.title.slice(0, 2)}</span>
@@ -226,7 +225,7 @@ export function Results() {
   return (
     <section id="resultados" className="section">
       <div className="container">
-        <SectionHead eyebrow="Resultados" title={['Lo que se ha logrado', 'y lo que falta medir.']} lead="Verificación técnica interna al 1 de octubre de 2026. La validación con expertos está en curso." />
+        <SectionHead title={['Lo que se ha logrado', 'y lo que falta medir.']} lead="Verificación técnica interna al 1 de octubre de 2026. La validación con expertos está en curso." />
         <div className="grid-4">
           {r.verified.map((v) => (
             <article key={v.label} className="card stat reveal">
@@ -294,7 +293,7 @@ export function Team() {
   return (
     <section id="equipo" className="section">
       <div className="container">
-        <SectionHead eyebrow="Equipo" title={['Equipo', 'de investigación.']} lead="Universidad Autónoma de Bucaramanga · Facultad de Ingeniería, programa de Ingeniería de Sistemas." />
+        <SectionHead title={['Equipo', 'de investigación.']} lead="Universidad Autónoma de Bucaramanga · Facultad de Ingeniería, programa de Ingeniería de Sistemas." />
         <div className="grid-3">
           {C.team.members.map((m) => (
             <article key={m.name} className="person reveal">

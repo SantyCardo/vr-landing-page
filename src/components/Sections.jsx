@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import * as C from '../data/content.js';
 import { Icon, SectionHead, Carousel, CountUp } from './ui.jsx';
 
@@ -206,6 +206,65 @@ export function Methodology() {
           ))}
         </ol>
         <p className="method-note reveal">Cada incremento fue una vuelta completa del ciclo PHVA.</p>
+      </div>
+    </section>
+  );
+}
+
+export function Architecture() {
+  const a = C.architecture;
+  const listRef = useRef(null);
+
+  useEffect(() => {
+    const list = listRef.current;
+    if (!list) return;
+    const steps = [...list.querySelectorAll('.arch-step')];
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      list.style.setProperty('--arch-progress', 1);
+      steps.forEach((s) => s.classList.add('is-active'));
+      return;
+    }
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const r = list.getBoundingClientRect();
+      const mid = window.innerHeight * 0.5;
+      const p = Math.min(1, Math.max(0, (mid - r.top) / r.height));
+      list.style.setProperty('--arch-progress', p.toFixed(4));
+    };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add('is-active'); });
+    }, { rootMargin: '0px 0px -45% 0px' });
+    steps.forEach((s) => io.observe(s));
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => { io.disconnect(); window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onScroll); cancelAnimationFrame(raf); };
+  }, []);
+
+  return (
+    <section id="arquitectura" className="section">
+      <div className="container">
+        <div className="split-head reveal">
+          <h2 className="h2">Arquitectura.<br />Cómo está organizado por dentro.</h2>
+          <div className="split-text"><p>{a.lead}</p></div>
+        </div>
+        <ol className="arch-flow" ref={listRef}>
+          <span className="arch-line" aria-hidden="true"><span className="arch-line-fill" /></span>
+          {a.layers.map((l, i) => (
+            <li key={l.title} className={`arch-step${l.final ? ' arch-step-final' : ''}`}>
+              <span className="arch-node" aria-hidden="true">{l.final ? '✓' : i + 1}</span>
+              <article className="arch-card">
+                <span className="arch-tag">{l.tag}</span>
+                <h3>{l.title}</h3>
+                <p className="arch-body">{l.body}</p>
+                <ul className="arch-chips">{l.items.map((it) => <li key={it}>{it}</li>)}</ul>
+                {l.practice && <p className="arch-practice"><Icon name="check" size={16} /><span><b>Buena práctica.</b> {l.practice}</span></p>}
+              </article>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   );

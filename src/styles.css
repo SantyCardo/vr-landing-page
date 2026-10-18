@@ -317,6 +317,27 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .goals.goals-4 { grid-template-columns: repeat(4, 1fr); margin-bottom: 12px; }
 .method-note { color: var(--muted); font-size: 16px; }
 
+/* ---------- Arquitectura (línea que se dibuja con el scroll) ---------- */
+.arch-flow { position: relative; list-style: none; display: grid; gap: 28px; padding-left: 84px; --arch-progress: 0; }
+.arch-line { position: absolute; left: 27px; top: 28px; bottom: 28px; width: 2px; background: var(--line); border-radius: 2px; }
+.arch-line-fill { position: absolute; inset: 0 0 auto 0; height: calc(var(--arch-progress) * 100%); background: linear-gradient(180deg, var(--accent), #2f606a); border-radius: 2px; transition: height .15s linear; }
+.arch-step { position: relative; opacity: .35; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+.arch-step.is-active { opacity: 1; transform: none; }
+.arch-node { position: absolute; left: -84px; top: 24px; width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; background: #fff; border: 2px solid var(--line); font-size: 20px; font-weight: 600; color: var(--muted); transition: background .4s ease, color .4s ease, border-color .4s ease, box-shadow .4s ease; }
+.arch-step.is-active .arch-node { background: var(--ink); border-color: var(--ink); color: #fff; animation: arch-pulse 1.6s ease-out 1; }
+.arch-step-final.is-active .arch-node { background: var(--accent); border-color: var(--accent); }
+@keyframes arch-pulse { 0% { box-shadow: 0 0 0 0 rgba(91, 127, 156, .45); } 100% { box-shadow: 0 0 0 18px rgba(91, 127, 156, 0); } }
+.arch-card { background: var(--surface); border-radius: var(--r-lg); padding: 28px 32px; display: grid; gap: 10px; }
+.arch-step-final .arch-card { background: var(--accent-soft); }
+.arch-tag { font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.arch-card h3 { font-size: clamp(24px, 2.2vw, 32px); font-weight: 500; letter-spacing: -0.02em; }
+.arch-body { font-size: 18px; color: var(--ink-2); max-width: 62ch; }
+.arch-chips { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+.arch-chips li { background: #fff; border: 1px solid var(--line); border-radius: var(--pill); padding: 6px 14px; font-size: 15px; font-family: ui-monospace, SFMono-Regular, Consolas, monospace; color: var(--ink); }
+.arch-practice { display: flex; gap: 10px; align-items: flex-start; font-size: 16px; color: var(--ink); border-top: 1px solid var(--line); padding-top: 12px; margin-top: 4px; }
+.arch-practice svg { color: var(--accent); flex-shrink: 0; margin-top: 3px; }
+@media (prefers-reduced-motion: reduce) { .arch-step { opacity: 1; transform: none; transition: none; } .arch-line-fill { height: 100%; transition: none; } }
+
 /* ---------- Justificación ---------- */
 .transform { position: relative; display: grid; grid-template-columns: 1fr 0.8fr 1fr; gap: 12px; height: 280px; }
 .transform-photo { position: relative; margin: 0; border-radius: var(--r); overflow: hidden; color: #fff; }
@@ -468,6 +489,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .transform-pill { padding: 28px 24px; border-radius: var(--r); }
   .transform-arrow { display: none; }
   .split-head { grid-template-columns: 1fr; gap: 20px; }
+  .arch-flow { padding-left: 52px; gap: 20px; }
+  .arch-line { left: 17px; }
+  .arch-node { left: -52px; width: 36px; height: 36px; font-size: 15px; top: 20px; }
+  .arch-card { padding: 20px; }
   .grid-5, .goals.goals-4 { grid-template-columns: 1fr; }
     .question-block { min-height: 0; }
   .question-bg { object-position: 40% 30%; }

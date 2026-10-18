@@ -13,6 +13,7 @@ export function App() {
         <S.Question />
         <S.Objectives />
         <S.Methodology />
+        <S.Architecture />
         <S.References />
         <S.Prototype />
         <S.Modules />

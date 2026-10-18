@@ -324,19 +324,27 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .arch-step { position: relative; opacity: .35; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
 .arch-step.is-active { opacity: 1; transform: none; }
 .arch-node { position: absolute; left: -84px; top: 24px; width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; background: #fff; border: 2px solid var(--line); font-size: 20px; font-weight: 600; color: var(--muted); transition: background .4s ease, color .4s ease, border-color .4s ease, box-shadow .4s ease; }
-.arch-step.is-active .arch-node { background: var(--ink); border-color: var(--ink); color: #fff; animation: arch-pulse 1.6s ease-out 1; }
+.arch-step.is-active .arch-node { background: var(--ink); border-color: var(--ink); color: #fff; }
 .arch-step-final.is-active .arch-node { background: var(--accent); border-color: var(--accent); }
-@keyframes arch-pulse { 0% { box-shadow: 0 0 0 0 rgba(91, 127, 156, .45); } 100% { box-shadow: 0 0 0 18px rgba(91, 127, 156, 0); } }
-.arch-card { background: var(--surface); border-radius: var(--r-lg); padding: 28px 32px; display: grid; gap: 10px; }
-.arch-step-final .arch-card { background: var(--accent-soft); }
-.arch-tag { font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
-.arch-card h3 { font-size: clamp(24px, 2.2vw, 32px); font-weight: 500; letter-spacing: -0.02em; }
-.arch-body { font-size: 18px; color: var(--ink-2); max-width: 62ch; }
-.arch-chips { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
-.arch-chips li { background: #fff; border: 1px solid var(--line); border-radius: var(--pill); padding: 6px 14px; font-size: 15px; font-family: ui-monospace, SFMono-Regular, Consolas, monospace; color: var(--ink); }
-.arch-practice { display: flex; gap: 10px; align-items: flex-start; font-size: 16px; color: var(--ink); border-top: 1px solid var(--line); padding-top: 12px; margin-top: 4px; }
-.arch-practice svg { color: var(--accent); flex-shrink: 0; margin-top: 3px; }
+/* Tarjetas sobrias: sin caja de color, línea fina arriba, texto editorial */
+.arch-card { border-top: 1px solid var(--line); padding: 22px 0 6px; display: grid; gap: 8px; }
+.arch-tag { font-size: 15px; color: var(--muted); }
+.arch-card h3 { font-size: clamp(24px, 2.2vw, 32px); font-weight: 500; letter-spacing: -0.02em; line-height: 1.15; }
+.arch-body { font-size: 18px; color: var(--ink-2); max-width: 58ch; }
+.arch-parts { font-size: 15px; color: var(--muted); }
+.arch-practice { font-size: 16px; color: var(--ink-2); max-width: 58ch; }
+.arch-practice strong { font-weight: 500; color: var(--ink); }
 @media (prefers-reduced-motion: reduce) { .arch-step { opacity: 1; transform: none; transition: none; } .arch-line-fill { height: 100%; transition: none; } }
+
+/* Lapicero 3D junto a la arquitectura (solo pantallas grandes) */
+.arch-3d { display: none; }
+@media (min-width: 1200px) {
+  .arch-layout { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 32px; align-items: start; }
+  .arch-3d { display: flex; flex-direction: column; position: sticky; top: 110px; height: calc(100vh - 160px); background: radial-gradient(120% 90% at 50% 40%, #ffffff 0%, var(--surface) 70%); border-radius: var(--r-lg); overflow: hidden; }
+  .arch-3d-canvas { flex: 1; min-height: 0; }
+  .arch-3d-canvas canvas { display: block; width: 100% !important; height: 100% !important; }
+  .arch-3d-caption { font-size: 14px; color: var(--muted); text-align: center; padding: 0 16px 16px; }
+}
 
 /* ---------- Justificación ---------- */
 .transform { position: relative; display: grid; grid-template-columns: 1fr 0.8fr 1fr; gap: 12px; height: 280px; }
@@ -492,7 +500,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .arch-flow { padding-left: 52px; gap: 20px; }
   .arch-line { left: 17px; }
   .arch-node { left: -52px; width: 36px; height: 36px; font-size: 15px; top: 20px; }
-  .arch-card { padding: 20px; }
+  .arch-card { padding-top: 16px; }
   .grid-5, .goals.goals-4 { grid-template-columns: 1fr; }
     .question-block { min-height: 0; }
   .question-bg { object-position: 40% 30%; }

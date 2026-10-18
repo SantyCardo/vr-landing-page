@@ -1,6 +1,8 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, lazy, Suspense } from 'react';
 import * as C from '../data/content.js';
 import { Icon, SectionHead, Carousel, CountUp } from './ui.jsx';
+
+const PenModel = lazy(() => import('./PenModel.jsx'));
 
 export function Prototype() {
   return (
@@ -250,21 +252,30 @@ export function Architecture() {
           <h2 className="h2">Arquitectura.<br />Cómo está organizado por dentro.</h2>
           <div className="split-text"><p>{a.lead}</p></div>
         </div>
-        <ol className="arch-flow" ref={listRef}>
-          <span className="arch-line" aria-hidden="true"><span className="arch-line-fill" /></span>
-          {a.layers.map((l, i) => (
-            <li key={l.title} className={`arch-step${l.final ? ' arch-step-final' : ''}`}>
-              <span className="arch-node" aria-hidden="true">{l.final ? '✓' : i + 1}</span>
-              <article className="arch-card">
-                <span className="arch-tag">{l.tag}</span>
-                <h3>{l.title}</h3>
-                <p className="arch-body">{l.body}</p>
-                <ul className="arch-chips">{l.items.map((it) => <li key={it}>{it}</li>)}</ul>
-                {l.practice && <p className="arch-practice"><Icon name="check" size={16} /><span><b>Buena práctica.</b> {l.practice}</span></p>}
-              </article>
-            </li>
-          ))}
-        </ol>
+        <div className="arch-layout">
+          <ol className="arch-flow" ref={listRef}>
+            <span className="arch-line" aria-hidden="true"><span className="arch-line-fill" /></span>
+            {a.layers.map((l, i) => (
+              <li key={l.title} className={`arch-step${l.final ? ' arch-step-final' : ''}`}>
+                <span className="arch-node" aria-hidden="true">{l.final ? '✓' : i + 1}</span>
+                <article className="arch-card">
+                  <span className="arch-tag">{l.tag}</span>
+                  <h3>{l.title}</h3>
+                  <p className="arch-body">{l.body}</p>
+                  <p className="arch-parts">{l.items.join(' · ')}</p>
+                  {l.practice && (() => {
+                    const [name, ...rest] = l.practice.split(':');
+                    return <p className="arch-practice"><strong>{name}.</strong>{rest.join(':')}</p>;
+                  })()}
+                </article>
+              </li>
+            ))}
+          </ol>
+          <aside className="arch-3d" aria-label="Modelo 3D del lapicero">
+            <Suspense fallback={null}><PenModel progressRef={listRef} /></Suspense>
+            <p className="arch-3d-caption">Modelo 3D del lapicero usado en el prototipo</p>
+          </aside>
+        </div>
       </div>
     </section>
   );

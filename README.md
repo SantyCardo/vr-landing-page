@@ -45,6 +45,7 @@ La página está escrita como presentación final del proyecto. Los valores de l
 | Estilos | CSS propio con variables (tokens) en `src/styles.css` |
 | Tipografía | Inter Tight (Google Fonts) |
 | Íconos | SVG en línea (`Icon` en `src/components/ui.jsx`) |
+| 3D | Three.js 0.179 (`FBXLoader`), cargado bajo demanda en `src/components/PenModel.jsx` |
 | Hosting | Vercel (configurado en `vercel.json`) |
 
 No usa librerías de UI ni de animación: las animaciones de entrada usan `IntersectionObserver` y transiciones CSS.
@@ -118,7 +119,8 @@ vr-landing-page/
 ├── vercel.json             # Build y salida para Vercel
 ├── package.json
 ├── public/
-│   └── img/                # Capturas reales del prototipo (Unity)
+│   ├── img/                # Capturas reales del prototipo (Unity)
+│   └── models/             # Lapicero 3D propio del proyecto (FBX exportado desde Unity)
 └── src/
     ├── main.jsx            # Punto de entrada: monta <App /> y carga los estilos
     ├── app.jsx             # Composición y orden de las secciones

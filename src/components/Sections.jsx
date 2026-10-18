@@ -65,7 +65,6 @@ export function Problem() {
             </article>
           ))}
         </div>
-        <blockquote className="quote reveal">“{C.problem.quote}”</blockquote>
       </div>
     </section>
   );

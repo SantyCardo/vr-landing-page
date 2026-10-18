@@ -19,6 +19,8 @@
   --r-lg: 20px;
   --pill: 999px;
   --gutter: clamp(16px, 4vw, 48px);
+  --frame: 12px; /* margen exterior de la portada y del cierre */
+  --edge: calc(var(--frame) + var(--gutter)); /* borde del contenido en toda la página */
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -37,8 +39,9 @@ a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
-.container { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 var(--gutter); }
-.narrow { max-width: 900px; }
+.container { width: 100%; padding-inline: var(--edge); }
+.hero-inner.container, .closing-inner.container { padding-inline: var(--gutter); }
+.narrow .question { max-width: 32ch; }
 .muted { color: var(--muted); font-style: normal; }
 
 /* ---------- Tipografía ---------- */
@@ -84,7 +87,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 /* ---------- Hero ---------- */
 .hero {
   position: relative; min-height: 100svh; color: #fff;
-  margin: 12px; border-radius: var(--r-lg); overflow: hidden;
+  margin: var(--frame); border-radius: var(--r-lg); overflow: hidden;
   display: flex; flex-direction: column;
 }
 .hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
@@ -100,7 +103,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   mix-blend-mode: multiply;
 }
 .hero-inner {
-  position: relative; flex: 1; max-width: none;
+  position: relative; flex: 1;
   display: grid; grid-template-columns: 1fr auto; grid-template-rows: 1fr auto;
   gap: 32px; padding-top: 120px; padding-bottom: 28px;
 }
@@ -120,9 +123,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 /* ---------- Nav ---------- */
 .nav {
   position: fixed; z-index: 50; top: 24px; left: 50%; transform: translateX(-50%);
-  width: min(1200px, calc(100% - 48px));
+  width: calc(100% - 2 * var(--edge) + 32px);
   display: flex; align-items: center; gap: 16px;
-  padding: 8px 8px 8px 22px; border-radius: var(--pill);
+  padding: 8px 8px 8px 16px; border-radius: var(--pill);
   background: rgba(255,255,255,0.28); border: 1px solid rgba(255,255,255,0.5);
   backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
   color: var(--ink); transition: background .3s ease, box-shadow .3s ease;
@@ -300,11 +303,11 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .institutions { margin-top: 12px; }
 
 /* ---------- Cierre ---------- */
-.closing { position: relative; margin: 12px; border-radius: var(--r-lg); overflow: hidden; color: #fff; min-height: 80svh; display: flex; }
+.closing { position: relative; margin: var(--frame); border-radius: var(--r-lg); overflow: hidden; color: #fff; min-height: 80svh; display: flex; }
 .closing-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .closing-veil { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(20,25,30,0.7) 0%, rgba(20,25,30,0.1) 60%); }
 .closing-inner {
-  position: relative; max-width: none; align-self: flex-end;
+  position: relative; align-self: flex-end;
   display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; padding-bottom: 32px;
 }
 .closing p { font-size: 13px; opacity: 0.85; margin-top: 16px; }
@@ -326,7 +329,6 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .nav-links { gap: 14px; font-size: 12px; }
 }
 @media (max-width: 860px) {
-  .nav { padding-left: 18px; }
   .nav-cta { display: none; }
   .nav-toggle { display: flex; margin-left: auto; }
   .nav-links {
@@ -347,8 +349,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .closing-ctas { align-items: flex-start; }
 }
 @media (max-width: 560px) {
-  .hero, .closing { margin: 6px; }
-  .nav { top: 14px; width: calc(100% - 28px); }
+  :root { --frame: 6px; }
+  .nav { top: 14px; }
   .grid-4, .grid-specialty { grid-template-columns: 1fr; }
   .carousel { grid-auto-columns: 78%; }
   #referentes .carousel { grid-auto-columns: 88%; }

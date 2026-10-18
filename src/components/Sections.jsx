@@ -40,7 +40,7 @@ export function Modules() {
                 <span className="muted module-steps">{it.steps} pasos</span>
               </li>
             ))}
-            <li className="reveal module-pending"><span className="module-id">+</span><div><p>{m.pending}</p></div></li>
+            <li className="reveal module-pending"><span className="module-id">+</span><div><p>{m.extra}</p></div></li>
           </ol>
         </div>
       </div>
@@ -203,7 +203,7 @@ export function Results() {
   return (
     <section id="resultados" className="section">
       <div className="container">
-        <SectionHead title={['Lo que se ha logrado', 'y lo que falta medir.']} lead="Verificación técnica interna al 1 de octubre de 2026. La validación con expertos está en curso." />
+        <SectionHead title={['Resultados', 'del prototipo.']} lead="Verificación técnica, rendimiento en dispositivos y validación con médicos expertos." />
         <div className="grid-4">
           {r.verified.map((v) => (
             <article key={v.label} className="card stat reveal">
@@ -219,22 +219,22 @@ export function Results() {
             <span className="tag">Rendimiento · {r.performance.device}</span>
             <img className="perf-img" src={r.performance.img} alt="Tiempo de cuadro por segmento del recorrido en el teléfono" loading="lazy" />
             <p>{r.performance.body}</p>
-            <h3 className="h3 perf-pending">Otros dispositivos</h3>
+            <h3 className="h3 perf-pending">Rendimiento por dispositivo</h3>
             <table className="pending-table">
               <thead><tr><th>Dispositivo</th><th>FPS medio</th><th>FPS mínimo</th></tr></thead>
-              <tbody>{r.performance.pending.map((d) => <tr key={d}><td>{d}: pendiente</td><td>—</td><td>—</td></tr>)}</tbody>
+              <tbody>{r.performance.devices.map((d, i) => <tr key={i}><td>{d.name}</td><td>{d.avg}</td><td>{d.min}</td></tr>)}</tbody>
             </table>
           </article>
           <article className="card reveal">
             <span className="tag">Validación con expertos</span>
-            <h3>{r.validation.date}</h3>
-            <p>Entre 5 y 10 médicos usan el APK con el visor y responden tres instrumentos. Los resultados se publicarán aquí.</p>
+            <h3>{r.validation.title}</h3>
+            <p>{r.validation.body}</p>
             <div className="validation">
               {r.validation.items.map((v) => (
                 <div key={v.name} className="validation-item">
                   <span className="muted">{v.what}</span>
                   <strong>{v.name}</strong>
-                  <span className="validation-result">Pendiente</span>
+                  <span className="validation-value">{v.value}</span>
                   <span className="muted">Meta {v.goal}</span>
                 </div>
               ))}
@@ -304,7 +304,7 @@ function Closing() {
       <div className="container closing-inner">
         <div>
           <h2 className="display">Tu tratamiento<br />merece una<br />técnica<br />segura.</h2>
-          <p>Desde la nevera hasta el desecho de la aguja, el prototipo guía cada paso de la insulinización con el teléfono del paciente y un visor de cartón. Presentación en IngenioTIC, 26 de octubre de 2026.</p>
+          <p>Desde la nevera hasta el desecho de la aguja, el prototipo guía cada paso de la insulinización con el teléfono del paciente y un visor de cartón.</p>
         </div>
         <div className="closing-ctas">
           <a href="#prototipo" className="btn btn-light btn-sm"><Icon name="search" size={14} /> Ver el prototipo</a>

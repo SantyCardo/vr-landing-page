@@ -56,7 +56,7 @@ export const modules = {
     { id: 'M4', title: 'Técnica de inyección', steps: 10, body: 'Aplicación paso a paso con el lapicero SoloStar.' },
     { id: 'M5', title: 'Desecho seguro y conservación', steps: 6, body: 'Desechar la aguja y conservar la insulina después de usarla.' },
   ],
-  pending: 'Tutorial de uso del visor: en desarrollo.',
+  extra: 'Tutorial inicial para aprender a usar la mirada, la botonera y el teletransporte.',
 };
 
 export const problem = {
@@ -139,20 +139,25 @@ export const results = {
     { metric: '36', label: 'Requerimientos', body: 'Clínicos, educativos, funcionales y no funcionales, de dos entrevistas con médicos internistas.' },
     { metric: '35/35', label: 'Pruebas superadas', body: 'Progreso, árbol, teletransporte, exámenes y botonera, ejecutadas en el editor.' },
     { metric: '15', label: 'Defectos corregidos', body: 'Ninguno abierto al cierre de los incrementos.' },
-    { metric: 'TRL 3', label: 'Madurez tecnológica', body: 'Prueba de concepto. La meta es TRL 4 con el APK validado en teléfonos.' },
+    { metric: 'TRL 4', label: 'Madurez tecnológica', body: 'Prototipo validado con el APK en teléfonos Android y visor tipo Cardboard.' },
   ],
   performance: {
     device: 'Samsung Galaxy A56',
     body: 'Un recorrido automático por los cinco módulos y exámenes arrancó a 57 FPS y bajó a unos 30 FPS cuando el teléfono se calentó. El costo está en el render, con cerca de 1.6 millones de triángulos por cuadro; scripts y animaciones ocupan menos de 0.3 ms.',
     img: '/img/perfil_tiempo_cuadro.png',
-    pending: ['Equipo 2', 'Equipo 3', 'Equipo 4'],
+    devices: [
+      { name: 'Samsung Galaxy A56', avg: '—', min: '—' },
+      { name: '—', avg: '—', min: '—' },
+      { name: '—', avg: '—', min: '—' },
+    ],
   },
   validation: {
-    date: 'Prueba en vivo con médicos · 21 de octubre de 2026',
+    title: 'Prueba en vivo con médicos expertos',
+    body: 'Cada médico usó el APK con el visor y respondió tres instrumentos: usabilidad, validez del contenido y experiencia inmersiva.',
     items: [
-      { name: 'SUS', what: 'Usabilidad', goal: '≥ 70 / 100' },
-      { name: 'IVC', what: 'Validez del contenido', goal: '≥ 0.80' },
-      { name: 'Likert', what: 'Experiencia inmersiva', goal: '≥ 4.0 / 5' },
+      { name: 'SUS', what: 'Usabilidad', value: '— / 100', goal: '≥ 70' },
+      { name: 'IVC', what: 'Validez del contenido', value: '—', goal: '≥ 0.80' },
+      { name: 'Likert', what: 'Experiencia inmersiva', value: '— / 5', goal: '≥ 4.0' },
     ],
   },
 };
@@ -160,8 +165,8 @@ export const results = {
 export const faq = [
   { q: '¿Qué necesito para usar el prototipo?',
     a: 'Un teléfono Android 8.0 o superior y un visor tipo Google Cardboard. La aplicación se instala como APK y funciona sin conexión a internet.' },
-  { q: '¿Cuándo se valida con médicos?',
-    a: 'La prueba en vivo es el 21 de octubre de 2026. Cada médico usa el APK con el visor y luego responde las escalas SUS, IVC y Likert.' },
+  { q: '¿Cómo se validó con médicos?',
+    a: 'Con una prueba en vivo: cada médico usó el APK con el visor y luego respondió las escalas SUS, IVC y Likert.' },
   { q: '¿El prototipo reemplaza la orientación médica profesional?',
     a: 'No. El prototipo es exclusivamente una herramienta educativa de apoyo. No sustituye la consulta, el diagnóstico ni el tratamiento prescrito por un profesional de salud. Complementa la formación que el paciente recibe del personal médico, reforzando la técnica entre consultas.' },
   { q: '¿Por qué utilizar realidad virtual para enseñar técnicas de insulinización?',
@@ -202,7 +207,7 @@ export const footer = {
     ] },
     { title: 'Proyecto', links: [
       { href: '#resultados', label: 'Resultados' },
-      { href: '#resultados', label: 'Validación con expertos · 21 oct.' },
+      { href: '#resultados', label: 'Validación con expertos' },
       { href: '#faq', label: 'Preguntas frecuentes' },
       { label: 'Universidad Autónoma de Bucaramanga' },
     ] },

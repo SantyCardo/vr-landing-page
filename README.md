@@ -34,7 +34,7 @@ El prototipo que presenta tiene:
 | Exámenes (uno por módulo) | 5 |
 | Puntos de teletransporte | 13 |
 
-Los resultados de la validación con expertos (SUS, IVC y Likert) y el rendimiento en otros dispositivos aparecen como **pendientes** hasta que se obtengan los datos.
+La página está escrita como presentación final del proyecto. Los valores de la validación con expertos (SUS, IVC y Likert) y del rendimiento por dispositivo se muestran con «—» hasta cargarlos en `content.js`.
 
 ## Stack
 
@@ -149,8 +149,8 @@ npm run preview    # servir el build localmente
 Todo el texto está en `src/data/content.js`. Algunos ejemplos:
 
 - **Cifras de la portada:** `hero.stats`.
-- **Resultados de la validación:** `results.validation.items` (instrumento, qué mide y meta). Por ahora el componente `Results` de `Sections.jsx` muestra «Pendiente» fijo; cuando haya datos, agrega el valor a cada ítem y muéstralo en lugar de ese texto.
-- **Rendimiento en otros dispositivos:** `results.performance.pending`.
+- **Resultados de la validación:** `results.validation.items`. Cada ítem tiene `value` (por ejemplo `'82 / 100'`), que reemplaza el «—», y su `goal` (meta).
+- **Rendimiento por dispositivo:** `results.performance.devices`, con `name`, `avg` (FPS medio) y `min` (FPS mínimo).
 - **Preguntas frecuentes:** `faq`.
 - **Enlaces del footer:** `footer.columns`. La columna «Enlaces» reutiliza `nav`.
 

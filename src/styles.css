@@ -308,15 +308,12 @@ main > .section:nth-last-child(even) .specialty-icon { background: var(--bg-soft
 .pending-table { width: 100%; border-collapse: collapse; font-size: 13px; }
 .pending-table th { text-align: left; font-weight: 500; color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; }
 .pending-table th, .pending-table td { padding: 10px 0; border-bottom: 1px solid var(--line); }
-.pending-table td { color: var(--muted); }
+.pending-table td { color: var(--ink-2); }
 .validation { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 8px; }
 .validation-item { background: var(--bg-soft); border-radius: var(--r-sm); padding: 16px; display: flex; flex-direction: column; gap: 4px; }
 .validation-item strong { font-size: 26px; font-weight: 500; letter-spacing: -0.03em; }
 .validation-item .muted { font-size: 12px; }
-.validation-result {
-  align-self: flex-start; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em;
-  padding: 3px 9px; border-radius: var(--pill); border: 1px dashed var(--muted); color: var(--muted);
-}
+.validation-value { font-size: 15px; font-weight: 500; }
 
 /* ---------- Cierre ---------- */
 .site-end { margin: var(--frame); border-radius: var(--r-lg); overflow: hidden; }

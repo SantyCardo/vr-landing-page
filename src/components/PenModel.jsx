@@ -20,7 +20,7 @@ export default function PenModel({ progressRef }) {
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 100);
-    camera.position.set(0, 0, 9);
+    camera.position.set(0, 0, 10);
     scene.add(new THREE.HemisphereLight(0xffffff, 0xb9c4cf, 1.6));
     const key = new THREE.DirectionalLight(0xffffff, 2.2); key.position.set(4, 6, 6); scene.add(key);
     const rim = new THREE.DirectionalLight(0xdfe9f2, 1.2); rim.position.set(-5, -2, -4); scene.add(rim);
@@ -32,6 +32,9 @@ export default function PenModel({ progressRef }) {
     pivot.add(spinner);
 
     let disposed = false;
+    // Despiece: desplazamiento de cada pieza a lo largo del eje del lapicero (unidades del FBX, +Y hacia la tapa).
+    const EXPLODE = { Circle001: 125, Cylinder007: 40, Cylinder009: -24, Cylinder010: -22, Cylinder008: -46 };
+    let parts = [];
     new FBXLoader().load('/models/lapicero.fbx', (obj) => {
       if (disposed) return;
       // El FBX trae piezas sueltas, luces y cámara; solo se deja el lapicero armado (cuerpo + tapa).
@@ -43,6 +46,17 @@ export default function PenModel({ progressRef }) {
           mats.forEach((m) => { if (m && 'shininess' in m) m.shininess = 60; });
         }
       });
+      obj.updateMatrixWorld(true);
+      const up = new THREE.Vector3(0, 1, 0);
+      parts = Object.entries(EXPLODE).map(([name, d]) => {
+        const part = obj.getObjectByName(name);
+        if (!part || !part.parent) return null;
+        // Convierte el desplazamiento del espacio del modelo al espacio local del padre de la pieza.
+        const wp = part.getWorldPosition(new THREE.Vector3());
+        const a = part.parent.worldToLocal(wp.clone());
+        const b = part.parent.worldToLocal(wp.clone().addScaledVector(up, d));
+        return { part, base: part.position.clone(), delta: b.sub(a) };
+      }).filter(Boolean);
       const box = new THREE.Box3().setFromObject(obj);
       const size = box.getSize(new THREE.Vector3());
       const center = box.getCenter(new THREE.Vector3());
@@ -53,7 +67,7 @@ export default function PenModel({ progressRef }) {
       const maxDim = Math.max(size.x, size.y, size.z) || 1;
       if (size.x === maxDim) holder.rotation.z = Math.PI / 2;
       else if (size.z === maxDim) holder.rotation.x = Math.PI / 2;
-      holder.scale.setScalar(4 / maxDim);
+      holder.scale.setScalar(2.4 / maxDim); // margen para el lapicero desarmado
       spinner.add(holder);
     });
 
@@ -74,6 +88,7 @@ export default function PenModel({ progressRef }) {
 
     let raf = 0;
     let current = 0;
+    let explode = 0;
     const tick = () => {
       raf = requestAnimationFrame(tick);
       if (!visible) return;
@@ -82,6 +97,10 @@ export default function PenModel({ progressRef }) {
       const target = reduced ? 0.6 : p * Math.PI * 2 * 1.25;
       current += (target - current) * 0.08;
       spinner.rotation.y = current;
+      // Se desarma entre el 15 % y el 60 % del recorrido de la sección y queda desarmado al final.
+      const e = reduced ? 0 : THREE.MathUtils.smoothstep(p, 0.15, 0.6);
+      explode += (e - explode) * 0.1;
+      parts.forEach(({ part, base, delta }) => part.position.copy(base).addScaledVector(delta, explode));
       renderer.render(scene, camera);
     };
     tick();

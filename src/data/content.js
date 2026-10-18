@@ -235,8 +235,8 @@ export const team = {
       body: 'Médico internista. Validó el contenido clínico: los requerimientos, la técnica de aplicación, el guion de las narraciones y las preguntas de los exámenes.' },
   ],
   institutions: [
-    { name: 'Universidad Autónoma de Bucaramanga', role: 'Universidad', img: imgUnab, pos: '60% 40%', alt: 'Campus de la Universidad Autónoma de Bucaramanga',
-      body: 'Programa de Ingeniería de Sistemas, donde se desarrolló el proyecto de grado.' },
+    { name: 'UNAB', role: 'Universidad', img: imgUnab, pos: '60% 40%', alt: 'Campus de la Universidad Autónoma de Bucaramanga',
+      body: 'Universidad Autónoma de Bucaramanga. Programa de Ingeniería de Sistemas, donde se desarrolló el proyecto de grado.' },
     { name: 'Fundación Clínica', role: 'Aliado clínico', img: imgFundacion, pos: '50% 50%', alt: 'Edificio de la Fundación Clínica',
       body: 'Institución de los asesores temáticos; aportó la asesoría y la validación del contenido clínico.' },
   ],

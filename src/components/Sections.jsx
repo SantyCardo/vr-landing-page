@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import * as C from '../data/content.js';
-import { Icon, SectionHead, Carousel } from './ui.jsx';
+import { Icon, SectionHead, Carousel, CountUp } from './ui.jsx';
 
 export function Prototype() {
   return (
@@ -68,7 +68,7 @@ export function Problem() {
         <dl className="figures reveal">
           {C.stats.map((f) => (
             <div key={f.label} className="figure-row">
-              <dt>{f.value}</dt>
+              <dt><CountUp value={f.value} /></dt>
               <dd>{f.label}</dd>
               <dd className="figure-source"><a href={f.url} target="_blank" rel="noreferrer">{f.source}</a></dd>
             </div>
@@ -216,7 +216,7 @@ export function Results() {
         <div className="grid-4">
           {r.verified.map((v) => (
             <article key={v.label} className="card stat reveal">
-              <strong>{v.metric}</strong>
+              <strong><CountUp value={v.metric} /></strong>
               <span className="muted">{v.label}</span>
               <p>{v.body}</p>
             </article>

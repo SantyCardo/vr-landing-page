@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { nav, hero } from '../data/content.js';
-import { Icon } from './ui.jsx';
+import { Icon, CountUp } from './ui.jsx';
 
 export function Hero() {
   const [open, setOpen] = useState(false);
@@ -48,7 +48,7 @@ export function Hero() {
         <dl className="hero-stats">
           {hero.stats.map((s) => (
             <div key={s.label}>
-              <dt>{s.value}</dt>
+              <dt><CountUp value={s.value} /></dt>
               <dd>{s.label}</dd>
             </div>
           ))}

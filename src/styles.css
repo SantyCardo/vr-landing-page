@@ -43,6 +43,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .hero-inner.container, .closing-inner.container { padding-inline: var(--gutter); }
 .narrow .question { max-width: 32ch; }
 .muted { color: var(--muted); font-style: normal; }
+.count-up { font-variant-numeric: tabular-nums; }
 
 /* ---------- Tipografía ---------- */
 .display {

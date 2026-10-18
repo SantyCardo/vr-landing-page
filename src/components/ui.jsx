@@ -45,6 +45,45 @@ export function useReveal() {
   }, []);
 }
 
+// Anima el primer número de un texto ("830M", "8,4 %", "2.186.861", "35/35") desde 0 al entrar en pantalla.
+// Formato colombiano: punto de miles y coma decimal.
+export function CountUp({ value, duration = 1600 }) {
+  const ref = useRef(null);
+  const m = value.match(/\d{1,3}(?:\.\d{3})+|\d+(?:,\d+)?/);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!m || !el) return;
+    const raw = m[0];
+    const grouped = raw.includes('.');
+    const decimals = raw.includes(',') ? raw.split(',')[1].length : 0;
+    const target = parseFloat(raw.replace(/\./g, '').replace(',', '.'));
+    const fmt = new Intl.NumberFormat('es-CO', { minimumFractionDigits: decimals, maximumFractionDigits: decimals, useGrouping: grouped });
+    const before = value.slice(0, m.index);
+    const after = value.slice(m.index + raw.length);
+    const render = (n) => { el.textContent = before + fmt.format(n) + after; };
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    render(0);
+    let raf;
+    const io = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting) return;
+      io.disconnect();
+      const t0 = performance.now();
+      const tick = (t) => {
+        const p = Math.min((t - t0) / duration, 1);
+        render(target * (1 - Math.pow(1 - p, 3)));
+        if (p < 1) raf = requestAnimationFrame(tick); else el.textContent = value;
+      };
+      raf = requestAnimationFrame(tick);
+    }, { threshold: 0.4 });
+    io.observe(el);
+    return () => { io.disconnect(); cancelAnimationFrame(raf); el.textContent = value; };
+  }, [value]);
+
+  return <span ref={ref} className="count-up" aria-label={value}>{value}</span>;
+}
+
 export function SectionHead({ title, lead, children }) {
   return (
     <div className="section-head reveal">

@@ -221,6 +221,8 @@ Proyecto de grado · Ingeniería de Sistemas · Universidad Autónoma de Bucaram
 
 Referencia de diseño: «Healthcare Clinic Platform», de Shuvo, publicado en Dribbble.
 
+Portada (`public/img/cocina_portada.webp`): render de la cocina del prototipo, generado en Unity por el equipo.
+
 Fotografías de «El problema» (`src/assets/problema/`), la pregunta problema (`src/assets/pregunta/`) los objetivos (`src/assets/objetivos/`) y la metodología (`src/assets/metodologia/`), convertidas a WebP, tomadas de [Unsplash](https://unsplash.com/license) con licencia gratuita:
 
 | Archivo | Foto | Autor |

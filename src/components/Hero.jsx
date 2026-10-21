@@ -14,7 +14,7 @@ export function Hero() {
 
   return (
     <header className="hero" id="inicio">
-      <img className="hero-bg" src="/img/cocina_general.jpg" alt="" />
+      <img className="hero-bg" src="/img/cocina_portada.webp" alt="" fetchpriority="high" />
       <div className="hero-veil" />
 
       <nav className={`nav ${scrolled ? 'is-scrolled' : ''}`} aria-label="Principal">

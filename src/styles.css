@@ -357,14 +357,6 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 .photo-card-text .tag-source { text-transform: none; letter-spacing: 0; }
 
-/* ---------- Cifras del problema (una fila, alineada con las tarjetas) ---------- */
-.figures { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 36px; }
-.figure-row { border-top: 1px solid var(--ink); padding-top: 16px; display: flex; flex-direction: column; gap: 8px; }
-.figure-row dt { font-size: clamp(32px, 3.22vw, 48px); font-weight: 500; letter-spacing: -0.035em; line-height: 1; }
-.figure-row dd { font-size: 18px; color: var(--ink-2); max-width: 30ch; }
-.figure-row .figure-source { font-size: 16px; color: var(--muted); margin-top: auto; padding-top: 4px; }
-.figure-source a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; }
-
 /* ---------- Encabezado en dos columnas (objetivos, metodología) ---------- */
 .split-head {
   display: grid; grid-template-columns: 1fr 1.4fr; gap: 48px; align-items: start;
@@ -621,9 +613,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   #problema { min-height: 100svh; padding: 104px 0 28px; display: flex; align-items: center; }
   #problema > .container { width: 100%; }
   #problema .section-head { margin-bottom: 24px; }
-  #problema .hover-cards .photo-card { min-height: 0; height: clamp(240px, calc(100svh - 560px), 460px); }
-  #problema .figures { margin-top: 24px; }
-  #problema .figure-row { padding-top: 12px; gap: 4px; }
+  #problema .hover-cards .photo-card { min-height: 0; height: clamp(240px, calc(100svh - 400px), 560px); }
 }
 /* Metodología en una sola pantalla al presentar. */
 @media (min-width: 1025px) and (min-height: 700px) {
@@ -638,10 +628,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 /* ---------- Responsive ---------- */
 @media (max-width: 1024px) {
-  .grid-4, .figures { grid-template-columns: repeat(2, 1fr); }
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
   .grid-5 { grid-template-columns: repeat(3, 1fr); }
   .goals.goals-4 { grid-template-columns: repeat(2, 1fr); }
-    .figures { row-gap: 28px; }
   .grid-specialty { grid-template-columns: repeat(2, 1fr); }
   .carousel { grid-auto-columns: minmax(240px, 40%); }
   #equipo .carousel { grid-auto-columns: calc((100% - 12px) / 2); }

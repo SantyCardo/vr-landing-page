@@ -112,15 +112,6 @@ export function Problem() {
             </article>
           ))}
         </div>
-        <dl className="figures reveal">
-          {C.stats.map((f) => (
-            <div key={f.label} className="figure-row">
-              <dt><CountUp value={f.value} /></dt>
-              <dd>{f.label}</dd>
-              <dd className="figure-source"><a href={f.url} target="_blank" rel="noreferrer">{f.source}</a></dd>
-            </div>
-          ))}
-        </dl>
       </div>
     </section>
   );

@@ -223,6 +223,8 @@ Referencia de diseño: «Healthcare Clinic Platform», de Shuvo, publicado en Dr
 
 Portada (`public/img/cocina_portada.webp`): render de la cocina del prototipo, generado en Unity por el equipo.
 
+Sala de estar y sala de estudio (`public/img/sala_estar.webp`, `public/img/sala_estudio.webp`): renders del prototipo, generados en Unity por el equipo.
+
 Fotografías de «El problema» (`src/assets/problema/`), la pregunta problema (`src/assets/pregunta/`) los objetivos (`src/assets/objetivos/`) y la metodología (`src/assets/metodologia/`), convertidas a WebP, tomadas de [Unsplash](https://unsplash.com/license) con licencia gratuita:
 
 | Archivo | Foto | Autor |

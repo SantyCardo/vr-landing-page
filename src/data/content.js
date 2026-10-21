@@ -62,6 +62,10 @@ export const demo = {
 export const features = [
   { title: 'Vivienda virtual', kicker: 'Entorno', img: '/img/cocina_general.jpg',
     body: 'Cuatro espacios. La cocina concentra los cinco módulos; nevera, gabinetes y estufa dan el contexto real.' },
+  { title: 'Sala de estar', kicker: 'Entorno', img: '/img/sala_estar.webp',
+    body: 'Sillones, una alfombra y una pantalla grande en la pared con el árbol de avances («Mi progreso»).' },
+  { title: 'Sala de estudio', kicker: 'Entorno', img: '/img/sala_estudio.webp',
+    body: 'Una mesa con sillas, pizarra y corcho, junto a la sala de estar.' },
   { title: 'Control por mirada', kicker: 'Interacción', img: '/img/m1_paso1_contexto.jpg',
     body: 'Una retícula y una barra que se llena al mirar. Los botones piden 1.5 s; «Salir», 2.5 s.' },
   { title: 'Teletransporte', kicker: 'Movimiento', img: '/img/teleport_cocina.jpg',

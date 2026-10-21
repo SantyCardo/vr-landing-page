@@ -211,7 +211,7 @@ Cada push a `master` genera un despliegue de producción en Vercel.
 
 | Rol | Nombre |
 |---|---|
-| Líder de desarrollo | Brayan Steven León Martínez |
+| Líder de desarrollo | Brayan Steven León Martinez |
 | Contenido 3D, audio y documentación | Santiago Cardona Prada |
 | Director | Leonardo Stiven Pardo Niño |
 | Asesoría temática | Dra. Ana María Ospina Galeano y Dr. Jaime Gómez, médicos internistas de la Fundación Clínica |

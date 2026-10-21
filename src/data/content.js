@@ -128,20 +128,20 @@ export const justification = {
     { title: 'Acceso constante al software', body: 'Priorizar el acceso para poblaciones de riesgo.' },
   ],
   pillars: [
-    { tag: 'Problema', icon: 'search', title: 'Brecha clínica', body: 'En Colombia, cerca del 8,4 % de la población adulta vive con diabetes (FID, 2024). Errores como la reutilización de agujas o la falta de rotación provocan lipohipertrofia y afectan el control glucémico.' },
+    { tag: 'Problema', icon: 'search', title: 'Brecha clínica', body: 'En Colombia, cerca del 8,4 % de la población adulta vive con diabetes mellitus (FID, 2024). Errores como la reutilización de agujas o la falta de rotación provocan lipohipertrofia y afectan el control glucémico.' },
     { tag: 'Innovación', icon: 'cube', title: 'Convergencia tecnológica', body: 'Software educativo inmersivo que fortalece la formación, mitiga la desinformación y prioriza el acceso para poblaciones de riesgo.' },
     { tag: 'Formación', icon: 'code', title: 'Aplicación en sistemas', body: 'Diseño de software, interacción humano-computador y prototipado inmersivo con enfoque social para educación en salud.' },
   ],
 };
 
 export const question = {
-  text: '¿Cómo se puede desarrollar una herramienta educativa inmersiva e interactiva que ayude a fortalecer la correcta técnica de insulinización y el adecuado almacenamiento de la insulina en pacientes con diabetes?',
+  text: '¿Cómo se puede desarrollar una herramienta educativa inmersiva e interactiva que ayude a fortalecer la correcta técnica de insulinización y el adecuado almacenamiento de la insulina en pacientes con diabetes mellitus?',
   img: imgPregunta,
   imgMobile: imgPreguntaMovil,
 };
 
 export const objectives = {
-  general: 'Desarrollar un prototipo de herramienta educativa inmersiva e interactiva, basada en requerimientos clínicos, procedimientos y almacenamiento de la insulinización, para el fortalecimiento de la técnica de aplicación en pacientes adultos con diabetes tipo II.',
+  general: 'Desarrollar un prototipo de herramienta educativa inmersiva e interactiva, basada en requerimientos clínicos, procedimientos y almacenamiento de la insulinización, para el fortalecimiento de la técnica de aplicación en pacientes adultos con diabetes mellitus.',
   specific: [
     { title: 'Identificar requerimientos', img: imgObjRequerimientos, pos: '78% center', alt: 'Médica entrevistando a un paciente en el consultorio', body: 'Identificar los requerimientos clínicos, educativos, funcionales y no funcionales del procedimiento de insulinización, mediante revisión documental y consulta a profesionales de salud.' },
     { title: 'Diseñar el prototipo', img: imgObjDiseno, alt: 'Mano dibujando el boceto de una interfaz', body: 'Diseñar el prototipo educativo integrando componentes interactivos de las etapas del procedimiento, orientado al entrenamiento práctico y seguro del usuario.' },
@@ -159,7 +159,7 @@ export const methodology = {
     { title: 'Ejecución', img: imgFaseEjecucion, alt: 'Portátil con código en pantalla',
       body: 'Se desarrolló el prototipo por incrementos, cada uno completo y verificable.', deliverable: 'Prototipo funcional y documentación técnica' },
     { title: 'Monitoreo y control', img: imgFaseMonitoreo, alt: 'Notas adhesivas «por hacer, en curso, hecho»',
-      body: 'Se siguió el avance en un tablero Kanban, con bitácoras y pruebas en cada incremento.', deliverable: 'Bitácoras y registro de defectos' },
+      body: 'Se siguió el avance con bitácoras y pruebas en cada incremento.', deliverable: 'Bitácoras y registro de defectos' },
     { title: 'Cierre', img: imgFaseCierre, alt: 'Profesional presentando frente a una pantalla',
       body: 'Se validó con expertos, se hicieron los ajustes y se entregó el documento final.', deliverable: 'APK validado, documento final y sustentación' },
   ],

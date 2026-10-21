@@ -36,6 +36,7 @@ export const nav = [
 ];
 
 export const hero = {
+  cta: 'Ver el demo',
   eyebrow: 'Proyecto de grado · UNAB · Prototipo funcional',
   lead: 'Prototipo educativo inmersivo para aprender la técnica de insulinización con el teléfono del paciente y un visor de cartón. Cinco módulos guiados en una vivienda virtual, sin conexión a internet.',
   stats: [
@@ -50,6 +51,12 @@ export const about = {
   title: ['Un recorrido guiado por la técnica,', 'dentro de una vivienda virtual.'],
   lead: 'El paciente se mueve por una casa con cocina, sala, vestíbulo y sala de estudio. Todo se controla con la mirada: no hacen falta mandos ni conexión.',
   note: 'Lo que se enseña, en qué orden, con qué audio y con qué preguntas vive en archivos de datos y no en el código, así que el equipo de salud puede ajustar textos y orden sin programar.',
+};
+
+// Demo en video del prototipo. Mientras no haya video se muestra el marcador.
+export const demo = {
+  title: 'Demo del prototipo',
+  placeholder: 'Demo próximamente',
 };
 
 export const features = [

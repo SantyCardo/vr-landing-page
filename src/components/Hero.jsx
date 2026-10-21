@@ -37,7 +37,7 @@ export function Hero() {
             virtual
           </h1>
           <div className="hero-ctas">
-            <a href="#prototipo" className="btn btn-dark"><Icon name="search" size={15} /> Ver el prototipo</a>
+            <a href="#prototipo" className="btn btn-dark"><Icon name="search" size={15} /> {hero.cta}</a>
             <a href="#equipo" className="btn btn-light"><Icon name="arrowUR" size={15} /> Ver equipo</a>
           </div>
         </div>

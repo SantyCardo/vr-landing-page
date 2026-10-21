@@ -51,6 +51,16 @@ export function Prototype() {
             </button>
           ))}
         </div>
+        <div className="demo-video reveal" role="region" aria-label={C.demo.title}>
+          {/* DEMO: para montar el video, reemplaza el div.demo-placeholder por
+              <video src="/video/demo.mp4" controls playsInline poster="/img/cocina_general.jpg" />
+              o por un <iframe src="..." title={C.demo.title} allowFullScreen />.
+              El contenedor mantiene la proporción 16:9. */}
+          <div className="demo-placeholder">
+            <Icon name="eye" size={36} />
+            <strong>{C.demo.placeholder}</strong>
+          </div>
+        </div>
         <p className="note reveal">{C.about.note}</p>
       </div>
       {open >= 0 && (
@@ -434,7 +444,7 @@ function Closing() {
           <p>Desde la nevera hasta el desecho de la aguja, el prototipo guía cada paso de la insulinización con el teléfono del paciente y un visor de cartón.</p>
         </div>
         <div className="closing-ctas">
-          <a href="#prototipo" className="btn btn-light btn-sm"><Icon name="search" size={14} /> Ver el prototipo</a>
+          <a href="#prototipo" className="btn btn-light btn-sm"><Icon name="search" size={14} /> {C.hero.cta}</a>
           <a href="#equipo" className="btn btn-ghost btn-sm"><Icon name="arrowUR" size={14} /> Conocer el equipo</a>
         </div>
       </div>

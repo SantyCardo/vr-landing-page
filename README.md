@@ -34,7 +34,7 @@ El prototipo que presenta tiene:
 | Exámenes (uno por módulo) | 5 |
 | Puntos de teletransporte | 13 |
 
-La página está escrita como presentación final del proyecto. Los valores de la validación con expertos (SUS, IVC y Likert) y del rendimiento por dispositivo se muestran con «—» hasta cargarlos en `content.js`.
+La página está escrita como presentación final del proyecto. Los valores de las pruebas internas de caja blanca, de la valoración con dos médicos (SUS e IVC) y del rendimiento por dispositivo se muestran con «—» y la etiqueta «Pendiente» hasta cargarlos en `content.js`.
 
 ## Stack
 
@@ -156,7 +156,8 @@ Todo el texto está en `src/data/content.js`. Algunos ejemplos:
 
 - **Cifras de la portada:** `hero.stats`.
 - **Cifras del problema:** `stats`, con `value`, `label`, `source` y `url` de la fuente (todas tomadas del documento del proyecto).
-- **Resultados de la validación:** `results.validation.items`. Cada ítem tiene `value` (por ejemplo `'82 / 100'`), que reemplaza el «—», y su `goal` (meta).
+- **Pruebas de caja blanca:** `results.whitebox.items`. Cada ítem tiene `value`, que reemplaza el «—», y su umbral de aceptación `target` (propuesto por el equipo, sin confirmar).
+- **Valoración con dos médicos:** `results.validation.items` (SUS e IVC, descriptivo con n = 2), con `value` y su referencia `goal`, y `results.validation.improvements` para las mejoras recomendadas.
 - **Rendimiento por dispositivo:** `results.performance.devices`, con `name`, `avg` (FPS medio) y `min` (FPS mínimo).
 - **Preguntas frecuentes:** `faq`.
 - **Enlaces del footer:** `footer.columns`. La columna «Enlaces» reutiliza `nav`.
@@ -203,7 +204,7 @@ Cada push a `master` genera un despliegue de producción en Vercel.
 
 ## Pendientes
 
-- [ ] Resultados de SUS, IVC y Likert tras la prueba en vivo con médicos del 21 de octubre de 2026.
+- [ ] Resultados de las pruebas internas de caja blanca y de SUS e IVC con los dos médicos, tras la prueba en vivo del 21 de octubre de 2026.
 - [ ] Rendimiento del prototipo en otros dispositivos Android.
 - [ ] Video del recorrido por el prototipo.
 

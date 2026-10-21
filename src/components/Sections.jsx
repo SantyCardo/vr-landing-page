@@ -356,7 +356,7 @@ export function Results() {
   return (
     <section id="resultados" className="section">
       <div className="container">
-        <SectionHead title={['Resultados', 'del prototipo.']} lead="Verificación técnica, rendimiento en dispositivos y validación con médicos expertos." />
+        <SectionHead title={['Resultados', 'del prototipo.']} lead="Verificación técnica, rendimiento en dispositivos y valoración básica con dos médicos." />
         <div className="grid-4">
           {r.verified.map((v) => (
             <article key={v.label} className="card stat reveal">
@@ -366,6 +366,22 @@ export function Results() {
             </article>
           ))}
         </div>
+
+        <article className="card reveal whitebox">
+          <span className="tag">{r.whitebox.status} · Caja blanca</span>
+          <h3>{r.whitebox.title}</h3>
+          <p>{r.whitebox.body}</p>
+          <div className="validation whitebox-items">
+            {r.whitebox.items.map((v) => (
+              <div key={v.name} className="validation-item">
+                <span className="muted">{v.what}</span>
+                <strong>{v.name}</strong>
+                <span className="validation-value">{v.value}</span>
+                <span className="muted">Umbral {v.target}</span>
+              </div>
+            ))}
+          </div>
+        </article>
 
         <div className="results-split">
           <article className="card reveal">
@@ -379,7 +395,7 @@ export function Results() {
             </table>
           </article>
           <article className="card reveal">
-            <span className="tag">Validación con expertos</span>
+            <span className="tag">{r.validation.status} · Dos médicos</span>
             <h3>{r.validation.title}</h3>
             <p>{r.validation.body}</p>
             <div className="validation">
@@ -388,10 +404,12 @@ export function Results() {
                   <span className="muted">{v.what}</span>
                   <strong>{v.name}</strong>
                   <span className="validation-value">{v.value}</span>
-                  <span className="muted">Meta {v.goal}</span>
+                  <span className="muted">{v.goal}</span>
                 </div>
               ))}
             </div>
+            <p className="muted">{r.validation.improvements.label}: {r.validation.improvements.value}</p>
+            <p className="muted">{r.validation.limitation}</p>
           </article>
         </div>
       </div>

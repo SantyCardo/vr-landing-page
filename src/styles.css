@@ -716,3 +716,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   border: 1px dashed var(--line); border-radius: inherit;
 }
 .demo-placeholder strong { font-size: clamp(20px, 2.4vw, 32px); font-weight: 500; letter-spacing: -0.01em; }
+
+/* ---------- Resultados: caja blanca y valoración con dos médicos ---------- */
+.whitebox { margin-top: 12px; display: flex; flex-direction: column; gap: 8px; }
+.whitebox .tag { align-self: flex-start; }
+.whitebox-items { grid-template-columns: repeat(3, 1fr); }
+.results-split .validation { grid-template-columns: 1fr 1fr; }
+@media (max-width: 860px) { .whitebox-items, .results-split .validation { grid-template-columns: 1fr; } }

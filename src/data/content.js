@@ -155,7 +155,7 @@ export const objectives = {
   specific: [
     { title: 'Identificar requerimientos', img: imgObjRequerimientos, pos: '78% center', alt: 'Médica entrevistando a un paciente en el consultorio', body: 'Identificar los requerimientos clínicos, educativos, funcionales y no funcionales del procedimiento de insulinización, mediante revisión documental y consulta a profesionales de salud.' },
     { title: 'Diseñar el prototipo', img: imgObjDiseno, alt: 'Mano dibujando el boceto de una interfaz', body: 'Diseñar el prototipo educativo integrando componentes interactivos de las etapas del procedimiento, orientado al entrenamiento práctico y seguro del usuario.' },
-    { title: 'Validar con expertos', img: imgObjValidacion, alt: 'Dos profesionales de la salud revisando una tableta', body: 'Validar el prototipo con expertos del área, como médicos de la fundación clínica, para verificar que el procedimiento esté correctamente explicado.' },
+    { title: 'Validar el prototipo', img: imgObjValidacion, alt: 'Dos profesionales de la salud revisando una tableta', body: 'Validar el prototipo mediante pruebas internas de caja blanca, orientadas a la verificación del funcionamiento y del rendimiento, y una valoración básica con dos médicos de la fundación clínica, centrada en su satisfacción y en las mejoras requeridas.' },
   ],
 };
 
@@ -171,12 +171,12 @@ export const methodology = {
     { title: 'Monitoreo y control', img: imgFaseMonitoreo, alt: 'Notas adhesivas «por hacer, en curso, hecho»',
       body: 'Se siguió el avance con bitácoras y pruebas en cada incremento.', deliverable: 'Bitácoras y registro de defectos' },
     { title: 'Cierre', img: imgFaseCierre, alt: 'Profesional presentando frente a una pantalla',
-      body: 'Se validó con expertos, se hicieron los ajustes y se entregó el documento final.', deliverable: 'APK validado, documento final y sustentación' },
+      body: 'Se hicieron pruebas internas de caja blanca y una valoración básica con dos médicos, se aplicaron los ajustes y se entregó el documento final.', deliverable: 'APK verificado, documento final y sustentación' },
   ],
   phva: [
     { title: 'Planear', body: 'Diagnóstico, requerimientos clínicos y técnicos, estudio de alternativas y cronograma.' },
     { title: 'Hacer', body: 'Desarrollo del prototipo por incrementos e integración de los módulos.' },
-    { title: 'Verificar', body: 'Pruebas técnicas en cada incremento y validación con expertos.' },
+    { title: 'Verificar', body: 'Pruebas técnicas en cada incremento, pruebas internas de caja blanca y valoración básica con dos médicos.' },
     { title: 'Actuar', body: 'Ajustes según la validación, documentación y cierre del proyecto.' },
   ],
 };
@@ -195,7 +195,7 @@ export const results = {
     { metric: '36', label: 'Requerimientos', body: 'Clínicos, educativos, funcionales y no funcionales, de dos entrevistas con médicos internistas.' },
     { metric: '35/35', label: 'Pruebas superadas', body: 'Progreso, árbol, teletransporte, exámenes y botonera, ejecutadas en el editor.' },
     { metric: '15', label: 'Defectos corregidos', body: 'Ninguno abierto al cierre de los incrementos.' },
-    { metric: 'TRL 4', label: 'Madurez tecnológica', body: 'Prototipo validado con el APK en teléfonos Android y visor tipo Cardboard.' },
+    { metric: 'TRL 3', label: 'Madurez tecnológica', body: 'Nivel actual. Se proyecta TRL 4 al validar el APK en teléfonos Android con visor tipo Cardboard.' },
   ],
   performance: {
     device: 'Samsung Galaxy A56',
@@ -207,22 +207,39 @@ export const results = {
       { name: '—', avg: '—', min: '—' },
     ],
   },
-  validation: {
-    title: 'Prueba en vivo con médicos expertos',
-    body: 'Cada médico usó el APK con el visor y respondió tres instrumentos: usabilidad, validez del contenido y experiencia inmersiva.',
+  // Umbrales propuestos por el equipo (campo `target`); aún sin confirmar. Editar aquí si cambian.
+  whitebox: {
+    title: 'Pruebas internas de caja blanca',
+    body: 'Las hace el equipo y de ellas sale la estadística principal. Cada indicador muestra su umbral de aceptación; los valores se cargan cuando estén medidos.',
+    status: 'Pendiente',
     items: [
-      { name: 'SUS', what: 'Usabilidad', value: '— / 100', goal: '≥ 70' },
-      { name: 'IVC', what: 'Validez del contenido', value: '—', goal: '≥ 0.80' },
-      { name: 'Likert', what: 'Experiencia inmersiva', value: '— / 5', goal: '≥ 4.0' },
+      { name: 'Aprobación global', what: 'Casos de prueba superados', value: '—', target: '≥ 95 %' },
+      { name: 'Casos críticos', what: 'Casos críticos superados', value: '—', target: '100 %' },
+      { name: 'Cobertura', what: 'Requerimientos cubiertos (de 36)', value: '—', target: '100 %' },
+      { name: 'Defectos críticos abiertos', what: 'Al cierre de las pruebas', value: '—', target: '0' },
+      { name: 'FPS medio', what: 'Samsung Galaxy A56 (diseño: 60 FPS)', value: '—', target: '≥ 30' },
+      { name: 'Densidad de defectos', what: 'Descriptiva, entre ciclos', value: '—', target: 'Decreciente' },
     ],
+  },
+  // Valoración básica con dos médicos: descriptiva, sin inferencia estadística.
+  validation: {
+    title: 'Valoración básica con dos médicos',
+    body: 'Los dos médicos de la fundación clínica usan el APK con el visor y responden dos instrumentos. Con n = 2 los datos son descriptivos: puntaje por evaluador, promedio, rango y acuerdo, sin inferencia estadística. Además recomiendan mejoras.',
+    status: 'Pendiente',
+    limitation: 'Limitación: la muestra es de dos médicos, por lo que los resultados no se generalizan.',
+    items: [
+      { name: 'SUS', what: 'Usabilidad · 10 ítems, escala 1–5', value: '—', goal: 'Referencia ≥ 70' },
+      { name: 'IVC', what: 'Validez del contenido · 10 elementos, relevancia y claridad en escala 1–4', value: '—', goal: 'I-CVI 1.00 (acuerdo 2/2)' },
+    ],
+    improvements: { label: 'Mejoras recomendadas', value: '—' },
   },
 };
 
 export const faq = [
   { q: '¿Qué necesito para usar el prototipo?',
     a: 'Un teléfono Android 8.0 o superior y un visor tipo Google Cardboard. La aplicación se instala como APK y funciona sin conexión a internet.' },
-  { q: '¿Cómo se validó con médicos?',
-    a: 'Con una prueba en vivo: cada médico usó el APK con el visor y luego respondió las escalas SUS, IVC y Likert.' },
+  { q: '¿Cómo se validó el prototipo?',
+    a: 'De dos formas. El equipo hizo pruebas internas de caja blanca sobre el funcionamiento y el rendimiento. Además, dos médicos de la fundación clínica usaron el APK con el visor y respondieron las escalas SUS e IVC; con dos evaluadores, los datos se reportan de forma descriptiva y con sus mejoras recomendadas.' },
   { q: '¿El prototipo reemplaza la orientación médica profesional?',
     a: 'No. El prototipo es exclusivamente una herramienta educativa de apoyo. No sustituye la consulta, el diagnóstico ni el tratamiento prescrito por un profesional de salud. Complementa la formación que el paciente recibe del personal médico, reforzando la técnica entre consultas.' },
   { q: '¿Por qué utilizar realidad virtual para enseñar técnicas de insulinización?',
@@ -231,7 +248,7 @@ export const faq = [
     a: 'Aprendizaje activo en lugar de pasivo, repetición ilimitada sin presión clínica y retroalimentación inmediata ante errores típicos como la rotación incorrecta, la reutilización de agujas o la vía equivocada.' },
   { q: '¿Cómo se protege la privacidad y los datos del usuario?',
     a: 'Toda la información se almacena localmente en el dispositivo. La aplicación funciona sin conexión: no requiere cuenta ni envía datos a servidores externos, en línea con la Ley 1581 de 2012 sobre datos personales en Colombia.' },
-  { q: '¿Qué elementos diferencian al prototipo frente al estado del arte?',
+  { q: '¿Qué diferencia al prototipo de otras soluciones?',
     a: 'Combina tres ejes que ninguna solución cubre a la vez: educación específica en insulinización, experiencia inmersiva y hardware de bajo costo. Virti aporta inmersión con equipos costosos; SocialDiabetes e Insulclock son accesibles pero no enseñan la técnica de aplicación.' },
   { q: '¿Qué limitaciones presentan las plataformas existentes?',
     a: 'Cada plataforma cubre solo una parte del problema: Virti requiere hardware costoso, Insulclock no tiene educación inmersiva y SocialDiabetes no enseña la técnica.' },

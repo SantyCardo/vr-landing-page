@@ -122,6 +122,16 @@ export const justification = {
   fromImg: imgAnsiedad,
   toImg: '/img/cocina_general.jpg',
   bridge: 'Prototipo inmersivo en realidad virtual',
+  fromTag: 'Estado actual',
+  toTag: 'Resultado esperado',
+  part1: 'El problema en cifras',
+  part2: 'Del problema a la solución',
+  steps: [
+    'La diabetes mellitus es un problema de salud mundial. Enseñar bien la técnica de insulinización es una forma concreta de acompañar a quienes la viven.',
+    'En Colombia, una parte importante de la población adulta vive con diabetes mellitus. Una educación clara en la técnica importa en el día a día.',
+    'Cada caso registrado es una persona que puede necesitar aprender a aplicar la insulina con seguridad, y no solo en una única sesión.',
+    'Menos de la mitad de los pacientes tuvo medición de hemoglobina glucosilada, el examen que orienta el control del tratamiento. La educación es un apoyo para ese seguimiento.',
+  ],
   goals: [
     { title: 'Desarrollo de software educativo', body: 'Software para mejorar el bienestar.' },
     { title: 'Implementación de técnicas de cuidado', body: 'Enseñar cuidado, almacenamiento y aplicación.' },

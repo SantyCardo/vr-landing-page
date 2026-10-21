@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, lazy, Suspense } from 'react';
 import * as C from '../data/content.js';
 import { Icon, SectionHead, Carousel, CountUp } from './ui.jsx';
+import { Scrolly } from './Scrolly.jsx';
 import Lightbox from './Lightbox.jsx';
 
 const PenModel = lazy(() => import('./PenModel.jsx'));
@@ -132,17 +133,25 @@ export function Justification() {
       <div className="container">
         <SectionHead title={j.title} lead={j.lead} />
 
-        <div className="transform reveal">
-          <figure className="transform-photo">
+        <h3 className="just-part reveal">{j.part1}</h3>
+        <Scrolly />
+
+        <h3 className="just-part reveal">{j.part2}</h3>
+        <div className="transform transform-anim reveal">
+          <figure className="transform-photo transform-from">
             <img src={j.fromImg} alt="" loading="lazy" />
-            <figcaption><span>Estado actual</span>{j.from}</figcaption>
+            <figcaption><span>{j.fromTag}</span>{j.from}</figcaption>
           </figure>
-          <span className="transform-arrow" aria-hidden="true"><Icon name="arrowR" size={18} /></span>
+          <svg className="transform-link" viewBox="0 0 64 44" aria-hidden="true">
+            <path className="transform-link-line" pathLength="100" d="M4 22 H46 L56 15 M56 15 L56 29" />
+          </svg>
           <div className="transform-pill">{j.bridge}</div>
-          <span className="transform-arrow" aria-hidden="true"><Icon name="arrowR" size={18} /></span>
-          <figure className="transform-photo">
+          <svg className="transform-link" viewBox="0 0 64 44" aria-hidden="true">
+            <path className="transform-link-line" pathLength="100" d="M4 22 H46 L56 15 M56 15 L56 29" />
+          </svg>
+          <figure className="transform-photo transform-to">
             <img src={j.toImg} alt="" loading="lazy" />
-            <figcaption><span>Resultado esperado</span>{j.to}</figcaption>
+            <figcaption><span>{j.toTag}</span>{j.to}</figcaption>
           </figure>
         </div>
 

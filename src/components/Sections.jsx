@@ -1,27 +1,61 @@
 import { useState, useRef, useEffect, lazy, Suspense } from 'react';
 import * as C from '../data/content.js';
 import { Icon, SectionHead, Carousel, CountUp } from './ui.jsx';
+import Lightbox from './Lightbox.jsx';
 
 const PenModel = lazy(() => import('./PenModel.jsx'));
 
+// Galería del recorrido guiado: acordeón horizontal con hover (escritorio) o
+// fila con scroll-snap (táctil). Cada tarjeta abre el visor de imagen ampliada.
 export function Prototype() {
+  const [open, setOpen] = useState(-1);
+  const track = useRef(null);
+  const items = C.features;
+
+  // Las flechas del encabezado mueven el foco entre tarjetas: en escritorio eso
+  // amplía la tarjeta enfocada; en táctil desplaza la fila hasta ella.
+  const step = (dir) => {
+    const cards = track.current ? Array.from(track.current.querySelectorAll('.proto-card')) : [];
+    if (!cards.length) return;
+    const at = cards.indexOf(document.activeElement);
+    const next = at === -1
+      ? (dir > 0 ? 0 : cards.length - 1)
+      : (at + dir + cards.length) % cards.length;
+    cards[next].focus();
+  };
+
   return (
     <section id="prototipo" className="section">
       <div className="container">
-        <Carousel head={{ title: C.about.title, lead: C.about.lead }}>
-          {C.features.map((m) => (
-            <article key={m.title} className="photo-card">
+        <SectionHead title={C.about.title} lead={C.about.lead}>
+          <div className="arrows">
+            <button className="arrow" onClick={() => step(-1)} aria-label="Anterior"><Icon name="arrowL" size={20} /></button>
+            <button className="arrow" onClick={() => step(1)} aria-label="Siguiente"><Icon name="arrowR" size={20} /></button>
+          </div>
+        </SectionHead>
+        <div className="carousel proto-gallery reveal" ref={track}>
+          {items.map((m, i) => (
+            <button
+              key={m.title}
+              type="button"
+              className="photo-card proto-card"
+              aria-label={`Ampliar imagen: ${m.title}`}
+              onClick={() => setOpen(i)}
+            >
               <img src={m.img} alt="" loading="lazy" />
-              <div className="photo-card-text">
+              <span className="photo-card-text proto-card-text">
                 <span className="tag">{m.kicker}</span>
-                <h3>{m.title}</h3>
-                <p>{m.body}</p>
-              </div>
-            </article>
+                <span className="proto-card-title">{m.title}</span>
+                <span className="proto-card-body"><span>{m.body}</span></span>
+              </span>
+            </button>
           ))}
-        </Carousel>
+        </div>
         <p className="note reveal">{C.about.note}</p>
       </div>
+      {open >= 0 && (
+        <Lightbox items={items} index={open} onClose={() => setOpen(-1)} onIndexChange={setOpen} />
+      )}
     </section>
   );
 }

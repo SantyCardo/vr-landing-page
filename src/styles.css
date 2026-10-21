@@ -167,6 +167,111 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .photo-card h3 { font-size: 21px; font-weight: 500; }
 .photo-card p { font-size: 16px; opacity: 0.9; margin-top: 4px; }
 
+/* ---------- Galería del recorrido guiado (acordeón con hover + visor) ---------- */
+/* La tarjeta completa es un botón: kicker y título siempre visibles. */
+.proto-card { text-align: left; }
+.proto-card-text { display: block; }
+.proto-card-title {
+  display: block; font-size: 21px; font-weight: 500; line-height: 1.15; letter-spacing: -0.01em;
+}
+.proto-card-body { display: block; margin-top: 4px; font-size: 16px; line-height: 1.5; opacity: 0.9; }
+
+/* Escritorio con cursor: la fila funciona como acordeón horizontal.
+   La tarjeta bajo el cursor (o con el foco) gana ancho y las demás se contraen;
+   las seis caben sin scroll horizontal de página. */
+@media (hover: hover) and (pointer: fine) and (min-width: 1025px) {
+  .proto-gallery {
+    --proto-gap: 10px;
+    display: flex; gap: var(--proto-gap);
+    height: clamp(340px, 31vw, 520px);
+    overflow: visible; scroll-snap-type: none; padding-bottom: 0;
+  }
+  .proto-card {
+    flex: 1 1 0;
+    min-width: 96px;
+    height: 100%; aspect-ratio: auto;
+    transition: flex-grow .4s ease;
+  }
+  .proto-card:hover,
+  .proto-card:focus {
+    flex-grow: 2.6;
+  }
+  .proto-card:focus-visible { outline-offset: -4px; }
+  .proto-card-text { left: 14px; right: 14px; bottom: 14px; }
+  .proto-card-text .tag { font-size: 12px; padding: 3px 8px; margin-bottom: 8px; }
+  .proto-card-title { font-size: clamp(16px, 1.45vw, 21px); }
+  /* El texto se guarda en la tarjeta ampliada. */
+  .proto-card-body { display: grid; grid-template-rows: 0fr; margin-top: 0; transition: grid-template-rows .4s ease; }
+  .proto-card-body > span { display: block; overflow: hidden; opacity: 0; transition: opacity .3s ease; }
+  .proto-card:hover .proto-card-body,
+  .proto-card:focus .proto-card-body { grid-template-rows: 1fr; }
+  .proto-card:hover .proto-card-body > span,
+  .proto-card:focus .proto-card-body > span { opacity: 0.92; padding-top: 8px; }
+}
+
+/* ---------- Visor de imagen ampliada (lightbox) ---------- */
+.lightbox-overlay {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(0, 0, 0, 0.88);
+  padding: clamp(10px, 2.4vw, 32px);
+  display: flex; align-items: center; justify-content: center;
+  overscroll-behavior: contain;
+  animation: lightbox-fade .22s ease;
+}
+.lightbox {
+  position: relative; width: 100%; height: 100%;
+  display: flex; flex-direction: column; align-items: center;
+  gap: clamp(10px, 1.4vw, 18px);
+  color: #fff;
+  animation: lightbox-pop .26s ease;
+  /* El panel no intercepta clics: el espacio oscuro alrededor de la imagen
+     deja pasar el clic al overlay, que cierra el visor. */
+  pointer-events: none;
+}
+.lightbox-btn, .lightbox-img, .lightbox-caption { pointer-events: auto; }
+.lightbox:focus { outline: none; } /* el foco entra por código; el anillo se ve en los botones */
+.lightbox-btn {
+  display: grid; place-items: center;
+  width: 48px; height: 48px; border-radius: var(--pill);
+  border: 1px solid rgba(255, 255, 255, 0.45); color: #fff;
+  background: rgba(0, 0, 0, 0.35);
+  transition: background .2s ease, border-color .2s ease;
+}
+.lightbox-btn:hover, .lightbox-btn:focus-visible { background: rgba(255, 255, 255, 0.18); border-color: #fff; }
+.lightbox-btn:focus-visible { outline-color: #fff; }
+.lightbox-close { position: absolute; top: 0; right: 0; z-index: 2; }
+.lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); z-index: 2; }
+.lightbox-nav.is-prev { left: 0; }
+.lightbox-nav.is-next { right: 0; }
+.lightbox-figure {
+  flex: 1; min-height: 0; width: 100%; margin: 0;
+  display: grid; place-items: center;
+  padding-inline: clamp(0px, 3.5vw, 64px);
+}
+.lightbox-img {
+  width: auto; height: auto;
+  max-width: 100%; max-height: 100%;
+  object-fit: contain;
+  border-radius: var(--r);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+}
+.lightbox-caption { flex-shrink: 0; max-width: 62ch; text-align: center; }
+.lightbox-caption .tag { background: rgba(255, 255, 255, 0.16); border-color: rgba(255, 255, 255, 0.36); color: #fff; }
+.lightbox-caption h3 { font-size: clamp(20px, 1.9vw, 27px); font-weight: 500; letter-spacing: -0.01em; margin-top: 10px; }
+.lightbox-caption p { font-size: 17px; line-height: 1.5; margin-top: 6px; color: rgba(255, 255, 255, 0.84); }
+@keyframes lightbox-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes lightbox-pop { from { opacity: 0; transform: scale(.985); } to { opacity: 1; transform: none; } }
+@media (max-width: 560px) {
+  .lightbox-btn { width: 44px; height: 44px; }
+  .lightbox-caption p { font-size: 16px; }
+  .lightbox-img { border-radius: var(--r-sm); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .proto-card, .proto-card-body, .proto-card-body > span { transition: none; }
+  .lightbox-overlay, .lightbox { animation: none; }
+}
+
+
 .grid-3, .grid-4 { display: grid; gap: 12px; }
 .grid-3 { grid-template-columns: repeat(3, 1fr); }
 .grid-4 { grid-template-columns: repeat(4, 1fr); }

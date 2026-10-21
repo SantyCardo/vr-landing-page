@@ -32,7 +32,7 @@ El prototipo que presenta tiene:
 | Módulos de enseñanza | 5 |
 | Pasos narrados con subtítulos | 60 |
 | Exámenes (uno por módulo) | 5 |
-| Puntos de teletransporte | 13 |
+| Puntos de teletransporte | 15 |
 
 La página está escrita como presentación final del proyecto. Los valores de las pruebas internas de caja blanca, de la valoración con dos médicos (SUS e IVC) y del rendimiento por dispositivo se muestran con «—» y la etiqueta «Pendiente» hasta cargarlos en `content.js`.
 

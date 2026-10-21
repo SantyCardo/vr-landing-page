@@ -43,7 +43,7 @@ export const hero = {
     { value: '5', label: 'Módulos de enseñanza' },
     { value: '60', label: 'Pasos narrados con subtítulos' },
     { value: '5', label: 'Exámenes, uno por módulo' },
-    { value: '13', label: 'Puntos de teletransporte' },
+    { value: '15', label: 'Puntos de teletransporte' },
   ],
 };
 
@@ -65,7 +65,7 @@ export const features = [
   { title: 'Control por mirada', kicker: 'Interacción', img: '/img/m1_paso1_contexto.jpg',
     body: 'Una retícula y una barra que se llena al mirar. Los botones piden 1.5 s; «Salir», 2.5 s.' },
   { title: 'Teletransporte', kicker: 'Movimiento', img: '/img/teleport_cocina.jpg',
-    body: '13 puntos con color por cuarto y viñeta de confort, para moverse sin mareo.' },
+    body: '15 puntos con color por cuarto y viñeta de confort, para moverse sin mareo.' },
   { title: 'Pasos narrados', kicker: 'Contenido', img: '/img/m1_paso1.jpg',
     body: 'Cada paso une animación 3D, narración y subtítulos sincronizados con el audio.' },
   { title: 'Exámenes', kicker: 'Evaluación', img: '/img/examen_respuesta.png',

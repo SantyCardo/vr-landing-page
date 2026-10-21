@@ -2,6 +2,7 @@ import { useState, useRef, useEffect, lazy, Suspense } from 'react';
 import * as C from '../data/content.js';
 import { Icon, SectionHead, Carousel, CountUp } from './ui.jsx';
 import { Scrolly } from './Scrolly.jsx';
+import { Solution } from './Solution.jsx';
 import Lightbox from './Lightbox.jsx';
 
 const PenModel = lazy(() => import('./PenModel.jsx'));
@@ -127,24 +128,7 @@ export function Justification() {
         <h3 className="just-part reveal">{j.part1}</h3>
         <Scrolly />
 
-        <h3 className="just-part reveal">{j.part2}</h3>
-        <div className="transform transform-anim reveal">
-          <figure className="transform-photo transform-from">
-            <img src={j.fromImg} alt="" loading="lazy" />
-            <figcaption><span>{j.fromTag}</span>{j.from}</figcaption>
-          </figure>
-          <svg className="transform-link" viewBox="0 0 64 44" aria-hidden="true">
-            <path className="transform-link-line" pathLength="100" d="M4 22 H46 L56 15 M56 15 L56 29" />
-          </svg>
-          <div className="transform-pill">{j.bridge}</div>
-          <svg className="transform-link" viewBox="0 0 64 44" aria-hidden="true">
-            <path className="transform-link-line" pathLength="100" d="M4 22 H46 L56 15 M56 15 L56 29" />
-          </svg>
-          <figure className="transform-photo transform-to">
-            <img src={j.toImg} alt="" loading="lazy" />
-            <figcaption><span>{j.toTag}</span>{j.to}</figcaption>
-          </figure>
-        </div>
+        <Solution />
 
         <ol className="goals reveal">
           {j.goals.map((g, i) => (

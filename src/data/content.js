@@ -117,15 +117,7 @@ export const problem = {
 export const justification = {
   title: ['Innovación tecnológica', 'al servicio de la salud pública.'],
   lead: 'Transformar la educación en insulinización a través de la inmersión, el acceso y la evidencia clínica.',
-  from: 'Mala educación en insulinización',
-  to: 'Mejor cumplimiento del tratamiento',
-  fromImg: imgAnsiedad,
-  toImg: '/img/cocina_general.jpg',
-  bridge: 'Prototipo inmersivo en realidad virtual',
-  fromTag: 'Estado actual',
-  toTag: 'Resultado esperado',
   part1: 'El problema en cifras',
-  part2: 'Del problema a la solución',
   steps: [
     'La diabetes mellitus es un problema de salud mundial. Enseñar bien la técnica de insulinización es una forma concreta de acompañar a quienes la viven.',
     'En Colombia, una parte importante de la población adulta vive con diabetes mellitus. Una educación clara en la técnica importa en el día a día.',
@@ -142,6 +134,24 @@ export const justification = {
     { tag: 'Innovación', icon: 'cube', title: 'Convergencia tecnológica', body: 'Software educativo inmersivo que fortalece la formación, mitiga la desinformación y prioriza el acceso para poblaciones de riesgo.' },
     { tag: 'Formación', icon: 'code', title: 'Aplicación en sistemas', body: 'Diseño de software, interacción humano-computador y prototipado inmersivo con enfoque social para educación en salud.' },
   ],
+};
+
+export const solution = {
+  eyebrow: 'La solución',
+  title: ['Un simulador de realidad virtual', 'para practicar la técnica.'],
+  steps: [
+    { tag: 'El problema', title: 'Se enseña poco y sin verificar', body: 'La educación llega a una minoría de los pacientes, en una sola sesión de unos veinte minutos y sin verificar la comprensión.' },
+    { tag: 'La solución', title: 'Un simulador en el celular', body: 'Insulin·VR convierte un teléfono Android y un visor tipo Google Cardboard en un simulador. Se practica en una casa virtual, sin conexión a internet.' },
+    { tag: 'El entrenamiento', title: 'Guiado paso a paso', body: 'Cinco módulos con 60 pasos narrados y subtítulos. El paciente se mueve con la mirada y el teletransporte, responde un examen con imágenes al final de cada módulo y ve su avance en un árbol de progreso.' },
+    { tag: 'La verificación', title: 'Probado por el equipo y por médicos', body: 'Pruebas internas de caja blanca del equipo y una valoración básica con dos médicos de la fundación clínica. Madurez tecnológica: TRL 3 actual, TRL 4 proyectado.' },
+  ],
+  screens: [
+    { img: '/img/cocina_general.jpg', label: 'Casa virtual' },
+    { img: '/img/m1_paso1.jpg', label: 'Paso narrado' },
+    { img: '/img/examen_pregunta.png', label: 'Examen por imágenes' },
+    { img: '/img/arbol_avances_m1.png', label: 'Árbol de progreso' },
+  ],
+  chips: hero.stats,
 };
 
 export const question = {

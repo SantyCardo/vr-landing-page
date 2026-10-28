@@ -7,6 +7,14 @@ import Lightbox from './Lightbox.jsx';
 
 const PenModel = lazy(() => import('./PenModel.jsx'));
 
+// Diagramas agrupados por `group` en el orden de primera aparición; `index` es la posición global para el visor.
+const DIAGRAM_GROUPS = [];
+C.diagrams.items.forEach((d, index) => {
+  let g = DIAGRAM_GROUPS.find((x) => x.name === d.group);
+  if (!g) { g = { name: d.group, items: [] }; DIAGRAM_GROUPS.push(g); }
+  g.items.push({ ...d, index });
+});
+
 // Galería del recorrido guiado: acordeón horizontal con hover (escritorio) o
 // fila con scroll-snap (táctil). Cada tarjeta abre el visor de imagen ampliada.
 export function Prototype() {
@@ -55,7 +63,7 @@ export function Prototype() {
         </div>
         <div className="demo-video reveal" role="region" aria-label={C.demo.title}>
           {/* DEMO: para montar el video, reemplaza el div.demo-placeholder por
-              <video src="/video/demo.mp4" controls playsInline poster="/img/cocina_general.jpg" />
+              <video src="/video/demo.mp4" controls playsInline poster="/img/capturas/cocina_general.webp" />
               o por un <iframe src="..." title={C.demo.title} allowFullScreen />.
               El contenedor mantiene la proporción 16:9. */}
           <div className="demo-placeholder">
@@ -77,15 +85,15 @@ export function Modules() {
   return (
     <section id="modulos" className="section">
       <div className="container">
-        <SectionHead title={['Cinco módulos,', 'un examen al final de cada uno.']} lead={m.lead} />
+        <SectionHead title={['Cinco módulos,', 'cinco partes en cada uno.']} lead={m.lead} />
         <div className="modules">
-          <img className="modules-map reveal" src="/img/plano_casa.jpg" alt="Vista superior de la vivienda virtual con los puntos de teletransporte" loading="lazy" />
+          <img className="modules-map reveal" src={m.map.img} alt={m.map.alt} loading="lazy" />
           <ol className="module-list">
             {m.items.map((it) => (
               <li key={it.id} className="reveal">
                 <span className="module-id">{it.id}</span>
                 <div><h3>{it.title}</h3><p>{it.body}</p></div>
-                <span className="muted module-steps">{it.steps} pasos</span>
+                <span className="muted module-steps">{it.parts} partes</span>
               </li>
             ))}
             <li className="reveal module-pending"><span className="module-id">+</span><div><p>{m.extra}</p></div></li>
@@ -242,6 +250,7 @@ export function Methodology() {
 }
 
 export function Architecture() {
+  const [openDiagram, setOpenDiagram] = useState(-1);
   const a = C.architecture;
   const listRef = useRef(null);
 
@@ -303,7 +312,30 @@ export function Architecture() {
             <Suspense fallback={null}><PenModel progressRef={listRef} /></Suspense>
           </aside>
         </div>
+
+        <h3 className="res-group arch-diagrams-title reveal">{C.diagrams.title}</h3>
+        {DIAGRAM_GROUPS.map((g) => (
+          <div key={g.name} className="reveal">
+            <h4 className="res-subgroup">{g.name}</h4>
+            <div className="res-figs">
+              {g.items.map((d) => (
+                <button key={d.img} type="button" className="res-fig" aria-label={`Ampliar diagrama: ${d.title}`} onClick={() => setOpenDiagram(d.index)}>
+                  <img src={d.img} alt={d.alt} loading="lazy" decoding="async" />
+                  <strong>{d.title}</strong>
+                  <span>{d.caption}</span>
+                  <small>Fuente: {C.diagrams.source}</small>
+                </button>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
+      {openDiagram >= 0 && (
+        <Lightbox
+          items={C.diagrams.items.map((d) => ({ img: d.img, alt: d.alt, kicker: d.group, title: d.title, body: `${d.caption} Fuente: ${C.diagrams.source}.` }))}
+          index={openDiagram} onClose={() => setOpenDiagram(-1)} onIndexChange={setOpenDiagram}
+        />
+      )}
     </section>
   );
 }
@@ -326,12 +358,41 @@ export function Stack() {
   );
 }
 
+// Estado de cada indicador: el texto siempre va; el símbolo y el borde dan una segunda señal además del color.
+const WB_STATE = {
+  'Alcanzado': ['is-ok', '✓'],
+  'No alcanzado': ['is-no', '✕'],
+  'Parcial': ['is-partial', '◐'],
+};
+const REQ_STATE = {
+  'Cumple': ['is-ok', '✓'],
+  'Cumple parcialmente': ['is-partial', '◐'],
+  'No cumple': ['is-no', '✕'],
+  'Referencia alcanzada': ['is-ok', '✓'],
+};
+
+function StateBadge({ map, state }) {
+  const [cls, sym] = map[state] ?? ['is-partial', '●'];
+  return <span className={`res-state ${cls}`}><span aria-hidden="true">{sym} </span>{state}</span>;
+}
+
+// Gráficos agrupados por `group` en el orden de primera aparición; `index` es la posición global para el visor.
+const CHART_GROUPS = [];
+C.results.charts.forEach((c, index) => {
+  let g = CHART_GROUPS.find((x) => x.name === c.group);
+  if (!g) { g = { name: c.group, items: [] }; CHART_GROUPS.push(g); }
+  g.items.push({ ...c, index });
+});
+
 export function Results() {
   const r = C.results;
+  const [open, setOpen] = useState(-1);
+  const lightbox = r.charts.map((c) => ({ img: c.img, alt: c.alt, kicker: c.group, title: c.title, body: `${c.caption} Fuente: ${r.source}.` }));
+
   return (
     <section id="resultados" className="section">
       <div className="container">
-        <SectionHead title={['Resultados', 'del prototipo.']} lead="Verificación técnica, rendimiento en dispositivos y valoración básica con dos médicos." />
+        <SectionHead title={['Resultados', 'del prototipo.']} lead={r.lead} />
         <div className="grid-4">
           {r.verified.map((v) => (
             <article key={v.label} className="card stat reveal">
@@ -342,52 +403,84 @@ export function Results() {
           ))}
         </div>
 
-        <article className="card reveal whitebox">
-          <span className="tag">{r.whitebox.status} · Caja blanca</span>
-          <h3>{r.whitebox.title}</h3>
-          <p>{r.whitebox.body}</p>
-          <div className="validation whitebox-items">
-            {r.whitebox.items.map((v) => (
-              <div key={v.name} className="validation-item">
-                <span className="muted">{v.what}</span>
-                <strong>{v.name}</strong>
-                <span className="validation-value">{v.value}</span>
-                <span className="muted">Umbral {v.target}</span>
-              </div>
-            ))}
-          </div>
-        </article>
-
-        <div className="results-split">
+        <div className="res-stack">
           <article className="card reveal">
-            <span className="tag">Rendimiento · {r.performance.device}</span>
-            <img className="perf-img" src={r.performance.img} alt="Tiempo de cuadro por segmento del recorrido en el teléfono" loading="lazy" />
-            <p>{r.performance.body}</p>
-            <h3 className="h3 perf-pending">Rendimiento por dispositivo</h3>
-            <table className="pending-table">
-              <thead><tr><th>Dispositivo</th><th>FPS medio</th><th>FPS mínimo</th></tr></thead>
-              <tbody>{r.performance.devices.map((d, i) => <tr key={i}><td>{d.name}</td><td>{d.avg}</td><td>{d.min}</td></tr>)}</tbody>
-            </table>
-          </article>
-          <article className="card reveal">
-            <span className="tag">{r.validation.status} · Dos médicos</span>
-            <h3>{r.validation.title}</h3>
-            <p>{r.validation.body}</p>
-            <div className="validation">
-              {r.validation.items.map((v) => (
-                <div key={v.name} className="validation-item">
+            <span className="tag">{r.whitebox.tag}</span>
+            <h3>{r.whitebox.title}</h3>
+            <p>{r.whitebox.body}</p>
+            <div className="res-items">
+              {r.whitebox.items.map((v) => (
+                <div key={v.name} className="res-item">
                   <span className="muted">{v.what}</span>
                   <strong>{v.name}</strong>
-                  <span className="validation-value">{v.value}</span>
+                  <span className="res-value">{v.value}</span>
+                  <span className="muted">Umbral {v.target}</span>
+                  <StateBadge map={WB_STATE} state={v.state} />
+                </div>
+              ))}
+            </div>
+          </article>
+
+          {CHART_GROUPS.map((g) => (
+            <div key={g.name} className="reveal">
+              <h3 className="res-group">{g.name}</h3>
+              <div className="res-figs">
+                {g.items.map((c) => (
+                  <button key={c.img} type="button" className="res-fig" aria-label={`Ampliar gráfico: ${c.title}`} onClick={() => setOpen(c.index)}>
+                    <img src={c.img} alt={c.alt} loading="lazy" decoding="async" />
+                    <strong>{c.title}</strong>
+                    <span>{c.caption}</span>
+                    <small>Fuente: {r.source}</small>
+                  </button>
+                ))}
+              </div>
+            </div>
+          ))}
+
+          <article className="card reveal">
+            <span className="tag">{r.validation.tag}</span>
+            <h3>{r.validation.title}</h3>
+            <p>{r.validation.body}</p>
+            <div className="res-items is-two">
+              {r.validation.items.map((v) => (
+                <div key={v.name} className="res-item">
+                  <span className="muted">{v.what}</span>
+                  <strong>{v.name}</strong>
+                  <span className="res-value">{v.value}</span>
                   <span className="muted">{v.goal}</span>
                 </div>
               ))}
             </div>
-            <p className="muted">{r.validation.improvements.label}: {r.validation.improvements.value}</p>
-            <p className="muted">{r.validation.limitation}</p>
+            <p className="muted">{r.validation.note}</p>
+          </article>
+
+          <article className="card reveal">
+            <h3>{r.requirements.title}</h3>
+            <p>{r.requirements.body}</p>
+            {r.requirements.groups.map((g) => (
+              <div key={g.state} className="res-req-row">
+                <StateBadge map={REQ_STATE} state={g.state} />
+                <div className="res-chips">
+                  {g.items.map((code) => <span key={code} className="res-chip">{code}</span>)}
+                </div>
+              </div>
+            ))}
+            <ul className="res-limits">
+              {r.requirements.details.map((t) => <li key={t}>{t}</li>)}
+            </ul>
+          </article>
+
+          <article className="card reveal">
+            <h3>{r.limitations.title}</h3>
+            <ul className="res-limits">
+              {r.limitations.items.map((t) => <li key={t}>{t}</li>)}
+            </ul>
           </article>
         </div>
       </div>
+      {open >= 0 && (
+        <Lightbox items={lightbox} index={open} onClose={() => setOpen(-1)} onIndexChange={setOpen} />
+      )}
     </section>
   );
 }
@@ -494,7 +587,7 @@ export function Team() {
 function Closing() {
   return (
     <section className="closing">
-      <img className="closing-bg" src="/img/teleport_cocina.jpg" alt="" loading="lazy" />
+      <img className="closing-bg" src="/img/capturas/teleport_cocina.webp" alt="" loading="lazy" />
       <div className="closing-veil" />
       <div className="container closing-inner">
         <div>

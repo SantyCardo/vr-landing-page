@@ -30,9 +30,9 @@ El prototipo que presenta tiene:
 | Elemento | Cantidad |
 |---|---|
 | Módulos de enseñanza | 5 |
-| Pasos narrados con subtítulos | 60 |
-| Exámenes (uno por módulo) | 5 |
-| Puntos de teletransporte | 15 |
+| Partes por módulo, con barra de partes | 5 |
+| Preguntas del examen general | 10 |
+| Puntos de teletransporte | 17 |
 
 La página está escrita como presentación final del proyecto. Los valores de las pruebas internas de caja blanca, de la valoración con dos médicos (SUS e IVC) y del rendimiento por dispositivo se muestran con «—» y la etiqueta «Pendiente» hasta cargarlos en `content.js`.
 

@@ -41,9 +41,9 @@ export const hero = {
   lead: 'Prototipo educativo inmersivo para aprender la técnica de insulinización con el teléfono del paciente y un visor de cartón. Cinco módulos guiados en una vivienda virtual, sin conexión a internet.',
   stats: [
     { value: '5', label: 'Módulos de enseñanza' },
-    { value: '60', label: 'Pasos narrados con subtítulos' },
-    { value: '5', label: 'Exámenes, uno por módulo' },
-    { value: '15', label: 'Puntos de teletransporte' },
+    { value: '5', label: 'Partes por módulo, con barra de partes' },
+    { value: '10', label: 'Preguntas en un examen general' },
+    { value: '17', label: 'Puntos de teletransporte' },
   ],
 };
 
@@ -60,7 +60,7 @@ export const demo = {
 };
 
 export const features = [
-  { title: 'Vivienda virtual', kicker: 'Entorno', img: '/img/cocina_general.jpg',
+  { title: 'Vivienda virtual', kicker: 'Entorno', img: '/img/capturas/cocina_general.webp',
     body: 'Cuatro espacios. La cocina concentra los cinco módulos; nevera, gabinetes y estufa dan el contexto real.' },
   { title: 'Sala de estar', kicker: 'Entorno', img: '/img/sala_estar.webp',
     body: 'Sillones, una alfombra, estanterías y una pantalla grande en la pared.' },
@@ -68,28 +68,31 @@ export const features = [
     body: 'Una mesa con sillas, cuadros y estanterías para repasar lo aprendido.' },
   { title: 'Espacios conectados', kicker: 'Entorno', img: '/img/espacios_conectados.webp',
     body: 'La sala de estudio se abre a la sala de estar, con pizarra, corcho y el panel «Mi progreso» al fondo.' },
-  { title: 'Control por mirada', kicker: 'Interacción', img: '/img/m1_paso1_contexto.jpg',
-    body: 'Una retícula y una barra que se llena al mirar. Los botones piden 1.5 s; «Salir», 2.5 s.' },
-  { title: 'Teletransporte', kicker: 'Movimiento', img: '/img/teleport_cocina.jpg',
-    body: '15 puntos con color por cuarto y viñeta de confort, para moverse sin mareo.' },
-  { title: 'Pasos narrados', kicker: 'Contenido', img: '/img/m1_paso1.jpg',
-    body: 'Cada paso une animación 3D, narración y subtítulos sincronizados con el audio.' },
-  { title: 'Exámenes', kicker: 'Evaluación', img: '/img/examen_respuesta.png',
-    body: 'Uno por módulo. El resultado se muestra con color y con texto para quien distingue mal los colores.' },
-  { title: 'Árbol de avances', kicker: 'Progreso', img: '/img/arbol_avances_escena.webp',
-    body: 'Cada módulo y paso aparece como hecho, disponible o bloqueado. El progreso se guarda en el teléfono.' },
+  { title: 'Intro y tutorial', kicker: 'Inicio', img: '/img/capturas/tutorial_estacion_inicio.webp',
+    body: 'Una introducción de unos 13 segundos y un tutorial de 10 pasos en 4 estaciones enseñan a usar la mirada y el teletransporte.' },
+  { title: 'Control por mirada', kicker: 'Interacción', img: '/img/capturas/tutorial_t4_lecciones.webp',
+    body: 'Una retícula y una barra que se llena al mirar. Los botones y las opciones piden 1,5 s; «Salir» y los teletransportes, 2,5 s.' },
+  { title: 'Teletransporte', kicker: 'Movimiento', img: '/img/capturas/teleport_cocina.webp',
+    body: '17 puntos (13 en la Cocina y 4 en el tutorial) con color por cuarto y viñeta de confort, para moverse sin mareo.' },
+  { title: 'Barra de partes', kicker: 'Contenido', img: '/img/capturas/m1_c11_nevera_barra.webp',
+    body: 'Cada módulo tiene 5 partes narradas. Una barra muestra en cuál se va y permite repetir o finalizar.' },
+  { title: 'Examen general', kicker: 'Evaluación', img: '/img/capturas/examen_respuesta_correcta.webp',
+    body: 'Un solo examen de 10 preguntas, que se aprueba con 60 % o más. La respuesta se marca con color y con texto.' },
+  { title: 'Árbol de avances', kicker: 'Progreso', img: '/img/capturas/modal_mi_progreso.webp',
+    body: 'Cada módulo y paso aparece como hecho, disponible o bloqueado, con el examen general al final. El progreso se guarda en el teléfono.' },
 ];
 
 export const modules = {
-  lead: 'Cada módulo se desbloquea al completar el anterior y termina con su examen; se aprueba con el 60 % o más.',
+  map: { img: '/img/capturas/plano_cocina_sala_cenital.webp', alt: 'Vista superior de la cocina y la sala de la vivienda virtual' },
+  lead: 'Cada módulo tiene 5 partes, con una barra que muestra en cuál se va. Hay un único examen general de 10 preguntas.',
   items: [
-    { id: 'M1', title: 'Extracción e inspección', steps: 17, body: 'Sacar la insulina de la nevera y explorar cinco cajas de insulina.' },
-    { id: 'M2', title: 'Preparación e higiene', steps: 17, body: 'Preparar el lapicero y las manos antes de la aplicación.' },
-    { id: 'M3', title: 'Mapeo, rotación y asepsia', steps: 10, body: 'Zonas de inyección y rotación con el método de las manecillas del reloj.' },
-    { id: 'M4', title: 'Técnica de inyección', steps: 10, body: 'Aplicación paso a paso con el lapicero SoloStar.' },
-    { id: 'M5', title: 'Desecho seguro y conservación', steps: 6, body: 'Desechar la aguja y conservar la insulina después de usarla.' },
+    { id: 'M1', title: 'Extracción e inspección', parts: 5, body: 'Sacar la insulina de la nevera y explorar cinco cajas de insulina.' },
+    { id: 'M2', title: 'Preparación e higiene', parts: 5, body: 'Preparar el lapicero y las manos antes de la aplicación.' },
+    { id: 'M3', title: 'Mapeo, rotación y asepsia', parts: 5, body: 'Zonas de inyección y rotación con el método de las manecillas del reloj.' },
+    { id: 'M4', title: 'Técnica de inyección', parts: 5, body: 'Aplicación paso a paso con el lapicero SoloStar.' },
+    { id: 'M5', title: 'Desecho seguro y conservación', parts: 5, body: 'Desechar la aguja y conservar la insulina después de usarla.' },
   ],
-  extra: 'Tutorial inicial para aprender a usar la mirada, la botonera y el teletransporte.',
+  extra: 'Tutorial de 10 pasos para aprender a usar la mirada, la botonera y el teletransporte.',
 };
 
 // Cifras tomadas del documento del proyecto (planteamiento del problema), con su fuente.
@@ -148,14 +151,14 @@ export const solution = {
   steps: [
     { tag: 'El problema', title: 'Se enseña poco y sin verificar', body: 'La educación llega a una minoría de los pacientes, en una sola sesión de unos veinte minutos y sin verificar la comprensión.' },
     { tag: 'La solución', title: 'Un simulador en el celular', body: 'Insulin·VR convierte un teléfono Android y un visor tipo Google Cardboard en un simulador. Se practica en una casa virtual, sin conexión a internet.' },
-    { tag: 'El entrenamiento', title: 'Guiado paso a paso', body: 'Cinco módulos con 60 pasos narrados y subtítulos. El paciente se mueve con la mirada y el teletransporte, responde un examen con imágenes al final de cada módulo y ve su avance en un árbol de progreso.' },
+    { tag: 'El entrenamiento', title: 'Guiado paso a paso', body: 'Cinco módulos de cinco partes cada uno, con narración, subtítulos y una barra que muestra en cuál se va. El paciente se mueve con la mirada y el teletransporte, responde un examen general de 10 preguntas y ve su avance en un árbol de progreso.' },
     { tag: 'La verificación', title: 'Probado por el equipo y por médicos', body: 'Pruebas internas de caja blanca del equipo y una valoración básica con dos médicos de la fundación clínica. Madurez tecnológica: TRL 3 actual, TRL 4 proyectado.' },
   ],
   screens: [
-    { img: '/img/cocina_general.jpg', label: 'Casa virtual' },
-    { img: '/img/m1_paso1.jpg', label: 'Paso narrado' },
-    { img: '/img/examen_pregunta.png', label: 'Examen por imágenes' },
-    { img: '/img/arbol_avances_m1.png', label: 'Árbol de progreso' },
+    { img: '/img/capturas/cocina_general.webp', label: 'Casa virtual' },
+    { img: '/img/capturas/m1_c11_nevera_barra.webp', label: 'Barra de partes' },
+    { img: '/img/capturas/examen_respuesta_correcta.webp', label: 'Examen general' },
+    { img: '/img/capturas/modal_mi_progreso.webp', label: 'Árbol de progreso' },
   ],
   chips: hero.stats,
 };
@@ -206,48 +209,110 @@ export const stack = [
   { name: 'JSON local', role: 'Persistencia', icon: 'shield', body: 'Progreso en la carpeta privada de la app, con respaldo y sin datos personales.' },
 ];
 
+// Resultados de la prueba de caja blanca (28 de octubre de 2026) y de la valoración de expertos (21 a 26 de octubre).
+// Todos los datos salen del informe de pruebas; no agregar cifras que no estén allí.
 export const results = {
+  lead: 'Prueba de caja blanca del 28 de octubre de 2026 en 11 dispositivos Android, y valoración de expertos entre el 21 y el 26 de octubre.',
   verified: [
-    { metric: '36', label: 'Requerimientos', body: 'Clínicos, educativos, funcionales y no funcionales, de dos entrevistas con médicos internistas.' },
-    { metric: '35/35', label: 'Pruebas superadas', body: 'Progreso, árbol, teletransporte, exámenes y botonera, ejecutadas en el editor.' },
-    { metric: '15', label: 'Defectos corregidos', body: 'Ninguno abierto al cierre de los incrementos.' },
-    { metric: 'TRL 3', label: 'Madurez tecnológica', body: 'Nivel actual. Se proyecta TRL 4 al validar el APK en teléfonos Android con visor tipo Cardboard.' },
+    { metric: '11', label: 'Dispositivos Android', body: 'Versión 0.6.3 del APK, firmado y de 133 MB. Todas las sesiones se completaron.' },
+    { metric: '37,2', label: 'FPS medio', body: 'Mediana de 35,6 y rango de 10,23 a 59,68. Ocho de once dispositivos llegan a 30 FPS y tres no.' },
+    { metric: '87,2 %', label: 'Casos aprobados', body: '95 de 109 casos. No se alcanzó el umbral del 95 %; los casos críticos aprobaron al 100 % y no hubo excepciones.' },
+    { metric: '74,2', label: 'SUS medio', body: 'Puntajes de 77,5; 75,0 y 70,0. Se alcanzó la referencia de 70, sobre la versión anterior al rediseño.' },
   ],
-  performance: {
-    device: 'Samsung Galaxy A56',
-    body: 'Un recorrido automático por los cinco módulos y exámenes arrancó a 57 FPS y bajó a unos 30 FPS cuando el teléfono se calentó. El costo está en el render, con cerca de 1.6 millones de triángulos por cuadro; scripts y animaciones ocupan menos de 0.3 ms.',
-    img: '/img/perfil_tiempo_cuadro.png',
-    devices: [
-      { name: 'Samsung Galaxy A56', avg: '—', min: '—' },
-      { name: '—', avg: '—', min: '—' },
-      { name: '—', avg: '—', min: '—' },
-    ],
-  },
-  // Umbrales propuestos por el equipo (campo `target`); aún sin confirmar. Editar aquí si cambian.
+
+  // Prueba interna de caja blanca. `target` es el umbral de aceptación y `state` dice si se alcanzó.
   whitebox: {
-    title: 'Pruebas internas de caja blanca',
-    body: 'Las hace el equipo y de ellas sale la estadística principal. Cada indicador muestra su umbral de aceptación; los valores se cargan cuando estén medidos.',
-    status: 'Pendiente',
+    title: 'Prueba de caja blanca',
+    tag: '28 de octubre de 2026',
+    body: 'La hizo el equipo con el APK 0.6.3 en 11 dispositivos Android: diez casos de prueba (C-01 a C-10) más los 17 teleports, con 109 casos ejecutados en total. Cada indicador muestra su valor y el umbral de aceptación.',
     items: [
-      { name: 'Aprobación global', what: 'Casos de prueba superados', value: '—', target: '≥ 95 %' },
-      { name: 'Casos críticos', what: 'Casos críticos superados', value: '—', target: '100 %' },
-      { name: 'Cobertura', what: 'Requerimientos cubiertos (de 36)', value: '—', target: '100 %' },
-      { name: 'Defectos críticos abiertos', what: 'Al cierre de las pruebas', value: '—', target: '0' },
-      { name: 'FPS medio', what: 'Samsung Galaxy A56 (diseño: 60 FPS)', value: '—', target: '≥ 30' },
-      { name: 'Densidad de defectos', what: 'Descriptiva, entre ciclos', value: '—', target: 'Decreciente' },
+      { name: 'Aprobación global', what: '95 de 109 casos ejecutados', value: '87,2 %', target: '≥ 95 %', state: 'No alcanzado' },
+      { name: 'Casos críticos', what: 'Casos críticos aprobados', value: '100 %', target: '100 %', state: 'Alcanzado' },
+      { name: 'Excepciones', what: 'Durante las sesiones', value: '0', target: '0', state: 'Alcanzado' },
+      { name: 'Cobertura por sesión', what: 'Requerimientos cubiertos de los 36 del anteproyecto', value: '11 a 12', target: '36', state: 'Parcial' },
+      { name: 'FPS medio', what: '11 dispositivos (diseño: 60 FPS)', value: '37,2', target: '≥ 30', state: 'Alcanzado' },
+      { name: 'Dispositivos con 30 FPS', what: 'FPS medio del recorrido completo', value: '8 de 11', target: '11 de 11', state: 'No alcanzado' },
     ],
   },
-  // Valoración básica con dos médicos: descriptiva, sin inferencia estadística.
+
+  // Lectura de los gráficos. Todos llevan la misma fuente.
+  source: 'Elaboración propia (2026)',
+  charts: [
+    { group: 'Rendimiento', img: '/img/graficos/fps_dispositivos.png',
+      alt: 'Barras horizontales con el FPS medio de cada uno de los 11 dispositivos, con líneas en 30 y 60 FPS',
+      title: 'FPS medio por dispositivo',
+      caption: 'Ocho de once dispositivos superan los 30 FPS; ninguno sostiene los 60 y tres se acercan.' },
+    { group: 'Rendimiento', img: '/img/graficos/fps_escenas_dispositivos.png',
+      alt: 'FPS por escena y por dispositivo en los 11 dispositivos',
+      title: 'FPS por escena',
+      caption: 'La Cocina es la escena más lenta en los 11 dispositivos.' },
+    { group: 'Rendimiento', img: '/img/graficos/fps_series.png',
+      alt: 'Series de FPS en el tiempo de la mejor, una intermedia y la peor sesión',
+      title: 'FPS en el tiempo',
+      caption: 'Comparación entre la mejor, una intermedia y la peor sesión.' },
+    { group: 'Recursos', img: '/img/graficos/memoria_dispositivos.png',
+      alt: 'Memoria máxima usada en cada dispositivo',
+      title: 'Memoria máxima',
+      caption: 'La memoria máxima va de 507 a 1250 MB.' },
+    { group: 'Recursos', img: '/img/graficos/temperatura_dispositivos.png',
+      alt: 'Aumento de temperatura durante la sesión en cada dispositivo',
+      title: 'Temperatura',
+      caption: 'La temperatura sube entre 0,6 y 10,0 °C en 10 dispositivos.' },
+    { group: 'Defectos', img: '/img/graficos/avisos_d01.png',
+      alt: 'Sesiones con el aviso D-01 según la GPU del dispositivo',
+      title: 'Aviso D-01 por GPU',
+      caption: 'El aviso de texturas multisample (D-01) aparece en 6 de 11 sesiones y en ninguna con GPU Mali.' },
+    { group: 'Valoración de expertos', img: '/img/graficos/sus_puntaje.png',
+      alt: 'Puntajes SUS de las tres evaluaciones y su media',
+      title: 'Puntaje SUS',
+      caption: 'Los puntajes son 77,5; 75,0 y 70,0, con media de 74,2.' },
+    { group: 'Valoración de expertos', img: '/img/graficos/sus_items.png',
+      alt: 'Respuesta a cada ítem del cuestionario SUS',
+      title: 'SUS por ítem',
+      caption: 'Respuesta a cada ítem del cuestionario de usabilidad.' },
+    { group: 'Valoración de expertos', img: '/img/graficos/ivc_calificaciones.png',
+      alt: 'Calificaciones de los dos médicos en los 10 elementos del I-CVI',
+      title: 'Validez de contenido',
+      caption: 'El I-CVI es de 1,00 en los 10 elementos, con acuerdo de los dos médicos.' },
+  ],
+
+  // Valoración de expertos del 21 al 26 de octubre: descriptiva, sin inferencia estadística.
   validation: {
-    title: 'Valoración básica con dos médicos',
-    body: 'Los dos médicos de la fundación clínica usan el APK con el visor y responden dos instrumentos. Con n = 2 los datos son descriptivos: puntaje por evaluador, promedio, rango y acuerdo, sin inferencia estadística. Además recomiendan mejoras.',
-    status: 'Pendiente',
-    limitation: 'Limitación: la muestra es de dos médicos, por lo que los resultados no se generalizan.',
+    title: 'Valoración de expertos',
+    tag: 'Del 21 al 26 de octubre de 2026',
+    body: 'La escala SUS (usabilidad) la respondieron tres evaluadores: dos médicos y un evaluador no médico. El índice de validez de contenido (I-CVI) lo calificaron solo los dos médicos. Los datos se reportan de forma descriptiva, sin inferencia estadística.',
     items: [
-      { name: 'SUS', what: 'Usabilidad · 10 ítems, escala 1–5', value: '—', goal: 'Referencia ≥ 70' },
-      { name: 'IVC', what: 'Validez del contenido · 10 elementos, relevancia y claridad en escala 1–4', value: '—', goal: 'I-CVI 1.00 (acuerdo 2/2)' },
+      { name: 'SUS', what: 'Usabilidad · tres evaluadores: 77,5; 75,0 y 70,0', value: '74,2', goal: 'Referencia ≥ 70 · alcanzada' },
+      { name: 'I-CVI', what: 'Validez de contenido · 10 elementos, dos médicos', value: '1,00', goal: 'Referencia 1,00 · alcanzada en los 10' },
     ],
-    improvements: { label: 'Mejoras recomendadas', value: '—' },
+    note: 'Las dos valoraciones se hicieron sobre la versión anterior al rediseño del prototipo.',
+  },
+
+  // Avance medido con evidencia por requerimiento (no con porcentajes de avance).
+  requirements: {
+    title: 'Cumplimiento por requerimiento',
+    body: 'El avance se mide con la evidencia de cada requerimiento.',
+    details: [
+      'RNF-05, accesibilidad visual: solo se midió la Cocina, con 38 de 56 textos con contraste de al menos 4,5:1. Faltan la Intro, el Tutorial y la prueba en el teléfono.',
+      'RNF-02, rendimiento: los triángulos de la escena Cocina son 1 607 825 frente al límite de 25 mil; es un tope medido en el Editor, no por cuadro.',
+    ],
+    groups: [
+      { state: 'Cumple', items: ['RF-01', 'RF-07', 'RE-04', 'RE-05', 'RE-06', 'RNF-03'] },
+      { state: 'Cumple parcialmente', items: ['RF-02', 'RF-04', 'RF-05', 'RF-09', 'RE-09', 'RNF-04', 'RNF-05 (solo Cocina)', 'RNF-06'] },
+      { state: 'No cumple', items: ['RNF-02 (rendimiento)'] },
+      { state: 'Referencia alcanzada', items: ['RNF-07', 'RNF-08'] },
+    ],
+  },
+
+  // Limitaciones que se dicen con honestidad.
+  limitations: {
+    title: 'Limitaciones',
+    items: [
+      'No hubo pruebas con un visor Cardboard anotado.',
+      'No se probó en Android 8 ni en Android 9.',
+      'La tuerca y la X no se probaron con visor.',
+      'El SUS y el I-CVI corresponden a la versión anterior al rediseño.',
+    ],
   },
 };
 
@@ -309,7 +374,7 @@ export const footer = {
     { title: 'Enlaces', links: nav },
     { title: 'Módulos', links: [
       ...modules.items.map((m) => ({ href: '#modulos', label: m.title })),
-      { href: '#prototipo', label: 'Exámenes' },
+      { href: '#prototipo', label: 'Examen general' },
       { href: '#prototipo', label: 'Árbol de avances' },
     ] },
     { title: 'Proyecto', links: [
@@ -344,8 +409,56 @@ export const architecture = {
       body: 'Textos, orden, audios y preguntas viven como datos: el equipo de salud puede ajustarlos sin programar.',
       items: ['ModuleDataSO', 'StepDataSO', 'NarrationDataSO'],
       practice: 'Contenido como datos: pasar de uno a cinco módulos no exigió reescribir los sistemas.' },
-    { tag: 'Calidad', title: 'Verificado en cada incremento',
-      body: '35 pruebas con el resultado esperado y 15 defectos corregidos antes de cerrar cada incremento.',
-      items: ['5 niveles de verificación'], practice: null, final: true },
+    { tag: 'Calidad', title: 'Verificado con una prueba de caja blanca',
+      body: 'Prueba en 11 dispositivos Android el 28 de octubre de 2026: 109 casos ejecutados y 95 aprobados (87,2 %), con el 100 % de los casos críticos aprobados y 0 excepciones. No se alcanzó el umbral del 95 %. Defectos abiertos conocidos:',
+      items: ['D-01: aviso de texturas multisample, en 6 de 11 sesiones', 'D-03: instrumento, memoria inicial en 0,00 MB y tiempo de GPU en µs', 'D-04: curso completado de 5 a 8 veces por sesión'], practice: null, final: true },
+  ],
+};
+
+// Diagramas del rediseño. Las lecturas salen de los propios diagramas; no agregar datos que no estén en ellos.
+export const diagrams = {
+  title: 'Diagramas del sistema',
+  source: 'Elaboración propia (2026)',
+  items: [
+    { group: 'Escenas', img: '/img/diagramas/flujo_escenas.svg',
+      alt: 'Flujo entre las escenas Intro, Tutorial y Cocina',
+      title: 'Flujo entre escenas',
+      caption: 'De la Intro se entra al Tutorial o a la Cocina, y la Cocina regresa a la Intro por el teletransporte de la sala.' },
+    { group: 'Escenas', img: '/img/diagramas/arquitectura_escenas.svg',
+      alt: 'Sistemas que carga cada escena y sistemas que duran toda la sesión',
+      title: 'Sistemas por escena',
+      caption: 'Cada escena carga solo lo que necesita; las métricas, los eventos y el progreso duran toda la sesión.' },
+    { group: 'Arquitectura', img: '/img/diagramas/capas_arquitectura.svg',
+      alt: 'Cinco capas: entrada del usuario, eventos, lógica, vinculación con la escena y datos',
+      title: 'Cinco capas',
+      caption: 'Entrada, eventos, lógica, vinculación con la escena y datos, de arriba hacia abajo.' },
+    { group: 'Arquitectura', img: '/img/diagramas/secuencia_paso.svg',
+      alt: 'Secuencia de mensajes entre el usuario, la barra de partes y los sistemas durante una parte',
+      title: 'Secuencia de una parte',
+      caption: 'La barra de partes, la narración y el progreso se coordinan con el sistema de pasos.' },
+    { group: 'Arquitectura', img: '/img/diagramas/progreso_sistema.svg',
+      alt: 'Diseño del sistema de progreso y su escritura segura con copia de respaldo',
+      title: 'Progreso y respaldo',
+      caption: 'El progreso se guarda en un archivo local con copia de respaldo y se recupera si el archivo falla.' },
+    { group: 'Interacción', img: '/img/diagramas/mirada_teleport.svg',
+      alt: 'Selección por mirada y teletransporte con viñeta',
+      title: 'Mirada y teletransporte',
+      caption: 'Los botones y las opciones piden 1,5 s de mirada; «Salir» y los teletransportes, 2,5 s.' },
+    { group: 'Interacción', img: '/img/diagramas/estados_opcion.svg',
+      alt: 'Estados de una opción de examen: normal, resaltada, correcta, incorrecta, atenuada y era la correcta',
+      title: 'Estados de una opción',
+      caption: 'Una opción pasa de normal a resaltada y luego a correcta o incorrecta; el color siempre va con texto.' },
+    { group: 'Curso', img: '/img/diagramas/curso_modulos.svg',
+      alt: 'Cinco módulos de cinco partes en secuencia y el examen general al final',
+      title: 'Curso por módulos',
+      caption: 'Cinco módulos de cinco partes, cada uno requiere completar el anterior; el examen general sigue al M5.' },
+    { group: 'Curso', img: '/img/diagramas/estados_modulo.svg',
+      alt: 'Estados de un módulo: bloqueado, disponible, en curso, completado y terminado sin completar',
+      title: 'Estados de un módulo',
+      caption: 'Un módulo queda completado al finalizar con las 5 partes estudiadas; si no, queda terminado sin completar y puede repetirse.' },
+    { group: 'Curso', img: '/img/diagramas/puntaje_examen.svg',
+      alt: 'Cálculo del puntaje del examen y regla de aprobación',
+      title: 'Puntaje del examen',
+      caption: 'Cuenta solo la primera respuesta de cada pregunta; con 60 % o más se aprueba y se conserva el mejor puntaje.' },
   ],
 };

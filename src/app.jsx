@@ -22,6 +22,7 @@ export function App() {
         <S.Faq />
       </main>
       <S.SiteEnd />
+      <S.UnabBadge />
     </>
   );
 }

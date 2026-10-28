@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, lazy, Suspense } from 'react';
+import { useState, useRef, useEffect, lazy, Suspense, Fragment } from 'react';
 import * as C from '../data/content.js';
 import { Icon, SectionHead, Carousel, CountUp } from './ui.jsx';
 import { Scrolly } from './Scrolly.jsx';
@@ -393,20 +393,76 @@ export function Results() {
 }
 
 export function Faq() {
-  const [open, setOpen] = useState(-1);
+  const [active, setActive] = useState(0);
+  const f = C.faq;
+  const cur = f[active];
+  const pad = (n) => String(n).padStart(2, '0');
+  const go = (i) => setActive((i + f.length) % f.length);
   return (
-    <section id="faq" className="section">
-      <div className="container faq">
-        <h2 className="h2 reveal">Preguntas frecuentes</h2>
-        <div className="faq-list reveal">
-          {C.faq.map((f, i) => (
-            <div key={f.q} className={`faq-item ${open === i ? 'is-open' : ''}`}>
-              <button onClick={() => setOpen(open === i ? -1 : i)} aria-expanded={open === i}>
-                {f.q}<Icon name="chevron" size={18} />
-              </button>
-              <div className="faq-a"><p>{f.a}</p></div>
+    <section id="faq" className="section faq-section">
+      <div className="faq-marquee" aria-hidden="true">
+        <div className="faq-marquee-track">
+          {[0, 1].map((d) => (
+            <div key={d} className="faq-marquee-row">
+              {Array.from({ length: 6 }).map((_, k) => <span key={k}><i>*</i>PREGUNTAS FRECUENTES</span>)}
             </div>
           ))}
+        </div>
+      </div>
+      <div className="container">
+        <header className="faq-head reveal">
+          <p className="faq-eyebrow"><span />F.A.Q<em>{pad(f.length)} dudas resueltas</em></p>
+          <h2 className="faq-title">Lo que más <em>preguntan</em><br />cuando explicamos el proyecto.</h2>
+        </header>
+        <div className="faq-shell reveal">
+          <aside className="faq-aside">
+            <p className="faq-aside-label">Índice de dudas</p>
+            <ol>
+              {f.map((it, i) => (
+                <li key={it.q}>
+                  <button type="button" className={`faq-aside-item${i === active ? ' is-active' : ''}`} onClick={() => setActive(i)} aria-current={i === active}>
+                    <span className="faq-aside-num">{pad(i + 1)}</span>
+                    <span className="faq-aside-text"><span className="faq-aside-cat">{it.cat}</span><span className="faq-aside-q">{it.q}</span></span>
+                    <Icon name="arrowR" size={14} />
+                  </button>
+                </li>
+              ))}
+            </ol>
+            <div className="faq-aside-foot">
+              <span>¿Tienes otra duda?</span>
+              <a href="#equipo" className="faq-aside-cta">Escríbenos <Icon name="arrowUR" size={12} /></a>
+            </div>
+          </aside>
+          <article className="faq-panel" key={active} aria-live="polite">
+            <div className="faq-panel-head">
+              <span className="faq-panel-tag">{cur.tag}</span>
+              <span className="faq-panel-meta"><i />Lectura · {cur.read}</span>
+            </div>
+            <div className="faq-panel-marker"><span className="faq-panel-q">Q</span><span>{pad(active + 1)} / {pad(f.length)}</span></div>
+            <h3 className="faq-panel-question">{cur.q}</h3>
+            <div className="faq-panel-answer">
+              <span className="faq-panel-mark">A</span>
+              <div>
+                <p>{cur.a}</p>
+                {cur.table && (
+                  <div className="faq-panel-table">
+                    <span>Plataforma</span><span>Limitación</span>
+                    {cur.table.map(([p, l]) => <Fragment key={p}><strong>{p}</strong><span>{l}</span></Fragment>)}
+                  </div>
+                )}
+              </div>
+            </div>
+            <footer className="faq-panel-foot">
+              <div className="faq-panel-related">
+                <span>También preguntan</span>
+                <div>{cur.related.map((r) => <button key={r} type="button" onClick={() => setActive(r)}>{f[r].q}</button>)}</div>
+              </div>
+              <div className="faq-panel-nav">
+                <button type="button" onClick={() => go(active - 1)} aria-label="Anterior"><Icon name="arrowL" size={14} /></button>
+                <button type="button" onClick={() => go(active + 1)} aria-label="Siguiente"><Icon name="arrowR" size={14} /></button>
+              </div>
+            </footer>
+          </article>
         </div>
       </div>
     </section>
@@ -476,6 +532,21 @@ function Footer() {
         ))}
       </div>
     </footer>
+  );
+}
+
+// Logo fijo de la UNAB: al pasar el cursor (o enfocarlo con el teclado) se abre el recuadro con la información.
+export function UnabBadge() {
+  return (
+    <div className="unab-badge">
+      <a className="unab-badge-logo" href="https://unab.edu.co" target="_blank" rel="noopener noreferrer" aria-label="Universidad Autónoma de Bucaramanga (se abre en una pestaña nueva)">
+        <img src="/img/unab-logo.png" alt="" width="44" height="55" />
+      </a>
+      <div className="unab-badge-card" role="note">
+        <small>Universidad Autónoma de Bucaramanga</small>
+        <p>Proyecto desarrollado por estudiantes de la <b>Facultad de Ingeniería de Sistemas</b> · UNAB.</p>
+      </div>
+    </div>
   );
 }
 

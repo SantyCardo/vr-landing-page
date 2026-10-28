@@ -158,11 +158,12 @@ export default function SolutionScene({ progressRef, screens }) {
     const shadowMats = [];
     const screenGroups = [];
 
+    // Marcos a escala 0.8 (1.36 x 0.84) y separados más que su tamaño: no se cruzan ni se recortan en el borde del canvas.
     const arcPos = [
-      new THREE.Vector3(1.0, 0.95, 0.45),
-      new THREE.Vector3(2.6, 0.75, -0.15),
-      new THREE.Vector3(1.1, -0.75, -0.85),
-      new THREE.Vector3(2.5, -0.95, -1.2),
+      new THREE.Vector3(0.85, 0.95, 0.2),
+      new THREE.Vector3(2.35, 0.8, -0.1),
+      new THREE.Vector3(0.9, -0.8, -0.4),
+      new THREE.Vector3(2.3, -0.95, -0.7),
     ];
     const rowPos = [
       new THREE.Vector3(-2.55, -1.5, 0.6),
@@ -170,7 +171,7 @@ export default function SolutionScene({ progressRef, screens }) {
       new THREE.Vector3(0.85, -1.5, 0.6),
       new THREE.Vector3(2.55, -1.5, 0.6),
     ];
-    const parDepth = [0.6, 0.8, 0.9, 1.1];
+    const parDepth = [0.5, 0.65, 0.8, 0.95];
 
     for (let i = 0; i < 4; i++) {
       const fm = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0, side: THREE.FrontSide });
@@ -180,6 +181,7 @@ export default function SolutionScene({ progressRef, screens }) {
       imgMats.push(im);
       shadowMats.push(sm);
       const g = new THREE.Group();
+      g.scale.setScalar(0.8);
       const shadowMesh = new THREE.Mesh(frameGeo, sm);
       shadowMesh.position.set(0.08, -0.08, -0.03);
       const frameMesh = new THREE.Mesh(frameGeo, fm);
@@ -299,7 +301,7 @@ export default function SolutionScene({ progressRef, screens }) {
       if (!reduced) {
         const el = progressRef && progressRef.current;
         const raw = el ? parseFloat(getComputedStyle(el).getPropertyValue('--sol-progress')) || 0 : 0;
-        progress += (raw - progress) * 0.12;
+        progress += (raw - progress) * (1 - Math.exp(-5 * delta));
       }
       const p = progress;
 
@@ -339,8 +341,9 @@ export default function SolutionScene({ progressRef, screens }) {
       colorMats.forEach(({ mat, c }) => mat.color.copy(c).lerp(GREY, grey));
       screenMat.emissiveIntensity = screenOn * 1.05;
 
-      mx += (tmx - mx) * 0.08;
-      my += (tmy - my) * 0.08;
+      const pk = 1 - Math.exp(-3 * delta);
+      mx += (tmx - mx) * pk;
+      my += (tmy - my) * pk;
       if (reduced) { mx = 0; my = 0; }
 
       // Pantallas flotantes: arco cóncavo → fila ordenada.
@@ -353,8 +356,8 @@ export default function SolutionScene({ progressRef, screens }) {
 
         tmpV.copy(arcPos[i]).lerp(rowPos[i], row);
         tmpV.z += (1 - screensIn) * 1.5;
-        tmpV.x += mx * 0.12 * parDepth[i] * screensIn;
-        tmpV.y += my * 0.08 * parDepth[i] * screensIn;
+        tmpV.x += mx * 0.07 * parDepth[i] * screensIn;
+        tmpV.y += my * 0.05 * parDepth[i] * screensIn;
         g.position.copy(tmpV);
         g.lookAt(lookTmp);
       });

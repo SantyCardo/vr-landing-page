@@ -33,7 +33,7 @@ export default function PenModel({ progressRef }) {
 
     let disposed = false;
     // Despiece: desplazamiento de cada pieza a lo largo del eje del lapicero (unidades del FBX, +Y hacia la tapa).
-    const EXPLODE = { Circle001: 125, Cylinder007: 40, Cylinder009: -24, Cylinder010: -22, Cylinder008: -46 };
+    const EXPLODE = { Circle001: 95, Cylinder007: 32, Cylinder009: -19, Cylinder010: -17, Cylinder008: -36 };
     let parts = [];
     new FBXLoader().load('/models/lapicero.fbx', (obj) => {
       if (disposed) return;
@@ -67,7 +67,7 @@ export default function PenModel({ progressRef }) {
       const maxDim = Math.max(size.x, size.y, size.z) || 1;
       if (size.x === maxDim) holder.rotation.z = Math.PI / 2;
       else if (size.z === maxDim) holder.rotation.x = Math.PI / 2;
-      holder.scale.setScalar(2.4 / maxDim); // margen para el lapicero desarmado
+      holder.scale.setScalar(2.1 / maxDim); // margen para que el lapicero desarmado no se recorte en el canvas
       spinner.add(holder);
     });
 
@@ -89,17 +89,23 @@ export default function PenModel({ progressRef }) {
     let raf = 0;
     let current = 0;
     let explode = 0;
+    let last = performance.now();
     const tick = () => {
       raf = requestAnimationFrame(tick);
+      const now = performance.now();
+      const dt = Math.min((now - last) / 1000, 0.05);
+      last = now;
       if (!visible) return;
+      // Suavizado independiente de los FPS: en el visor el movimiento no debe dar saltos.
+      const damp = (rate) => 1 - Math.exp(-rate * dt);
       const el = progressRef && progressRef.current;
       const p = el ? parseFloat(getComputedStyle(el).getPropertyValue('--arch-progress')) || 0 : 0;
       const target = reduced ? 0.6 : p * Math.PI * 2 * 1.25;
-      current += (target - current) * 0.08;
+      current += (target - current) * damp(3);
       spinner.rotation.y = current;
-      // Se desarma entre el 15 % y el 60 % del recorrido de la sección y queda desarmado al final.
-      const e = reduced ? 0 : THREE.MathUtils.smoothstep(p, 0.15, 0.6);
-      explode += (e - explode) * 0.1;
+      // Se desarma de forma gradual entre el 10 % y el 80 % del recorrido y queda desarmado al final.
+      const e = reduced ? 0 : THREE.MathUtils.smootherstep(p, 0.1, 0.8);
+      explode += (e - explode) * damp(2.5);
       parts.forEach(({ part, base, delta }) => part.position.copy(base).addScaledVector(delta, explode));
       renderer.render(scene, camera);
     };

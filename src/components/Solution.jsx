@@ -109,7 +109,7 @@ export function Solution() {
               {s.steps.map((_, i) => <span key={i} className={`sol-dot${i <= active ? ' is-on' : ''}`} />)}
             </span>
             <Suspense fallback={<SolutionStatic />}>
-              <SolutionScene progressRef={trackRef} screens={s.screens} />
+              <SolutionScene progressRef={trackRef} screens={s.screens} phoneScreens={s.phoneScreens} />
             </Suspense>
             <div className={`sol-chips${active >= 2 ? ' is-visible' : ''}`} aria-hidden="true">
               {s.chips.map((c) => (

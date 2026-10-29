@@ -1,19 +1,13 @@
 import { useState, useRef, useEffect, lazy, Suspense, Fragment } from 'react';
 import * as C from '../data/content.js';
-import { Icon, SectionHead, Carousel, CountUp } from './ui.jsx';
+import { Icon, SectionHead, Carousel } from './ui.jsx';
 import { Scrolly } from './Scrolly.jsx';
 import { Solution } from './Solution.jsx';
 import Lightbox from './Lightbox.jsx';
+import { useInView, PhoneFill, Counter, Gauge, Thermo, Stacked, nf, phoneLevel, ChartCard, DevicesBarChart, SceneDotChart, SeriesChart, SceneFlow } from './ResultsViz.jsx';
+import { sceneFps, fpsSeries } from '../data/charts.js';
 
 const PenModel = lazy(() => import('./PenModel.jsx'));
-
-// Diagramas agrupados por `group` en el orden de primera aparición; `index` es la posición global para el visor.
-const DIAGRAM_GROUPS = [];
-C.diagrams.items.forEach((d, index) => {
-  let g = DIAGRAM_GROUPS.find((x) => x.name === d.group);
-  if (!g) { g = { name: d.group, items: [] }; DIAGRAM_GROUPS.push(g); }
-  g.items.push({ ...d, index });
-});
 
 // Galería del recorrido guiado: acordeón horizontal con hover (escritorio) o
 // fila con scroll-snap (táctil). Cada tarjeta abre el visor de imagen ampliada.
@@ -210,7 +204,6 @@ export function Objectives() {
   );
 }
 
-
 export function Methodology() {
   const m = C.methodology;
   return (
@@ -250,7 +243,6 @@ export function Methodology() {
 }
 
 export function Architecture() {
-  const [openDiagram, setOpenDiagram] = useState(-1);
   const a = C.architecture;
   const listRef = useRef(null);
 
@@ -314,28 +306,12 @@ export function Architecture() {
         </div>
 
         <h3 className="res-group arch-diagrams-title reveal">{C.diagrams.title}</h3>
-        {DIAGRAM_GROUPS.map((g) => (
-          <div key={g.name} className="reveal">
-            <h4 className="res-subgroup">{g.name}</h4>
-            <div className="res-figs">
-              {g.items.map((d) => (
-                <button key={d.img} type="button" className="res-fig" aria-label={`Ampliar diagrama: ${d.title}`} onClick={() => setOpenDiagram(d.index)}>
-                  <img src={d.img} alt={d.alt} loading="lazy" decoding="async" />
-                  <strong>{d.title}</strong>
-                  <span>{d.caption}</span>
-                  <small>Fuente: {C.diagrams.source}</small>
-                </button>
-              ))}
-            </div>
-          </div>
-        ))}
+        <div className="arch-flow-card reveal">
+          <SceneFlow nodes={C.diagrams.nodes} edges={C.diagrams.edges} alt={C.diagrams.alt} caption={C.diagrams.caption} />
+          <p className="arch-flow-caption">{C.diagrams.caption}</p>
+          <small>{`Fuente: ${C.diagrams.source}`}</small>
+        </div>
       </div>
-      {openDiagram >= 0 && (
-        <Lightbox
-          items={C.diagrams.items.map((d) => ({ img: d.img, alt: d.alt, kicker: d.group, title: d.title, body: `${d.caption} Fuente: ${C.diagrams.source}.` }))}
-          index={openDiagram} onClose={() => setOpenDiagram(-1)} onIndexChange={setOpenDiagram}
-        />
-      )}
     </section>
   );
 }
@@ -358,129 +334,259 @@ export function Stack() {
   );
 }
 
-// Estado de cada indicador: el texto siempre va; el símbolo y el borde dan una segunda señal además del color.
-const WB_STATE = {
-  'Alcanzado': ['is-ok', '✓'],
-  'No alcanzado': ['is-no', '✕'],
-  'Parcial': ['is-partial', '◐'],
-};
-const REQ_STATE = {
-  'Cumple': ['is-ok', '✓'],
-  'Cumple parcialmente': ['is-partial', '◐'],
-  'No cumple': ['is-no', '✕'],
-  'Referencia alcanzada': ['is-ok', '✓'],
-};
-
-function StateBadge({ map, state }) {
-  const [cls, sym] = map[state] ?? ['is-partial', '●'];
-  return <span className={`res-state ${cls}`}><span aria-hidden="true">{sym} </span>{state}</span>;
-}
-
-// Gráficos agrupados por `group` en el orden de primera aparición; `index` es la posición global para el visor.
-const CHART_GROUPS = [];
-C.results.charts.forEach((c, index) => {
-  let g = CHART_GROUPS.find((x) => x.name === c.group);
-  if (!g) { g = { name: c.group, items: [] }; CHART_GROUPS.push(g); }
-  g.items.push({ ...c, index });
-});
-
 export function Results() {
   const r = C.results;
-  const [open, setOpen] = useState(-1);
-  const lightbox = r.charts.map((c) => ({ img: c.img, alt: c.alt, kicker: c.group, title: c.title, body: `${c.caption} Fuente: ${r.source}.` }));
+  const trackRef = useRef(null);
+  // Desplaza la pista el ancho de una tarjeta (sin animación con movimiento reducido).
+  const step = (dir) => {
+    const track = trackRef.current;
+    const card = track && track.querySelector('.rx-chart');
+    if (!card) return;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    track.scrollBy({ left: dir * (card.offsetWidth + 16), behavior: reduced ? 'auto' : 'smooth' });
+  };
+  const worst = Math.min(...r.scenes.items.map((s) => s.median));
+  const dev = r.devices;
+  // Tooltip de requerimientos: si se sale por la derecha de la pantalla, se alinea a la derecha del chip.
+  const placeTip = (e) => {
+    const tip = e.currentTarget.querySelector('.rx-tip');
+    if (!tip) return;
+    tip.classList.remove('is-right');
+    if (tip.getBoundingClientRect().right > window.innerWidth - 8) tip.classList.add('is-right');
+  };
+
+  const refDevices = useRef(null);
+  const refScenes = useRef(null);
+  const refTests = useRef(null);
+  const refExperts = useRef(null);
+  const refPending = useRef(null);
+  const onDevices = useInView(refDevices);
+  const onScenes = useInView(refScenes);
+  const onTests = useInView(refTests);
+  const onExperts = useInView(refExperts);
+  const onPending = useInView(refPending);
 
   return (
     <section id="resultados" className="section">
       <div className="container">
         <SectionHead title={['Resultados', 'del prototipo.']} lead={r.lead} />
-        <div className="grid-4">
-          {r.verified.map((v) => (
-            <article key={v.label} className="card stat reveal">
-              <strong><CountUp value={v.metric} /></strong>
-              <span className="muted">{v.label}</span>
-              <p>{v.body}</p>
-            </article>
-          ))}
-        </div>
 
-        <div className="res-stack">
-          <article className="card reveal">
-            <span className="tag">{r.whitebox.tag}</span>
-            <h3>{r.whitebox.title}</h3>
-            <p>{r.whitebox.body}</p>
-            <div className="res-items">
-              {r.whitebox.items.map((v) => (
-                <div key={v.name} className="res-item">
-                  <span className="muted">{v.what}</span>
-                  <strong>{v.name}</strong>
-                  <span className="res-value">{v.value}</span>
-                  <span className="muted">Umbral {v.target}</span>
-                  <StateBadge map={WB_STATE} state={v.state} />
-                </div>
-              ))}
-            </div>
-          </article>
-
-          {CHART_GROUPS.map((g) => (
-            <div key={g.name} className="reveal">
-              <h3 className="res-group">{g.name}</h3>
-              <div className="res-figs">
-                {g.items.map((c) => (
-                  <button key={c.img} type="button" className="res-fig" aria-label={`Ampliar gráfico: ${c.title}`} onClick={() => setOpen(c.index)}>
-                    <img src={c.img} alt={c.alt} loading="lazy" decoding="async" />
-                    <strong>{c.title}</strong>
-                    <span>{c.caption}</span>
-                    <small>Fuente: {r.source}</small>
-                  </button>
-                ))}
-              </div>
-            </div>
-          ))}
-
-          <article className="card reveal">
-            <span className="tag">{r.validation.tag}</span>
-            <h3>{r.validation.title}</h3>
-            <p>{r.validation.body}</p>
-            <div className="res-items is-two">
-              {r.validation.items.map((v) => (
-                <div key={v.name} className="res-item">
-                  <span className="muted">{v.what}</span>
-                  <strong>{v.name}</strong>
-                  <span className="res-value">{v.value}</span>
-                  <span className="muted">{v.goal}</span>
-                </div>
-              ))}
-            </div>
-            <p className="muted">{r.validation.note}</p>
-          </article>
-
-          <article className="card reveal">
-            <h3>{r.requirements.title}</h3>
-            <p>{r.requirements.body}</p>
-            {r.requirements.groups.map((g) => (
-              <div key={g.state} className="res-req-row">
-                <StateBadge map={REQ_STATE} state={g.state} />
-                <div className="res-chips">
-                  {g.items.map((code) => <span key={code} className="res-chip">{code}</span>)}
-                </div>
+        <div className="rx-block rx-impact reveal" data-block="impact">
+          <div className="rx-impact-grid">
+            {r.impact.items.map((it) => (
+              <div key={it.label} className="rx-impact-item">
+                <strong><Counter value={it.value} duration={1200} /></strong>
+                <span>{it.label}</span>
               </div>
             ))}
-            <ul className="res-limits">
-              {r.requirements.details.map((t) => <li key={t}>{t}</li>)}
-            </ul>
-          </article>
+          </div>
+          <p className="rx-impact-ctx">{r.impact.context}</p>
+        </div>
 
-          <article className="card reveal">
-            <h3>{r.limitations.title}</h3>
-            <ul className="res-limits">
-              {r.limitations.items.map((t) => <li key={t}>{t}</li>)}
-            </ul>
-          </article>
+        <div ref={refDevices} className="rx-block reveal" data-block="devices">
+          <div className="rx-head">
+            <div>
+              <p className="rx-tag">{dev.tag}</p>
+              <h3 className="rx-h3">{dev.question}</h3>
+            </div>
+            <p className="rx-a">{dev.answer}</p>
+          </div>
+          <div className="rx-keys-m" aria-hidden="true">
+            <span className="rx-key"><span className="rx-dash" />{`${dev.min.value} ${dev.min.label}`}</span>
+            <span className="rx-key"><span className="rx-dash" />{`${dev.goal.value} ${dev.goal.label}`}</span>
+          </div>
+          <div className="rx-phones-wrap">
+            <div className="rx-levels" aria-hidden="true">
+              {[dev.min, dev.goal].map((lv) => (
+                <div key={lv.value} className="rx-level" style={{ top: `calc(var(--phone-h) * ${phoneLevel(lv.value, dev.max)})` }}>
+                  <span className="rx-level-label">{`${lv.value} · ${lv.label}`}</span>
+                </div>
+              ))}
+            </div>
+            <div className="rx-phones">
+              {dev.items.map((it, i) => (
+                <PhoneFill key={it.model} item={it} max={dev.max} min={dev.min} goal={dev.goal} on={onDevices} delay={i * 80} />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div ref={refScenes} className="rx-block reveal" data-block="scenes">
+          <div className="rx-head">
+            <div>
+              <p className="rx-tag">{r.scenes.tag}</p>
+              <h3 className="rx-h3">{r.scenes.question}</h3>
+            </div>
+            <p className="rx-a">{r.scenes.answer}</p>
+          </div>
+          <div className="rx-scenes">
+            {r.scenes.items.map((it) => (
+              <article key={it.name} className={`rx-scene${it.median === worst ? ' is-worst' : ''}`}>
+                {it.img && <img className="rx-scene-img" src={it.img} alt="" loading="lazy" decoding="async" />}
+                {it.img && <span className="rx-scene-shade" aria-hidden="true" />}
+                <h4 className="rx-scene-name">{it.name}</h4>
+                <Gauge
+                  value={it.median}
+                  max={r.scenes.max}
+                  on={onScenes}
+                  size={200}
+                  label={r.scenes.unit}
+                  tone="dark"
+                  color={it.median >= r.scenes.min.value ? 'var(--ok)' : 'var(--warn)'}
+                  tick={r.scenes.min}
+                />
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <div ref={refTests} className="rx-block reveal" data-block="tests">
+          <p className="rx-tag">{r.tests.tag}</p>
+          <h3 className="rx-h3">{r.tests.question}</h3>
+          <div className="rx-tests">
+            <div className="rx-tests-main">
+              {/* Una barra: aprobados frente a la meta. */}
+              <div className="rx-pass" role="img" aria-label={`${r.tests.pass.value} ${r.tests.pass.label} (${r.tests.pass.pct}). ${r.tests.honest}`}>
+                <p className="rx-pass-head">
+                  <strong className="rx-pass-num"><Counter value={r.tests.pass.value} duration={1200} /></strong>
+                  <span>{r.tests.pass.label}</span>
+                  <span className="rx-pass-pct">{r.tests.pass.pct}</span>
+                </p>
+                <div className="rx-pass-bar" aria-hidden="true">
+                  <span className={`rx-pass-fill${onTests ? ' is-in' : ''}`} style={{ '--p': r.tests.passed / r.tests.total }} />
+                  <span className="rx-pass-goal" style={{ left: `${r.tests.pass.goal}%` }}><i>{r.tests.pass.goalLabel}</i></span>
+                </div>
+              </div>
+              <h4 className="rx-fail-title">{r.tests.failuresTitle}</h4>
+              <ul className="rx-fail">
+                {r.tests.failures.map((f) => (
+                  <li key={f.n}><strong>{f.n}</strong><span>{f.text}</span></li>
+                ))}
+              </ul>
+            </div>
+            <div className="rx-tests-side">
+              <div className="rx-badges">
+                {r.tests.badges.map((b) => (
+                  <div key={b.label} className="rx-badge"><strong>{b.value}</strong><span>{b.label}</span></div>
+                ))}
+              </div>
+              <p className="rx-honest"><span aria-hidden="true">⚠ </span>{r.tests.honest}</p>
+              <Thermo
+                title={r.tests.temperature.title}
+                min={r.tests.temperature.min}
+                max={r.tests.temperature.max}
+                scale={r.tests.temperature.scale}
+                text={r.tests.temperature.text}
+                on={onTests}
+              />
+            </div>
+          </div>
+        </div>
+
+        <div ref={refExperts} className="rx-block reveal" data-block="experts">
+          <p className="rx-tag">{r.experts.tag}</p>
+          <h3 className="rx-h3">{r.experts.question}</h3>
+          <div className="rx-ecards">
+            <div className="rx-ecard">
+              <Gauge
+                value={r.experts.sus.value}
+                max={100}
+                on={onExperts}
+                size={260}
+                label={r.experts.sus.label}
+                reference={r.experts.sus.reference}
+                referenceLabel={r.experts.sus.referenceLabel}
+                marks={r.experts.sus.evaluators}
+                needle
+              />
+              <ul className="rx-evals">
+                {r.experts.sus.evaluators.map((e, i) => <li key={i}>{`${e.who}: ${nf(e.value, 1)}`}</li>)}
+              </ul>
+            </div>
+            <div className="rx-ecard">
+              <div className="rx-cvi" aria-hidden="true">
+                {r.experts.cvi.labels.map((l, i) => (
+                  <div key={l} className="rx-cvi-cell">
+                    <span className={`rx-box${onExperts ? ' is-on' : ''}`}>
+                      <span className="rx-tick" style={{ transitionDelay: `${i * 90}ms` }}>✓</span>
+                    </span>
+                    <span className="rx-cvi-label">{l}</span>
+                  </div>
+                ))}
+              </div>
+              <p className="rx-a">{r.experts.cvi.text}</p>
+              <p className="rx-legend-small">{r.experts.cvi.legend}</p>
+            </div>
+          </div>
+          <p className="rx-note">{r.experts.note}</p>
+        </div>
+
+        <div ref={refPending} className="rx-block reveal" data-block="pending">
+          <p className="rx-tag">{r.pending.tag}</p>
+          <h3 className="rx-h3">{r.pending.question}</h3>
+          <div className="rx-pending">
+            {r.pending.items.map((it) => (
+              <div key={it.title} className="rx-pcard">
+                <Icon name={it.icon} size={24} />
+                <span>{it.title}</span>
+              </div>
+            ))}
+          </div>
+          <h4 className="rx-h4">{r.pending.reqsTitle}</h4>
+          <Stacked groups={r.pending.reqs} on={onPending} />
+          <details className="rx-details">
+            <summary>{r.pending.reqsToggle}</summary>
+            <div className="rx-reqs">
+              {r.pending.reqs.map((g) => (
+                <div key={g.state} className="rx-req">
+                  <span className="rx-req-state">{g.state}</span>
+                  <div className="rx-chips">
+                    {g.items.map((code) => {
+                      const key = code.split(' ')[0];
+                      const info = r.pending.reqInfo[key];
+                      return (
+                        <span key={code} className="rx-chip-wrap" onMouseEnter={placeTip} onFocus={placeTip}>
+                          <span className="rx-chip" tabIndex={0} aria-describedby={info ? `tip-${key}` : undefined}>{code}</span>
+                          {info && (
+                            <span role="tooltip" id={`tip-${key}`} className="rx-tip">
+                              <strong>{info[0]}</strong>
+                              <span>{info[1]}</span>
+                            </span>
+                          )}
+                        </span>
+                      );
+                    })}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </details>
+        </div>
+
+        <div className="rx-block reveal" data-block="charts">
+          <div className="rx-chart-head">
+            <div>
+              <p className="rx-tag">Anexo</p>
+              <h3 className="rx-h3">{r.chartsTitle}</h3>
+            </div>
+            <div className="arrows">
+              <button type="button" className="arrow" onClick={() => step(-1)} aria-label="Gráfico anterior"><Icon name="arrowL" size={20} /></button>
+              <button type="button" className="arrow" onClick={() => step(1)} aria-label="Gráfico siguiente"><Icon name="arrowR" size={20} /></button>
+            </div>
+          </div>
+          <div className="rx-track" ref={trackRef} tabIndex={0} role="region" aria-label="Gráficos técnicos">
+            {r.charts.map((c) => {
+              const label = `${c.alt}. ${c.caption}`;
+              const render = {
+                devices: (on) => <DevicesBarChart items={dev.items} min={dev.min} goal={dev.goal} on={on} label={label} />,
+                scenes: (on) => <SceneDotChart rows={sceneFps} on={on} label={label} />,
+                series: (on) => <SeriesChart series={fpsSeries} on={on} label={label} />,
+              }[c.id];
+              return <ChartCard key={c.id} title={c.title} caption={c.caption} source={r.source} render={render} />;
+            })}
+          </div>
         </div>
       </div>
-      {open >= 0 && (
-        <Lightbox items={lightbox} index={open} onClose={() => setOpen(-1)} onIndexChange={setOpen} />
-      )}
     </section>
   );
 }
@@ -630,8 +736,20 @@ function Footer() {
 
 // Logo fijo de la UNAB: al pasar el cursor (o enfocarlo con el teclado) se abre el recuadro con la información.
 export function UnabBadge() {
+  // En móvil se oculta cuando la portada ya no está en pantalla, para no tapar el contenido.
+  const [narrow, setNarrow] = useState(() => window.matchMedia('(max-width: 860px)').matches);
+  const [hero, setHero] = useState(true);
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 860px)');
+    const onChange = () => setNarrow(mq.matches);
+    mq.addEventListener('change', onChange);
+    const el = document.getElementById('inicio');
+    const io = el ? new IntersectionObserver(([e]) => setHero(e.isIntersecting), { threshold: 0 }) : null;
+    if (io) io.observe(el);
+    return () => { mq.removeEventListener('change', onChange); if (io) io.disconnect(); };
+  }, []);
   return (
-    <div className="unab-badge">
+    <div className={`unab-badge${narrow && !hero ? ' is-hidden' : ''}`}>
       <a className="unab-badge-logo" href="https://unab.edu.co" target="_blank" rel="noopener noreferrer" aria-label="Universidad Autónoma de Bucaramanga (se abre en una pestaña nueva)">
         <img src="/img/unab-logo.png" alt="" width="44" height="55" />
       </a>

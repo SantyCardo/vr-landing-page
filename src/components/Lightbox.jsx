@@ -107,7 +107,7 @@ export default function Lightbox({ items, index, onClose, onIndexChange }) {
           </button>
         )}
 
-        <figure className="lightbox-figure">
+        <figure className={`lightbox-figure${item.light ? ' is-light' : ''}`}>
           <img className="lightbox-img" src={item.img} alt={item.alt || ''} />
         </figure>
 

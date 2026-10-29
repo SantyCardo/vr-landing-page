@@ -55,7 +55,7 @@ function makeShadowTexture() {
   return new THREE.CanvasTexture(c);
 }
 
-export default function SolutionScene({ progressRef, screens }) {
+export default function SolutionScene({ progressRef, screens, phoneScreens }) {
   const mountRef = useRef(null);
   const [failed, setFailed] = useState(false);
 
@@ -228,6 +228,9 @@ export default function SolutionScene({ progressRef, screens }) {
     world.add(ring);
 
     const textures = [];
+    const phoneTex = [];
+    let phoneIdx = 0;
+    let rotT = 0;
     let loaded = false;
     let disposed = false;
     const loader = new THREE.TextureLoader();
@@ -243,6 +246,16 @@ export default function SolutionScene({ progressRef, screens }) {
           textures[i] = tex;
           imgMats[i].map = tex;
           imgMats[i].needsUpdate = true;
+        });
+      });
+      // Capturas de la pantalla del celular: la primera se ve al cargar y el resto rota.
+      (phoneScreens || []).forEach((src, i) => {
+        loader.load(src, (tex) => {
+          if (disposed) { tex.dispose(); return; }
+          tex.colorSpace = THREE.SRGBColorSpace;
+          tex.anisotropy = 4;
+          tex.needsUpdate = true;
+          phoneTex[i] = tex;
           if (i === 0) { screenMat.emissiveMap = tex; screenMat.needsUpdate = true; }
         });
       });
@@ -312,6 +325,16 @@ export default function SolutionScene({ progressRef, screens }) {
       const row = smoothstep(p, 0.78, 1.0);
       const screensIn = smoothstep(p, 0.62, 0.78);
       const ringIn = smoothstep(p, 0.82, 0.95);
+
+      // Pantalla del celular encendida: cambia de captura cada 2,5 s (solo se cambia la referencia).
+      if (!reduced && screenOn > 0.5 && phoneTex.length > 1) {
+        rotT += delta;
+        if (rotT >= 2.5) {
+          rotT = 0;
+          phoneIdx = (phoneIdx + 1) % phoneTex.length;
+          if (phoneTex[phoneIdx]) { screenMat.emissiveMap = phoneTex[phoneIdx]; }
+        }
+      }
 
       // Cámara: más cerca en el estado 2 (ensamblado), sin recortar.
       const zoom = 1 - 0.38 * screenOn * (1 - orbit);
@@ -386,12 +409,13 @@ export default function SolutionScene({ progressRef, screens }) {
         if (o.material) (Array.isArray(o.material) ? o.material : [o.material]).forEach((m) => m.dispose());
       });
       textures.forEach((t) => t && t.dispose());
+      phoneTex.forEach((t) => t && t.dispose());
       particleTex.dispose();
       shadowTex.dispose();
       renderer.dispose();
       if (renderer.domElement.parentNode) renderer.domElement.parentNode.removeChild(renderer.domElement);
     };
-  }, [progressRef, screens]);
+  }, [progressRef, screens, phoneScreens]);
 
   if (failed) return <SolutionStatic />;
   return (

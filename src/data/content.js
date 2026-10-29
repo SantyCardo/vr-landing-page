@@ -56,7 +56,7 @@ export const about = {
 // Demo en video del prototipo. Mientras no haya video se muestra el marcador.
 export const demo = {
   title: 'Demo del prototipo',
-  placeholder: 'Demo próximamente',
+  youtubeId: 'PWgCH3McjRU',
 };
 
 export const features = [

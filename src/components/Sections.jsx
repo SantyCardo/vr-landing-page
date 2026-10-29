@@ -62,14 +62,14 @@ export function Prototype() {
           ))}
         </div>
         <div className="demo-video reveal" role="region" aria-label={C.demo.title}>
-          {/* DEMO: para montar el video, reemplaza el div.demo-placeholder por
-              <video src="/video/demo.mp4" controls playsInline poster="/img/capturas/cocina_general.webp" />
-              o por un <iframe src="..." title={C.demo.title} allowFullScreen />.
-              El contenedor mantiene la proporción 16:9. */}
-          <div className="demo-placeholder">
-            <Icon name="eye" size={36} />
-            <strong>{C.demo.placeholder}</strong>
-          </div>
+          <iframe
+            src={`https://www.youtube-nocookie.com/embed/${C.demo.youtubeId}`}
+            title={C.demo.title}
+            loading="lazy"
+            allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+            allowFullScreen
+            referrerPolicy="strict-origin-when-cross-origin"
+          />
         </div>
         <p className="note reveal">{C.about.note}</p>
       </div>
